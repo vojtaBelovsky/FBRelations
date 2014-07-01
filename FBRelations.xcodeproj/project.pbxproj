@@ -19,6 +19,7 @@
 		294E6E69195D7DEF001F4F87 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E51195D7DEF001F4F87 /* UIKit.framework */; };
 		294E6E71195D7DEF001F4F87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 294E6E6F195D7DEF001F4F87 /* InfoPlist.strings */; };
 		294E6E73195D7DEF001F4F87 /* FBRelationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E6E72195D7DEF001F4F87 /* FBRelationsTests.m */; };
+		29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C21962B38500C43817 /* FBAlbum.m */; };
 		29F452CF195D8E1300DE4814 /* FBAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F452CE195D8E1300DE4814 /* FBAPI.m */; };
 		29F452D7195D999400DE4814 /* FBUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F452D6195D999400DE4814 /* FBUserDetailViewController.m */; };
 		29F452DB195D9A3000DE4814 /* FBUserDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F452DA195D9A3000DE4814 /* FBUserDetailView.m */; };
@@ -53,6 +54,8 @@
 		294E6E6E195D7DEF001F4F87 /* FBRelationsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FBRelationsTests-Info.plist"; sourceTree = "<group>"; };
 		294E6E70195D7DEF001F4F87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		294E6E72195D7DEF001F4F87 /* FBRelationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBRelationsTests.m; sourceTree = "<group>"; };
+		29ABB1C11962B38500C43817 /* FBAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAlbum.h; sourceTree = "<group>"; };
+		29ABB1C21962B38500C43817 /* FBAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAlbum.m; sourceTree = "<group>"; };
 		29F452CD195D8E1300DE4814 /* FBAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAPI.h; sourceTree = "<group>"; };
 		29F452CE195D8E1300DE4814 /* FBAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAPI.m; sourceTree = "<group>"; };
 		29F452D2195D8F4D00DE4814 /* DKCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKCore.h; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 			children = (
 				29F452DD196196AA00DE4814 /* FBUser.h */,
 				29F452DE196196AA00DE4814 /* FBUser.m */,
+				29ABB1C11962B38500C43817 /* FBAlbum.h */,
+				29ABB1C21962B38500C43817 /* FBAlbum.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */,
 				29F452D7195D999400DE4814 /* FBUserDetailViewController.m in Sources */,
 				29F452CF195D8E1300DE4814 /* FBAPI.m in Sources */,
 				294E6E5E195D7DEF001F4F87 /* FBAppDelegate.m in Sources */,

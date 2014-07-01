@@ -69,7 +69,7 @@
 //  } failureBlock:^( NSError *error ) {
 //    
 //  }];
-  [FBAPI loadAlbumsWithUserId:@"10201939947649536" completetionBlock:nil failureBlock:nil];
+  [FBAPI loadAlbumsWithUserId:@"me" completetionBlock:nil failureBlock:nil];
 }
 
 @end

@@ -10,6 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "FBAppDelegate.h"
 #import "FBUser.h"
+#import "FBAlbum.h"
 
 #define GET_METHOD @"GET"
 
@@ -21,11 +22,23 @@
 
 #pragma mark - Class
 
-+ (void)loadAlbumsWithUserId:(NSString *)userId completetionBlock:(FBUserInfoCompletetionBlock)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
++ (void)loadAlbumsWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
     NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, ALBUMS];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
+      FBAlbum *album;
+      NSError *error;
+      NSArray *array = data[ @"data" ];
+      NSMutableArray *albums = [@[] mutableCopy];
+      for ( FBGraphObject *graphObject in array ) {
+        album = [MTLJSONAdapter modelOfClass:[FBAlbum class]
+                          fromJSONDictionary:graphObject
+                                       error:&error];
+        
+        [albums addObject:album];
+      }
       
+      DK_CALL_BLOCK( completetionBlock, albums );
     } failureBlock:failureBlock];
   } failureBlock:failureBlock];
 }
