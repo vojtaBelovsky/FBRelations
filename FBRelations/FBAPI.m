@@ -14,11 +14,21 @@
 #define GET_METHOD @"GET"
 
 #define FRIENDS    @"friends"
+#define ALBUMS     @"albums"
 #define ME         @"me"
 
 @implementation FBAPI
 
 #pragma mark - Class
+
++ (void)loadAlbumsWithUserId:(NSString *)userId completetionBlock:(FBUserInfoCompletetionBlock)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
+  [FBAPI authenticateIfNeededWithCompletetionBlock:^{
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, ALBUMS];
+    [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
+      
+    } failureBlock:failureBlock];
+  } failureBlock:failureBlock];
+}
 
 + (void)loadMyFriendsWithCompletetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
     [FBAPI loadFriendsWithUserId:ME completetionBlock:completetionBlock failureBlock:failureBlock];
@@ -84,7 +94,7 @@
     NSLog( @"open session" );
     // Open a session showing the user the login UI
     // You must ALWAYS ask for public_profile permissions when opening a session
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_friends"]
+    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_friends", @"user_photos"]
                                        allowLoginUI:YES
                                   completionHandler:
      ^( FBSession *session, FBSessionState state, NSError *error ) {

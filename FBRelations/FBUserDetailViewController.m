@@ -58,17 +58,18 @@
 
 - (void)initializeData {
 
-  [FBAPI loadUserInfoWithId:@"me" completetionBlock:^( FBUser *user ) {
-
-  } failureBlock:^( NSError *error ) {
-    NSLog( @"%@", error );
-  }];
+//  [FBAPI loadUserInfoWithId:@"me" completetionBlock:^( FBUser *user ) {
+//
+//  } failureBlock:^( NSError *error ) {
+//    NSLog( @"%@", error );
+//  }];
   
 //  [FBAPI loadMyFriendsWithCompletetionBlock:^( NSArray *data ) {
 //    
 //  } failureBlock:^( NSError *error ) {
 //    
 //  }];
+  [FBAPI loadAlbumsWithUserId:@"10201939947649536" completetionBlock:nil failureBlock:nil];
 }
 
 @end
