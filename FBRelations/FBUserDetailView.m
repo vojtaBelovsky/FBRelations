@@ -9,10 +9,12 @@
 #import "FBUserDetailView.h"
 #import <UIImageView+AFNetworking.h>
 #import "FBUser.h"
+#import "FBLocation.h"
 
 #define ANIMATION_DURATION  0.2f
 
-#define NAME_FONT           [UIFont boldSystemFontOfSize:16.0f]
+#define NAME_FONT           [UIFont boldSystemFontOfSize:20.0f]
+#define ADDRESS_FONT        [UIFont systemFontOfSize:16.0f]
 
 @interface FBUserDetailView () {
   UIScrollView *_scrollView;
@@ -22,6 +24,8 @@
   
   UILabel *_nameLabel;
   UILabel *_addressLabel;
+  UILabel *_ageLabel;
+  UILabel *_relationLabel;
   
   UIToolbar *_toolbar;
   UIView *_contentView;
@@ -51,12 +55,26 @@
     _nameLabel = [[UILabel alloc] init];
     _nameLabel.textColor = WHITE_COLOR;
     _nameLabel.font = NAME_FONT;
+
+    _addressLabel = [[UILabel alloc] init];
+    _addressLabel.textColor = WHITE_COLOR;
+    _addressLabel.font = ADDRESS_FONT;
+
+    _ageLabel = [[UILabel alloc] init];
+    _ageLabel.textColor = WHITE_COLOR;
+    _ageLabel.font = ADDRESS_FONT;
+
+    _relationLabel = [[UILabel alloc] init];
+    _relationLabel.textColor = WHITE_COLOR;
+    _relationLabel.font = ADDRESS_FONT;
     
     [_contentView addSubview:_backgroundView];
     [_contentView addSubview:_toolbar];
     [_contentView addSubview:_avatarView];
     [_contentView addSubview:_nameLabel];
-    
+    [_contentView addSubview:_addressLabel];
+    [_contentView addSubview:_ageLabel];
+    [_contentView addSubview:_relationLabel];
     
     [_scrollView addSubview:_contentView];
     [self addSubview:_scrollView];
@@ -72,10 +90,32 @@
 - (void)setUser:(FBUser *)user {
   [self initializeBackgroundWithUrl:user.cover];
   [self initializeAvatarWithUrl:user.picture];
+  [self initializeAgeWithBirthday:user.birthday];
+  
+  NSString *formattedStr = [NSString stringWithFormat:@"live in %@", user.currentLocation.name];
+  
   _nameLabel.text = user.name;
+  _addressLabel.text = NSLocalizedString( formattedStr, @"" );
+  _relationLabel.text = user.relationStatus;
 }
 
 #pragma mark - Private
+
+- (void)initializeAgeWithBirthday:(NSString *)birthday {
+  NSDateFormatter *df = [[NSDateFormatter alloc] init];
+  [df setDateFormat:@"MM/dd/yyyy"];
+
+  NSDate *date = [df dateFromString:birthday];
+  NSDate *now = [NSDate date];
+  NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
+                                     components:NSYearCalendarUnit
+                                     fromDate:date
+                                     toDate:now
+                                     options:0];
+  NSInteger age = [ageComponents year];
+  NSString *formattedStr = [NSString stringWithFormat:@"%d years old", age];
+  _ageLabel.text = NSLocalizedString( formattedStr, @"" );
+}
 
 - (void)initializeAvatarWithUrl:(NSString *)url {
   NSURL *bannerURL = [NSURL URLWithString:url];
@@ -112,7 +152,7 @@
 }
 
 - (void)initializeConstraints {
-  TMALVariableBindingsAMNO( _backgroundView, _toolbar, _scrollView, _contentView, _avatarView, _nameLabel );
+  TMALVariableBindingsAMNO( _backgroundView, _toolbar, _scrollView, _contentView, _avatarView, _nameLabel, _addressLabel, _relationLabel, _ageLabel );
   TMAL_ADDS_VISUAL( @"H:|-0-[_scrollView]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_scrollView]-0-|" );
 
@@ -125,10 +165,19 @@
   TMAL_ADDS_VISUAL( @"H:|-0-[_toolbar]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_toolbar]-0-|" );
   
-  TMAL_ADDS_VISUAL( @"H:|-16-[_avatarView(==100)]-10-[_nameLabel]" );
+  TMAL_ADDS_VISUAL( @"H:|-16-[_avatarView(==100)]-10-[_nameLabel]-10-|" );
   TMAL_ADDS_VISUAL( @"V:|-16-[_avatarView(==100)]" );
 
-  TMAL_ADDS_VISUAL( @"V:|-16-[_nameLabel]" );
+  TMAL_ADDS_VISUAL( @"V:|-12-[_nameLabel]" );
+
+  TMAL_ADDS_VISUAL( @"H:[_avatarView]-10-[_addressLabel]" );
+  TMAL_ADDS_VISUAL( @"V:[_nameLabel]-0-[_addressLabel]" );
+  
+  TMAL_ADDS_VISUAL( @"H:[_avatarView]-10-[_ageLabel]" );
+  TMAL_ADDS_VISUAL( @"V:[_addressLabel]-0-[_ageLabel]" );
+  
+  TMAL_ADDS_VISUAL( @"H:[_avatarView]-10-[_relationLabel]" );
+  TMAL_ADDS_VISUAL( @"V:[_ageLabel]-24-[_relationLabel]" );
 }
 
 @end

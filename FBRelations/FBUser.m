@@ -32,7 +32,8 @@
             @"updateTime" : @"updated_time",
             @"picture" : @"picture.data.url",
             @"cover" : @"cover.source",
-            @"currentLocation" : @"location"
+            @"currentLocation" : @"location",
+            @"relationStatus" : @"relationship_status",
             };
 }
 

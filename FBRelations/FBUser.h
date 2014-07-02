@@ -25,6 +25,9 @@
 @property (readonly) NSNumber *verified;
 @property (readonly) NSString *picture;
 @property (readonly) NSString *cover;
+@property (readonly) NSString *birthday;
+@property (readonly) NSString *relationStatus;
+
 @property (readonly) FBLocation *hometown;
 @property (readonly) FBLocation *currentLocation;
 

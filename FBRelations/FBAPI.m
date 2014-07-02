@@ -126,7 +126,7 @@
 
 + (void)loadUserInfoWithId:(NSString *)userId completetionBlock:(FBUserInfoCompletetionBlock)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
-    NSString *grapthPath = [NSString stringWithFormat:@"/%@?fields=picture,cover,first_name,name,gender,last_name,link,locale,timezone,updated_time,verified,hometown,location", userId];
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@?fields=picture,cover,first_name,name,gender,last_name,link,locale,timezone,updated_time,verified,hometown,location,relationship_status,birthday", userId];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
       NSDictionary *dict = data;
       NSError *error;
@@ -173,7 +173,7 @@
     NSLog( @"open session" );
     // Open a session showing the user the login UI
     // You must ALWAYS ask for public_profile permissions when opening a session
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_friends", @"user_photos", @"user_likes", @"user_hometown", @"user_location"]
+    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_friends", @"user_photos", @"user_likes", @"user_hometown", @"user_location", @"user_relationships", @"user_birthday"]
                                        allowLoginUI:YES
                                   completionHandler:
      ^( FBSession *session, FBSessionState state, NSError *error ) {
