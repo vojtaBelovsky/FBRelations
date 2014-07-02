@@ -18,6 +18,7 @@
 
 #define MASK                [UIImage imageNamed:@"mask"]
 #define AVATAR_BACKGROUND   [UIImage imageNamed:@"avatarBackground"]
+#define HEART               [UIImage imageNamed:@"heart"]
 
 @interface FBUserDetailView () {
   UIScrollView *_scrollView;
@@ -25,6 +26,7 @@
   UIImageView *_backgroundView;
   UIImageView *_avatarView;
   UIImageView *_avatarBackgroundView;
+  UIImageView *_heartView;
   
   UILabel *_nameLabel;
   UILabel *_addressLabel;
@@ -56,6 +58,9 @@
     _avatarBackgroundView.alpha = 0.0f;
     _avatarView.alpha = 0.0f;
     
+    _heartView = [[UIImageView alloc] initWithImage:HEART];
+    _heartView.alpha = 0.0f;
+    
     _toolbar = [[UIToolbar alloc] init];
     _toolbar.backgroundColor = CLEAR_COLOR;
     _toolbar.barStyle = UIBarStyleBlackOpaque;
@@ -84,6 +89,7 @@
     [_contentView addSubview:_addressLabel];
     [_contentView addSubview:_ageLabel];
     [_contentView addSubview:_relationLabel];
+    [_contentView addSubview:_heartView];
     
     [_scrollView addSubview:_contentView];
     [self addSubview:_scrollView];
@@ -132,17 +138,19 @@
   
   __weak UIImageView *weakAvatarView = _avatarView;;
   __weak UIImageView *weakAvatarBackgroundView = _avatarBackgroundView;
+  __weak UIImageView *weakHeartView = _heartView;
   [_avatarView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
     weakAvatarView.image = image;
 
     CALayer *mask = [CALayer layer];
     mask.contents = (id)[MASK CGImage];
-    mask.frame = CGRectMake( 0, 0, 95, 95 );
+    mask.frame = CGRectMake( 0, 0, 95.0f, 95.0f );
     weakAvatarView.layer.mask = mask;
     weakAvatarView.layer.masksToBounds = YES;
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
       weakAvatarView.alpha = 1.0f;
       weakAvatarBackgroundView.alpha = 1.0f;
+      weakHeartView.alpha = 1.0f;
       
     }];
   } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
@@ -168,7 +176,7 @@
 }
 
 - (void)initializeConstraints {
-  TMALVariableBindingsAMNO( _backgroundView, _toolbar, _scrollView, _contentView, _avatarView, _nameLabel, _addressLabel, _relationLabel, _ageLabel, _avatarBackgroundView );
+  TMALVariableBindingsAMNO( _backgroundView, _toolbar, _scrollView, _contentView, _avatarView, _nameLabel, _addressLabel, _relationLabel, _ageLabel, _avatarBackgroundView, _heartView );
   TMAL_ADDS_VISUAL( @"H:|-0-[_scrollView]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_scrollView]-0-|" );
 
@@ -195,8 +203,12 @@
   TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_ageLabel]" );
   TMAL_ADDS_VISUAL( @"V:[_addressLabel]-0-[_ageLabel]" );
   
-  TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_relationLabel]" );
-  TMAL_ADDS_VISUAL( @"V:[_ageLabel]-16-[_relationLabel]" );
+  TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_heartView]" );
+  TMAL_ADDS_VISUAL( @"V:[_ageLabel]-16-[_heartView]" );
+  
+  TMAL_ADDS_VISUAL( @"H:[_heartView]-15-[_relationLabel]" );
+  TMAL_ADDS_VISUAL( @"V:[_ageLabel]-15-[_relationLabel]" );
+  
   
 }
 
