@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
 
+@class FBLocation;
+
 @interface FBUser : MTLModel<MTLJSONSerializing>
 
 @property (readonly) NSString *firstName;
@@ -23,5 +25,8 @@
 @property (readonly) NSNumber *verified;
 @property (readonly) NSString *picture;
 @property (readonly) NSString *cover;
+@property (readonly) FBLocation *hometown;
+@property (readonly) FBLocation *currentLocation;
+
 - (id)initWithUserId:(NSString *)userId;
 @end

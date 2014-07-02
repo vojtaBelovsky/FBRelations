@@ -7,6 +7,7 @@
 //
 
 #import "FBUser.h"
+#import "FBLocation.h"
 
 @implementation FBUser
 
@@ -30,8 +31,19 @@
             @"locale" : @"last_name",
             @"updateTime" : @"updated_time",
             @"picture" : @"picture.data.url",
-            @"cover" : @"cover.source"
+            @"cover" : @"cover.source",
+            @"currentLocation" : @"location"
             };
+}
+
+#pragma mark - NSValueTransformer
+
++ (NSValueTransformer *)hometownJSONTransformer {
+  return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[FBLocation class]];
+}
+
++ (NSValueTransformer *)currentLocationJSONTransformer {
+  return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[FBLocation class]];
 }
 
 @end
