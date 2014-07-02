@@ -60,6 +60,18 @@
 #define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 15
 #define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 0
 
+// MagicalRecord
+#define COCOAPODS_POD_AVAILABLE_MagicalRecord
+#define COCOAPODS_VERSION_MAJOR_MagicalRecord 2
+#define COCOAPODS_VERSION_MINOR_MagicalRecord 2
+#define COCOAPODS_VERSION_PATCH_MagicalRecord 0
+
+// MagicalRecord/Core
+#define COCOAPODS_POD_AVAILABLE_MagicalRecord_Core
+#define COCOAPODS_VERSION_MAJOR_MagicalRecord_Core 2
+#define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
+#define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
+
 // Mantle
 #define COCOAPODS_POD_AVAILABLE_Mantle
 #define COCOAPODS_VERSION_MAJOR_Mantle 1

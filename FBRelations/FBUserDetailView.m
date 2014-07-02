@@ -16,11 +16,15 @@
 #define NAME_FONT           [UIFont boldSystemFontOfSize:20.0f]
 #define ADDRESS_FONT        [UIFont systemFontOfSize:16.0f]
 
+#define MASK                [UIImage imageNamed:@"mask"]
+#define AVATAR_BACKGROUND   [UIImage imageNamed:@"avatarBackground"]
+
 @interface FBUserDetailView () {
   UIScrollView *_scrollView;
 
   UIImageView *_backgroundView;
   UIImageView *_avatarView;
+  UIImageView *_avatarBackgroundView;
   
   UILabel *_nameLabel;
   UILabel *_addressLabel;
@@ -45,8 +49,12 @@
     
     _backgroundView = [[UIImageView alloc] init];
     _backgroundView.contentMode = UIViewContentModeScaleAspectFill;
-    
+
+    _avatarBackgroundView = [[UIImageView alloc] initWithImage:AVATAR_BACKGROUND];
     _avatarView = [[UIImageView alloc] init];
+    
+    _avatarBackgroundView.alpha = 0.0f;
+    _avatarView.alpha = 0.0f;
     
     _toolbar = [[UIToolbar alloc] init];
     _toolbar.backgroundColor = CLEAR_COLOR;
@@ -70,6 +78,7 @@
     
     [_contentView addSubview:_backgroundView];
     [_contentView addSubview:_toolbar];
+    [_contentView addSubview:_avatarBackgroundView];
     [_contentView addSubview:_avatarView];
     [_contentView addSubview:_nameLabel];
     [_contentView addSubview:_addressLabel];
@@ -122,12 +131,19 @@
   NSURLRequest *request = [NSURLRequest requestWithURL:bannerURL];
   
   __weak UIImageView *weakAvatarView = _avatarView;;
-  
-  _avatarView.alpha = 0.0f;
+  __weak UIImageView *weakAvatarBackgroundView = _avatarBackgroundView;
   [_avatarView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
     weakAvatarView.image = image;
+
+    CALayer *mask = [CALayer layer];
+    mask.contents = (id)[MASK CGImage];
+    mask.frame = CGRectMake( 0, 0, 95, 95 );
+    weakAvatarView.layer.mask = mask;
+    weakAvatarView.layer.masksToBounds = YES;
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
       weakAvatarView.alpha = 1.0f;
+      weakAvatarBackgroundView.alpha = 1.0f;
+      
     }];
   } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
     
@@ -152,7 +168,7 @@
 }
 
 - (void)initializeConstraints {
-  TMALVariableBindingsAMNO( _backgroundView, _toolbar, _scrollView, _contentView, _avatarView, _nameLabel, _addressLabel, _relationLabel, _ageLabel );
+  TMALVariableBindingsAMNO( _backgroundView, _toolbar, _scrollView, _contentView, _avatarView, _nameLabel, _addressLabel, _relationLabel, _ageLabel, _avatarBackgroundView );
   TMAL_ADDS_VISUAL( @"H:|-0-[_scrollView]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_scrollView]-0-|" );
 
@@ -165,19 +181,23 @@
   TMAL_ADDS_VISUAL( @"H:|-0-[_toolbar]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_toolbar]-0-|" );
   
-  TMAL_ADDS_VISUAL( @"H:|-16-[_avatarView(==100)]-10-[_nameLabel]-10-|" );
-  TMAL_ADDS_VISUAL( @"V:|-16-[_avatarView(==100)]" );
+  TMAL_ADDS_VISUAL( @"H:|-16-[_avatarBackgroundView]" );
+  TMAL_ADDS_VISUAL( @"V:|-16-[_avatarBackgroundView]" );
+  
+  TMAL_ADDS_VISUAL( @"H:|-17-[_avatarView(==95)]-15-[_nameLabel]-10-|" );
+  TMAL_ADDS_VISUAL( @"V:|-17-[_avatarView(==95)]" );
 
   TMAL_ADDS_VISUAL( @"V:|-12-[_nameLabel]" );
 
-  TMAL_ADDS_VISUAL( @"H:[_avatarView]-10-[_addressLabel]" );
+  TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_addressLabel]" );
   TMAL_ADDS_VISUAL( @"V:[_nameLabel]-0-[_addressLabel]" );
   
-  TMAL_ADDS_VISUAL( @"H:[_avatarView]-10-[_ageLabel]" );
+  TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_ageLabel]" );
   TMAL_ADDS_VISUAL( @"V:[_addressLabel]-0-[_ageLabel]" );
   
-  TMAL_ADDS_VISUAL( @"H:[_avatarView]-10-[_relationLabel]" );
-  TMAL_ADDS_VISUAL( @"V:[_ageLabel]-24-[_relationLabel]" );
+  TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_relationLabel]" );
+  TMAL_ADDS_VISUAL( @"V:[_ageLabel]-16-[_relationLabel]" );
+  
 }
 
 @end
