@@ -11,7 +11,9 @@
 #import "FBAPI.h"
 #import "FBUser.h"
 
-@interface FBUserDetailViewController ()
+@interface FBUserDetailViewController () {
+  FBUser *_user;
+}
 
 @end
 
@@ -19,13 +21,11 @@
 
 #pragma mark - LifeCycles
 
-- (id)init {
+- (id)initWithUserId:(NSString *)userId {
   self = [super init];
   if ( self ) {
     self.title = NSLocalizedString( @"FBRelations", @"" );
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(initializeData)
-//                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
+    _user = [[FBUser alloc] initWithUserId:userId];
   }
   
   return self;
@@ -41,13 +41,6 @@
   [self initializeData];
 }
 
-
-#pragma mark - Memory Management
-
-- (void)dealloc {
-//  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 #pragma mark - Properties
 
 - (FBUserDetailView *)userDetailView {
@@ -57,23 +50,51 @@
 #pragma mark - Private
 
 - (void)initializeData {
+  [self initializeUserInfo];
+//  [self initializeFriends];
+//  [self initializeMusic];
+//  [self initializeMovies];
+//  [self initializePhotos];
+}
 
-  [FBAPI loadUserInfoWithId:@"me" completetionBlock:^( FBUser *user ) {
-
+- (void)initializeUserInfo {
+  [FBAPI loadUserInfoWithId:_user.userId completetionBlock:^( FBUser *user ) {
+    _user = user;
+    [self.userDetailView setUser:_user];
   } failureBlock:^( NSError *error ) {
     NSLog( @"%@", error );
   }];
-  
-//  [FBAPI loadMyFriendsWithCompletetionBlock:^( NSArray *data ) {
-//    
-//  } failureBlock:^( NSError *error ) {
-//    
-//  }];
-//  [FBAPI loadAlbumsWithUserId:@"me" completetionBlock:nil failureBlock:nil];
-  
-//  [FBAPI loadMusicWithUserId:@"me" completetionBlock:nil failureBlock:nil];
-//    [FBAPI loadMoviesWithUserId:@"me" completetionBlock:nil failureBlock:nil];
-//    [FBAPI loadPhotosWithUserId:@"me" completetionBlock:nil failureBlock:nil];
 }
 
+- (void)initializeFriends {
+  [FBAPI loadFriendsWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
+    
+  } failureBlock:^( NSError *error ) {
+    
+  }];
+}
+
+- (void)initializeMusic {
+  [FBAPI loadMusicWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
+    
+  } failureBlock:^( NSError *error ) {
+   
+  }];
+}
+
+- (void)initializeMovies {
+  [FBAPI loadMoviesWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
+    
+  } failureBlock:^( NSError *error ) {
+    
+  }];
+}
+
+- (void)initializePhotos {
+  [FBAPI loadPhotosWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
+    
+  } failureBlock:^( NSError *error ) {
+    
+  }];
+}
 @end

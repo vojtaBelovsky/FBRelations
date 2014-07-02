@@ -23,4 +23,5 @@
 @property (readonly) NSNumber *verified;
 @property (readonly) NSString *picture;
 @property (readonly) NSString *cover;
+- (id)initWithUserId:(NSString *)userId;
 @end

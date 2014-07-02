@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FBUser;
 
 @interface FBUserDetailView : UIView
-
+- (void)setUser:(FBUser *)user;
 @end

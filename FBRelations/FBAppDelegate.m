@@ -14,7 +14,7 @@
 @implementation FBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  FBUserDetailViewController *userDetailViewController = [[FBUserDetailViewController alloc] init];
+  FBUserDetailViewController *userDetailViewController = [[FBUserDetailViewController alloc] initWithUserId:@"me"];
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:userDetailViewController];
   
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

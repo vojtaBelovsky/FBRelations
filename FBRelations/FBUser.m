@@ -10,6 +10,17 @@
 
 @implementation FBUser
 
+#pragma mark - LifeCycles
+
+- (id)initWithUserId:(NSString *)userId {
+  self = [super init];
+  if ( self ) {
+    _userId = userId;
+  }
+  
+  return self;
+}
+
 #pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {

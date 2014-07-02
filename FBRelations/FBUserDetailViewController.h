@@ -12,4 +12,5 @@
 @interface FBUserDetailViewController : UIViewController
 
 @property (readonly) FBUserDetailView *userDetailView;
+- (id)initWithUserId:(NSString *)userId;
 @end
