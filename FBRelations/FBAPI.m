@@ -11,16 +11,84 @@
 #import "FBAppDelegate.h"
 #import "FBUser.h"
 #import "FBAlbum.h"
+#import "FBMusic.h"
+#import "FBMovie.h"
+#import "FBPhoto.h"
 
 #define GET_METHOD @"GET"
 
 #define FRIENDS    @"friends"
 #define ALBUMS     @"albums"
+#define MUSIC      @"music"
+#define MOVIES     @"movies"
+#define PHOTOS     @"photos"
+#define PICTURE    @"picture"
+
 #define ME         @"me"
 
 @implementation FBAPI
 
 #pragma mark - Class
+
++ (void)loadMoviesWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
+  [FBAPI authenticateIfNeededWithCompletetionBlock:^{
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, MOVIES];
+    [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
+      FBMovie *movie;
+      NSError *error;
+      NSArray *array = data[ @"data" ];
+      NSMutableArray *movies = [@[] mutableCopy];
+      for ( FBGraphObject *graphObject in array ) {
+        movie = [MTLJSONAdapter modelOfClass:[FBMovie class]
+                               fromJSONDictionary:graphObject
+                                            error:&error];
+        [movies addObject:movie];
+      }
+      
+      DK_CALL_BLOCK( completetionBlock, movies );
+    } failureBlock:failureBlock];
+  } failureBlock:failureBlock];
+}
+
++ (void)loadMusicWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
+  [FBAPI authenticateIfNeededWithCompletetionBlock:^{
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, MUSIC];
+    [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
+      FBMusic *musicAlbum;
+      NSError *error;
+      NSArray *array = data[ @"data" ];
+      NSMutableArray *albums = [@[] mutableCopy];
+      for ( FBGraphObject *graphObject in array ) {
+        musicAlbum = [MTLJSONAdapter modelOfClass:[FBMusic class]
+                          fromJSONDictionary:graphObject
+                                       error:&error];
+        [albums addObject:musicAlbum];
+      }
+      
+      DK_CALL_BLOCK( completetionBlock, albums );
+    } failureBlock:failureBlock];
+  } failureBlock:failureBlock];
+}
+
++ (void)loadPhotosWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
+  [FBAPI authenticateIfNeededWithCompletetionBlock:^{
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, PHOTOS];
+    [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
+      FBPhoto *photo;
+      NSError *error;
+      NSArray *array = data[ @"data" ];
+      NSMutableArray *photos = [@[] mutableCopy];
+      for ( FBGraphObject *graphObject in array ) {
+        photo = [MTLJSONAdapter modelOfClass:[FBPhoto class]
+                          fromJSONDictionary:graphObject
+                                       error:&error];
+        [photos addObject:photo];
+      }
+      
+      DK_CALL_BLOCK( completetionBlock, photos );
+    } failureBlock:failureBlock];
+  } failureBlock:failureBlock];
+}
 
 + (void)loadAlbumsWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
@@ -34,7 +102,6 @@
         album = [MTLJSONAdapter modelOfClass:[FBAlbum class]
                           fromJSONDictionary:graphObject
                                        error:&error];
-        
         [albums addObject:album];
       }
       
@@ -59,8 +126,7 @@
 
 + (void)loadUserInfoWithId:(NSString *)userId completetionBlock:(FBUserInfoCompletetionBlock)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
-    NSString *grapthPath = [NSString stringWithFormat:@"/%@", userId];
-    NSLog( @"userInfo" );    
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@?fields=picture,cover,first_name,name,gender,last_name,link,locale,timezone,updated_time,verified", userId];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
       NSDictionary *dict = data;
       NSError *error;
@@ -107,7 +173,7 @@
     NSLog( @"open session" );
     // Open a session showing the user the login UI
     // You must ALWAYS ask for public_profile permissions when opening a session
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_friends", @"user_photos"]
+    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_friends", @"user_photos", @"user_likes"]
                                        allowLoginUI:YES
                                   completionHandler:
      ^( FBSession *session, FBSessionState state, NSError *error ) {

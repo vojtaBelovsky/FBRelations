@@ -21,4 +21,6 @@
 @property (readonly) NSNumber *timezone;
 @property (readonly) NSString *updateTime;
 @property (readonly) NSNumber *verified;
+@property (readonly) NSString *picture;
+@property (readonly) NSString *cover;
 @end

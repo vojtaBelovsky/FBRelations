@@ -17,9 +17,9 @@
   return @{ @"canUpload" : @"can_upload",
             @"coverPhoto" : @"cover_photo",
             @"createdTime" : @"created_time",
-            @"photoId" : @"id",
+            @"albumId" : @"id",
             @"updatedTime" : @"updated_time",
-            @"from" : @"from"
+            @"from" : @"from"         
             };
 }
 

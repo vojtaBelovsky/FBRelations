@@ -17,7 +17,9 @@
             @"userId" : @"id",
             @"lastName" : @"last_name",
             @"locale" : @"last_name",
-            @"updateTime" : @"updated_time"
+            @"updateTime" : @"updated_time",
+            @"picture" : @"picture.data.url",
+            @"cover" : @"cover.source"
             };
 }
 

@@ -58,18 +58,22 @@
 
 - (void)initializeData {
 
-//  [FBAPI loadUserInfoWithId:@"me" completetionBlock:^( FBUser *user ) {
-//
-//  } failureBlock:^( NSError *error ) {
-//    NSLog( @"%@", error );
-//  }];
+  [FBAPI loadUserInfoWithId:@"me" completetionBlock:^( FBUser *user ) {
+
+  } failureBlock:^( NSError *error ) {
+    NSLog( @"%@", error );
+  }];
   
 //  [FBAPI loadMyFriendsWithCompletetionBlock:^( NSArray *data ) {
 //    
 //  } failureBlock:^( NSError *error ) {
 //    
 //  }];
-  [FBAPI loadAlbumsWithUserId:@"me" completetionBlock:nil failureBlock:nil];
+//  [FBAPI loadAlbumsWithUserId:@"me" completetionBlock:nil failureBlock:nil];
+  
+//  [FBAPI loadMusicWithUserId:@"me" completetionBlock:nil failureBlock:nil];
+//    [FBAPI loadMoviesWithUserId:@"me" completetionBlock:nil failureBlock:nil];
+//    [FBAPI loadPhotosWithUserId:@"me" completetionBlock:nil failureBlock:nil];
 }
 
 @end
