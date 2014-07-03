@@ -35,6 +35,10 @@
   return cell;
 }
 
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+//  
+//}
+//
 #pragma mark - items
 
 - (NSArray *)items {

@@ -189,10 +189,9 @@
   // Handle errors
   if ( error ) {
     NSLog( @"%@", error );
-
     [FBSession.activeSession closeAndClearTokenInformation];
   }
-  
+
   return NO;
 }
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class FBUserDetailView;
 
-@interface FBUserDetailViewController : UIViewController
+@interface FBUserDetailViewController : UIViewController<UICollectionViewDelegate>
 
 @property (readonly) FBUserDetailView *userDetailView;
 - (id)initWithUserId:(NSString *)userId;

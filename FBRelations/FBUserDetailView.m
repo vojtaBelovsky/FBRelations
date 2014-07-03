@@ -88,7 +88,9 @@
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = CLEAR_COLOR;
+    
     [_collectionView registerClass:[FBUserDetailInfoCell class] forCellWithReuseIdentifier:kUserDetailInfoCellIdentifier];
+//    [_collectionView registerClass:nil forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@""];
     
     [_contentView addSubview:_backgroundView];
     [_contentView addSubview:_toolbar];

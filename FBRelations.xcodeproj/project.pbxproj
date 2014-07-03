@@ -21,6 +21,7 @@
 		294E6E73195D7DEF001F4F87 /* FBRelationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E6E72195D7DEF001F4F87 /* FBRelationsTests.m */; };
 		29A4BA6219647145005D9515 /* FBUserDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6119647145005D9515 /* FBUserDetailDataSource.m */; };
 		29A4BA66196471DE005D9515 /* FBUserDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA65196471DE005D9515 /* FBUserDetailInfoCell.m */; };
+		29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */; };
 		29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C21962B38500C43817 /* FBAlbum.m */; };
 		29ABB1C71962DB9400C43817 /* FBMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C61962DB9400C43817 /* FBMusic.m */; };
 		29ABB1CA1962DE0100C43817 /* FBMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C91962DE0100C43817 /* FBMovie.m */; };
@@ -65,6 +66,8 @@
 		29A4BA64196471DE005D9515 /* FBUserDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserDetailInfoCell.h; sourceTree = "<group>"; };
 		29A4BA65196471DE005D9515 /* FBUserDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserDetailInfoCell.m; sourceTree = "<group>"; };
 		29A4BA6719654692005D9515 /* FBPictureEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBPictureEntity.h; sourceTree = "<group>"; };
+		29A4BA6919655826005D9515 /* FBUserDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserDetailHeaderView.h; sourceTree = "<group>"; };
+		29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserDetailHeaderView.m; sourceTree = "<group>"; };
 		29ABB1C11962B38500C43817 /* FBAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAlbum.h; sourceTree = "<group>"; };
 		29ABB1C21962B38500C43817 /* FBAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAlbum.m; sourceTree = "<group>"; };
 		29ABB1C51962DB9400C43817 /* FBMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMusic.h; sourceTree = "<group>"; };
@@ -205,6 +208,15 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		29A4BA6819655803005D9515 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				29A4BA6919655826005D9515 /* FBUserDetailHeaderView.h */,
+				29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
 		29F452CC195D8DD600DE4814 /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +255,6 @@
 		29F452D4195D996800DE4814 /* UserDetail */ = {
 			isa = PBXGroup;
 			children = (
-				29A4BA63196471B2005D9515 /* Cell */,
 				29A4BA5F19647128005D9515 /* DataSource */,
 				29F452D8195D9A1C00DE4814 /* View */,
 				29F452D5195D999400DE4814 /* FBUserDetailViewController.h */,
@@ -255,6 +266,8 @@
 		29F452D8195D9A1C00DE4814 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				29A4BA6819655803005D9515 /* Header */,
+				29A4BA63196471B2005D9515 /* Cell */,
 				29F452D9195D9A3000DE4814 /* FBUserDetailView.h */,
 				29F452DA195D9A3000DE4814 /* FBUserDetailView.m */,
 			);
@@ -423,6 +436,7 @@
 				29F452DF196196AA00DE4814 /* FBUser.m in Sources */,
 				29ABB1D11964057300C43817 /* FBLocation.m in Sources */,
 				29F452DB195D9A3000DE4814 /* FBUserDetailView.m in Sources */,
+				29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */,
 				29ABB1CA1962DE0100C43817 /* FBMovie.m in Sources */,
 				29A4BA66196471DE005D9515 /* FBUserDetailInfoCell.m in Sources */,
 			);
