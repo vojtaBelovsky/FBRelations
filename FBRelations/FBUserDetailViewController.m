@@ -54,7 +54,7 @@
 //  [self initializeFriends];
 //  [self initializeMusic];
 //  [self initializeMovies];
-//  [self initializePhotos];
+  [self initializePhotos];
 }
 
 - (void)initializeUserInfo {
