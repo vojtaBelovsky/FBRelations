@@ -11,4 +11,6 @@
 
 @interface FBUserDetailView : UIView
 - (void)setUser:(FBUser *)user;
+
+@property (readonly) UICollectionView *collectionView;
 @end
