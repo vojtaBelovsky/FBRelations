@@ -10,6 +10,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "FBUser.h"
 #import "FBLocation.h"
+#import "FBUserDetailInfoCell.h"
 
 #define ANIMATION_DURATION  0.2f
 
@@ -81,6 +82,14 @@
     _relationLabel.textColor = WHITE_COLOR;
     _relationLabel.font = ADDRESS_FONT;
     
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    flowLayout.itemSize = (CGSize){ 50.0f, 50.0f };
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+    _collectionView.backgroundColor = CLEAR_COLOR;
+    [_collectionView registerClass:[FBUserDetailInfoCell class] forCellWithReuseIdentifier:kUserDetailInfoCellIdentifier];
+    
     [_contentView addSubview:_backgroundView];
     [_contentView addSubview:_toolbar];
     [_contentView addSubview:_avatarBackgroundView];
@@ -90,6 +99,7 @@
     [_contentView addSubview:_ageLabel];
     [_contentView addSubview:_relationLabel];
     [_contentView addSubview:_heartView];
+    [_contentView addSubview:_collectionView];
     
     [_scrollView addSubview:_contentView];
     [self addSubview:_scrollView];
@@ -127,6 +137,7 @@
                                      fromDate:date
                                      toDate:now
                                      options:0];
+  
   NSInteger age = [ageComponents year];
   NSString *formattedStr = [NSString stringWithFormat:@"%d years old", age];
   _ageLabel.text = NSLocalizedString( formattedStr, @"" );
@@ -176,7 +187,7 @@
 }
 
 - (void)initializeConstraints {
-  TMALVariableBindingsAMNO( _backgroundView, _toolbar, _scrollView, _contentView, _avatarView, _nameLabel, _addressLabel, _relationLabel, _ageLabel, _avatarBackgroundView, _heartView );
+  TMALVariableBindingsAMNO( _backgroundView, _toolbar, _scrollView, _contentView, _avatarView, _nameLabel, _addressLabel, _relationLabel, _ageLabel, _avatarBackgroundView, _heartView, _collectionView );
   TMAL_ADDS_VISUAL( @"H:|-0-[_scrollView]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_scrollView]-0-|" );
 
@@ -208,8 +219,9 @@
   
   TMAL_ADDS_VISUAL( @"H:[_heartView]-15-[_relationLabel]" );
   TMAL_ADDS_VISUAL( @"V:[_ageLabel]-15-[_relationLabel]" );
-  
-  
+
+  TMAL_ADDS_VISUAL( @"H:|-74-[_collectionView]-12-|" );
+  TMAL_ADDS_VISUAL( @"V:[_avatarView]-70-[_collectionView(==200)]" );
 }
 
 @end

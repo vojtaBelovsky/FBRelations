@@ -52,7 +52,7 @@
 
 + (void)loadMusicWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
-    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, MUSIC];
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,cover", userId, MUSIC];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
       FBMusic *musicAlbum;
       NSError *error;
@@ -160,30 +160,40 @@
 + (void)authenticateIfNeededWithCompletetionBlock:(FBCompletetionBlock)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
 
   FBSessionState state = FBSession.activeSession.state;
+  
   if ( state == FBSessionStateOpen || state == FBSessionStateOpenTokenExtended ) {
-    NSLog( @"open or extended" );
-    // Close the session and remove the access token from the cache
-    // The session state handler (in the app delegate) will be called automatically
-    [FBSession.activeSession closeAndClearTokenInformation];
-    // If the session state is not any of the two "open" states when the button is clicked
-  } /*else if ( state == FBSessionStateCreatedTokenLoaded ){
-    NSLog( @"loaded" );
     DK_CALL_BLOCK( completetionBlock );
-  } */else {
-    NSLog( @"open session" );
-    // Open a session showing the user the login UI
-    // You must ALWAYS ask for public_profile permissions when opening a session
+  } else {
     [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_friends", @"user_photos", @"user_likes", @"user_hometown", @"user_location", @"user_relationships", @"user_birthday"]
                                        allowLoginUI:YES
                                   completionHandler:
      ^( FBSession *session, FBSessionState state, NSError *error ) {
-       if ( error ) {
-         DK_CALL_BLOCK( failureBlock, error );
-       } else {
+       BOOL result = [FBAPI sessionStateChanged:session state:state error:error];
+       if ( result ) {
          DK_CALL_BLOCK( completetionBlock );
+       } else {
+         DK_CALL_BLOCK( failureBlock, error );
        }
      }];
   }
+}
+
++ (BOOL)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error  {
+  // If the session was opened successfully
+  if ( !error && state == FBSessionStateOpen ){
+    NSLog(@"Session opened");
+    // Show the user the logged-in UI
+    return YES;
+  }
+  
+  // Handle errors
+  if ( error ) {
+    NSLog( @"%@", error );
+
+    [FBSession.activeSession closeAndClearTokenInformation];
+  }
+  
+  return NO;
 }
 
 @end

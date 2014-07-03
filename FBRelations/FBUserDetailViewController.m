@@ -10,9 +10,13 @@
 #import "FBUserDetailView.h"
 #import "FBAPI.h"
 #import "FBUser.h"
+#import "FBUserDetailDataSource.h"
+
+#define ADD  [UIImage imageNamed:@"plusbutton"]
 
 @interface FBUserDetailViewController () {
   FBUser *_user;
+  FBUserDetailDataSource *_dataSource;
 }
 
 @end
@@ -26,6 +30,7 @@
   if ( self ) {
     self.title = NSLocalizedString( @"FBRelations", @"" );
     _user = [[FBUser alloc] initWithUserId:userId];
+    _dataSource = [[FBUserDetailDataSource alloc] init];
   }
   
   return self;
@@ -33,6 +38,14 @@
 
 - (void)loadView {
   self.view = [[FBUserDetailView alloc] init];
+  self.userDetailView.collectionView.dataSource = _dataSource;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+
+  UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:ADD style:UIBarButtonItemStylePlain target:self action:@selector(addButtonDidPress)];
+  self.navigationItem.rightBarButtonItem = addButton;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -47,14 +60,20 @@
   return (FBUserDetailView *)self.view;
 }
 
+#pragma mark - UserActions
+
+- (void)addButtonDidPress {
+  
+}
+
 #pragma mark - Private
 
 - (void)initializeData {
   [self initializeUserInfo];
-//  [self initializeFriends];
-//  [self initializeMusic];
-//  [self initializeMovies];
   [self initializePhotos];
+//  [self initializeFriends];
+  [self initializeMusic];
+//  [self initializeMovies];
 }
 
 - (void)initializeUserInfo {
@@ -76,7 +95,8 @@
 
 - (void)initializeMusic {
   [FBAPI loadMusicWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
-    
+    _dataSource.musics = data;
+    [self.userDetailView.collectionView reloadData];
   } failureBlock:^( NSError *error ) {
    
   }];
@@ -92,9 +112,11 @@
 
 - (void)initializePhotos {
   [FBAPI loadPhotosWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
-    
+    _dataSource.photos = data;
+    [self.userDetailView.collectionView reloadData];
   } failureBlock:^( NSError *error ) {
     
   }];
 }
+
 @end

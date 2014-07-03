@@ -7,10 +7,11 @@
 //
 
 #import <Mantle/Mantle.h>
+#import "FBPictureEntity.h"
 
 @class FBUser;
 
-@interface FBPhoto : MTLModel<MTLJSONSerializing>
+@interface FBPhoto : MTLModel<MTLJSONSerializing, FBPictureEntity>
 
 @property (readonly) NSString *picture;
 @property (readonly) NSString *createdTime;

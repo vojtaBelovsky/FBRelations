@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FBSession.h"
 
 @class FBUser;
 
@@ -17,6 +18,8 @@ typedef void(^FBCompletetionBlockResultArray)( NSArray *data );
 typedef void(^FBCompletetionBlockResultData)( id data );
 typedef void(^FBCompletetionBlock)(  );
 typedef void(^FBFailureBlock)( NSError *error );
+
++ (BOOL)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 
 + (void)loadPhotosWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock;
 
