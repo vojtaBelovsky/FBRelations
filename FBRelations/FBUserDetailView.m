@@ -246,11 +246,11 @@
   constraints = [NSString stringWithFormat:@"V:[_avatarView]-70-[_collectionView(==%f)]", collectionViewHeight ];
   TMAL_ADDS_VISUAL( constraints );
   
-//  if ( height > CGRectGetHeight( [UIScreen mainScreen].bounds ) - 64.0f ) {
-    constraints = [NSString stringWithFormat:@"V:|-0-[_contentView(==%f)]", height];
+  if ( height > CGRectGetHeight( [UIScreen mainScreen].bounds ) - 64.0f ) {
+    constraints = [NSString stringWithFormat:@"V:|-0-[_contentView(==%f)]", height ];
     TMAL_ADDS_VISUAL( constraints );
     _scrollView.contentSize = (CGSize){ CGRectGetWidth( [UIScreen mainScreen].bounds ), height };
-//  }
+  }
 }
 
 @end

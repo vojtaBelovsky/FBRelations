@@ -50,6 +50,11 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
+## EstimoteSDK
+
+Copyright 2013 Estimote, Inc. All rights reserved.
+
+
 ## Facebook-iOS-SDK
 
                                  Apache License
