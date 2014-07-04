@@ -10,10 +10,12 @@
 #import "FBUserDetailViewController.h"
 #import "FBAPI.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "FBBeaconManager.h"
 
 @implementation FBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [FBBeaconManager sharedInstance];
   FBUserDetailViewController *userDetailViewController = [[FBUserDetailViewController alloc] initWithUserId:@"me"];
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:userDetailViewController];
   

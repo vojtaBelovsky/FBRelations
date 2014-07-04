@@ -11,6 +11,7 @@
 #import "FBAPI.h"
 #import "FBUser.h"
 #import "FBUserDetailDataSource.h"
+#import "FBBeaconManager.h"
 
 #define ADD  [UIImage imageNamed:@"plusbutton"]
 
@@ -52,6 +53,17 @@
   [super viewDidAppear:animated];
 
   [self initializeData];
+  [FBBeaconManager sharedInstance].locationManager.delegate = self;
+}
+
+#pragma mark - Properties
+
+- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
+  if ( [beacons count] ) {
+    CLBeacon *beacon = beacons[ 0 ];
+    NSDictionary *peripheralData = [region peripheralDataWithMeasuredPower:BEACON_POWER];
+    NSLog( @"%@", peripheralData );
+  }
 }
 
 #pragma mark - Properties

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+
 @class FBUserDetailView;
 
-@interface FBUserDetailViewController : UIViewController<UICollectionViewDelegate>
+@interface FBUserDetailViewController : UIViewController<UICollectionViewDelegate, CLLocationManagerDelegate>
 
 @property (readonly) FBUserDetailView *userDetailView;
 - (id)initWithUserId:(NSString *)userId;

@@ -25,6 +25,10 @@
 		29A4BA66196471DE005D9515 /* FBUserDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA65196471DE005D9515 /* FBUserDetailInfoCell.m */; };
 		29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */; };
 		29A4BA6E19668D6B005D9515 /* FBBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6D19668D6B005D9515 /* FBBook.m */; };
+		29A4BA701966AB10005D9515 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A4BA6F1966AB0F005D9515 /* CoreLocation.framework */; };
+		29A4BA721966AB17005D9515 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A4BA711966AB17005D9515 /* CoreBluetooth.framework */; };
+		29A4BA731966AB27005D9515 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E66195D7DEF001F4F87 /* XCTest.framework */; };
+		29A4BA771966AC96005D9515 /* FBBeaconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA761966AC96005D9515 /* FBBeaconManager.m */; };
 		29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C21962B38500C43817 /* FBAlbum.m */; };
 		29ABB1C71962DB9400C43817 /* FBMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C61962DB9400C43817 /* FBMusic.m */; };
 		29ABB1CA1962DE0100C43817 /* FBMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C91962DE0100C43817 /* FBMovie.m */; };
@@ -76,6 +80,10 @@
 		29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserDetailHeaderView.m; sourceTree = "<group>"; };
 		29A4BA6C19668D6B005D9515 /* FBBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBBook.h; sourceTree = "<group>"; };
 		29A4BA6D19668D6B005D9515 /* FBBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBBook.m; sourceTree = "<group>"; };
+		29A4BA6F1966AB0F005D9515 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		29A4BA711966AB17005D9515 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		29A4BA751966AC96005D9515 /* FBBeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBBeaconManager.h; sourceTree = "<group>"; };
+		29A4BA761966AC96005D9515 /* FBBeaconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBBeaconManager.m; sourceTree = "<group>"; };
 		29ABB1C11962B38500C43817 /* FBAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAlbum.h; sourceTree = "<group>"; };
 		29ABB1C21962B38500C43817 /* FBAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAlbum.m; sourceTree = "<group>"; };
 		29ABB1C51962DB9400C43817 /* FBMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMusic.h; sourceTree = "<group>"; };
@@ -104,6 +112,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29A4BA731966AB27005D9515 /* XCTest.framework in Frameworks */,
+				29A4BA721966AB17005D9515 /* CoreBluetooth.framework in Frameworks */,
+				29A4BA701966AB10005D9515 /* CoreLocation.framework in Frameworks */,
 				294E6E50195D7DEF001F4F87 /* CoreGraphics.framework in Frameworks */,
 				294E6E52195D7DEF001F4F87 /* UIKit.framework in Frameworks */,
 				294E6E4E195D7DEF001F4F87 /* Foundation.framework in Frameworks */,
@@ -164,6 +175,8 @@
 		294E6E4C195D7DEF001F4F87 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29A4BA711966AB17005D9515 /* CoreBluetooth.framework */,
+				29A4BA6F1966AB0F005D9515 /* CoreLocation.framework */,
 				294E6E4D195D7DEF001F4F87 /* Foundation.framework */,
 				294E6E4F195D7DEF001F4F87 /* CoreGraphics.framework */,
 				294E6E51195D7DEF001F4F87 /* UIKit.framework */,
@@ -242,9 +255,19 @@
 			name = Header;
 			sourceTree = "<group>";
 		};
+		29A4BA741966AC7C005D9515 /* BeaconManager */ = {
+			isa = PBXGroup;
+			children = (
+				29A4BA751966AC96005D9515 /* FBBeaconManager.h */,
+				29A4BA761966AC96005D9515 /* FBBeaconManager.m */,
+			);
+			name = BeaconManager;
+			sourceTree = "<group>";
+		};
 		29F452CC195D8DD600DE4814 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				29A4BA741966AC7C005D9515 /* BeaconManager */,
 				105078071964321A00993ECD /* Model */,
 				10507806196431DB00993ECD /* Entities */,
 				29F452D1195D8F1200DE4814 /* API */,
@@ -457,6 +480,7 @@
 				105078101964354F00993ECD /* User.m in Sources */,
 				29A4BA6219647145005D9515 /* FBUserDetailDataSource.m in Sources */,
 				29A4BA6E19668D6B005D9515 /* FBBook.m in Sources */,
+				29A4BA771966AC96005D9515 /* FBBeaconManager.m in Sources */,
 				29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */,
 				29F452D7195D999400DE4814 /* FBUserDetailViewController.m in Sources */,
 				29F452CF195D8E1300DE4814 /* FBAPI.m in Sources */,
@@ -588,6 +612,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FBRelations/FBRelations-Prefix.pch";
 				INFOPLIST_FILE = "FBRelations/FBRelations-Info.plist";
@@ -602,6 +630,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FBRelations/FBRelations-Prefix.pch";
 				INFOPLIST_FILE = "FBRelations/FBRelations-Info.plist";
