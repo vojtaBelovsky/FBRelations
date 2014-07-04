@@ -14,4 +14,5 @@
 @property (strong) NSArray *musics;
 
 @property (readonly) NSArray *items;
+@property (readonly) NSArray *headerTitles;
 @end

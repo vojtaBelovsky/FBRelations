@@ -9,6 +9,7 @@
 #import "FBUserDetailDataSource.h"
 #import "FBUserDetailInfoCell.h"
 #import "FBPictureEntity.h"
+#import "FBUserDetailHeaderView.h"
 
 @implementation FBUserDetailDataSource
 
@@ -35,11 +36,29 @@
   return cell;
 }
 
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-//  
-//}
-//
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+  FBUserDetailHeaderView *userDetailHeaderView = [FBUserDetailHeaderView createHeaderViewWithCollectionView:collectionView indexPath:indexPath];
+  NSString *title = self.headerTitles[ indexPath.section ];
+  [userDetailHeaderView setTitle:title];
+  
+  return userDetailHeaderView;
+}
+
 #pragma mark - items
+
+- (NSArray *)headerTitles {
+  NSMutableArray *items = [@[] mutableCopy];
+  
+  if ( [_photos count] > 0 ) {
+    [items addObject:NSLocalizedString( @"Photos", @"" )];
+  }
+  
+  if ( [_musics count] > 0 ) {
+    [items addObject:NSLocalizedString( @"Music", @"" )];
+  }
+  
+  return items;
+}
 
 - (NSArray *)items {
   NSMutableArray *items = [@[] mutableCopy];

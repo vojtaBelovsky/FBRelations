@@ -182,16 +182,15 @@
   // If the session was opened successfully
   if ( !error && state == FBSessionStateOpen ){
     NSLog(@"Session opened");
-    // Show the user the logged-in UI
     return YES;
   }
   
   // Handle errors
   if ( error ) {
     NSLog( @"%@", error );
-    [FBSession.activeSession closeAndClearTokenInformation];
   }
 
+  [FBSession.activeSession closeAndClearTokenInformation];
   return NO;
 }
 

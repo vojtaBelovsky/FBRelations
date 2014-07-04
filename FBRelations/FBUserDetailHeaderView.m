@@ -8,24 +8,48 @@
 
 #import "FBUserDetailHeaderView.h"
 
+#define FONT  [UIFont boldSystemFontOfSize:14.0f]
+
+@interface FBUserDetailHeaderView () {
+  UILabel *_titleLabel;
+}
+
+@end
+
 @implementation FBUserDetailHeaderView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+#pragma mark - LifeCycles
+
+- (id)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if ( self ) {
+    _titleLabel = [[UILabel alloc] init];
+    _titleLabel.textColor = WHITE_COLOR;
+    _titleLabel.font = FONT;
+    
+    [self addSubview:_titleLabel];
+    
+    TMALVariableBindingsAMNO( _titleLabel );
+    TMAL_ADDS_VISUAL( @"H:|-0-[_titleLabel]" );
+    TMAL_ADDS_CENTERY( _titleLabel, _titleLabel.superview );
+  }
+  
+  return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+#pragma mark - Public
+
+- (void)setTitle:(NSString *)title {
+  _titleLabel.text = title;
 }
-*/
+
+#pragma mark - Class
+
++ (FBUserDetailHeaderView *)createHeaderViewWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath {
+  
+  FBUserDetailHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kUserDetailHeaderIdentifier forIndexPath:indexPath];
+  
+  return headerView;
+}
 
 @end

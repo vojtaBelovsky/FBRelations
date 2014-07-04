@@ -11,6 +11,7 @@
 #import "FBUser.h"
 #import "FBLocation.h"
 #import "FBUserDetailInfoCell.h"
+#import "FBUserDetailHeaderView.h"
 
 #define ANIMATION_DURATION  0.2f
 
@@ -85,12 +86,15 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     flowLayout.itemSize = (CGSize){ 50.0f, 50.0f };
+    flowLayout.headerReferenceSize = (CGSize){ 320.0f, 50.0f };
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = CLEAR_COLOR;
     
     [_collectionView registerClass:[FBUserDetailInfoCell class] forCellWithReuseIdentifier:kUserDetailInfoCellIdentifier];
-//    [_collectionView registerClass:nil forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@""];
+    [_collectionView registerClass:[FBUserDetailHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kUserDetailHeaderIdentifier];
+    _collectionView.showsVerticalScrollIndicator = NO;
+    _collectionView.showsHorizontalScrollIndicator = NO;
     
     [_contentView addSubview:_backgroundView];
     [_contentView addSubview:_toolbar];

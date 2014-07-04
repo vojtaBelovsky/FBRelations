@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FBUserDetailHeaderView : UIView
+static NSString *kUserDetailHeaderIdentifier = @"kUserDetailHeaderIdentifier";
 
+@interface FBUserDetailHeaderView : UICollectionReusableView
++ (FBUserDetailHeaderView *)createHeaderViewWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
+- (void)setTitle:(NSString *)title;
 @end
