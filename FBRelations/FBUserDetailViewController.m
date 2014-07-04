@@ -62,7 +62,7 @@
   if ( [beacons count] ) {
     CLBeacon *beacon = beacons[ 0 ];
     NSDictionary *peripheralData = [region peripheralDataWithMeasuredPower:BEACON_POWER];
-    NSLog( @"%@", peripheralData );
+    NSLog( @"%@", beacon.proximityUUID );
   }
 }
 
