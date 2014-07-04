@@ -61,8 +61,7 @@
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
   if ( [beacons count] ) {
     CLBeacon *beacon = beacons[ 0 ];
-    NSDictionary *peripheralData = [region peripheralDataWithMeasuredPower:BEACON_POWER];
-    NSLog( @"%@", beacon.proximityUUID );
+    NSLog( @"%@", beacon.major );
   }
 }
 
