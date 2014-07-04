@@ -44,7 +44,25 @@
   return userDetailHeaderView;
 }
 
-#pragma mark - items
+#pragma mark - Public
+
+- (CGFloat)collectionViewHeight {
+  CGFloat height = 0;
+  NSUInteger multiplier;
+  if ( [_photos count] > 0 ) {
+    multiplier = ( [_photos count] > 4 )? 2 : 1;
+    height += ( multiplier * 50 ) + 50;
+  }
+
+  if ( [_musics count] > 0 ) {
+    multiplier = ( [_musics count] > 4 )? 2 : 1;
+    height += ( multiplier * 50 ) + 50;
+  }
+  
+  return height;
+}
+
+#pragma mark - Properties
 
 - (NSArray *)headerTitles {
   NSMutableArray *items = [@[] mutableCopy];

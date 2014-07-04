@@ -12,7 +12,11 @@
 
 @property (strong) NSArray *photos;
 @property (strong) NSArray *musics;
+@property (strong) NSArray *books;
+@property (strong) NSArray *movies;
 
 @property (readonly) NSArray *items;
 @property (readonly) NSArray *headerTitles;
+
+- (CGFloat)collectionViewHeight;
 @end

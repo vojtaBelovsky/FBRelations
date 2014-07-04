@@ -24,6 +24,7 @@
 		29A4BA6219647145005D9515 /* FBUserDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6119647145005D9515 /* FBUserDetailDataSource.m */; };
 		29A4BA66196471DE005D9515 /* FBUserDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA65196471DE005D9515 /* FBUserDetailInfoCell.m */; };
 		29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */; };
+		29A4BA6E19668D6B005D9515 /* FBBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6D19668D6B005D9515 /* FBBook.m */; };
 		29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C21962B38500C43817 /* FBAlbum.m */; };
 		29ABB1C71962DB9400C43817 /* FBMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C61962DB9400C43817 /* FBMusic.m */; };
 		29ABB1CA1962DE0100C43817 /* FBMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C91962DE0100C43817 /* FBMovie.m */; };
@@ -73,6 +74,8 @@
 		29A4BA6719654692005D9515 /* FBPictureEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBPictureEntity.h; sourceTree = "<group>"; };
 		29A4BA6919655826005D9515 /* FBUserDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserDetailHeaderView.h; sourceTree = "<group>"; };
 		29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserDetailHeaderView.m; sourceTree = "<group>"; };
+		29A4BA6C19668D6B005D9515 /* FBBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBBook.h; sourceTree = "<group>"; };
+		29A4BA6D19668D6B005D9515 /* FBBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBBook.m; sourceTree = "<group>"; };
 		29ABB1C11962B38500C43817 /* FBAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAlbum.h; sourceTree = "<group>"; };
 		29ABB1C21962B38500C43817 /* FBAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAlbum.m; sourceTree = "<group>"; };
 		29ABB1C51962DB9400C43817 /* FBMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMusic.h; sourceTree = "<group>"; };
@@ -314,6 +317,8 @@
 				29ABB1CF1964057300C43817 /* FBLocation.h */,
 				29ABB1D01964057300C43817 /* FBLocation.m */,
 				29A4BA6719654692005D9515 /* FBPictureEntity.h */,
+				29A4BA6C19668D6B005D9515 /* FBBook.h */,
+				29A4BA6D19668D6B005D9515 /* FBBook.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 			files = (
 				105078101964354F00993ECD /* User.m in Sources */,
 				29A4BA6219647145005D9515 /* FBUserDetailDataSource.m in Sources */,
+				29A4BA6E19668D6B005D9515 /* FBBook.m in Sources */,
 				29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */,
 				29F452D7195D999400DE4814 /* FBUserDetailViewController.m in Sources */,
 				29F452CF195D8E1300DE4814 /* FBAPI.m in Sources */,

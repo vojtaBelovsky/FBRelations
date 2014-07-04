@@ -23,12 +23,33 @@
 #define MOVIES     @"movies"
 #define PHOTOS     @"photos"
 #define PICTURE    @"picture"
+#define BOOKS      @"books"
 
 #define ME         @"me"
 
 @implementation FBAPI
 
 #pragma mark - Class
+
++ (void)loadBooksWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
+  [FBAPI authenticateIfNeededWithCompletetionBlock:^{
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, BOOKS];
+    [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
+      FBMovie *movie;
+      NSError *error;
+      NSArray *array = data[ @"data" ];
+      NSMutableArray *books = [@[] mutableCopy];
+      for ( FBGraphObject *graphObject in array ) {
+        movie = [MTLJSONAdapter modelOfClass:[FBMovie class]
+                          fromJSONDictionary:graphObject
+                                       error:&error];
+        [books addObject:movie];
+      }
+      
+      DK_CALL_BLOCK( completetionBlock, books );
+    } failureBlock:failureBlock];
+  } failureBlock:failureBlock];
+}
 
 + (void)loadMoviesWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
@@ -108,10 +129,6 @@
       DK_CALL_BLOCK( completetionBlock, albums );
     } failureBlock:failureBlock];
   } failureBlock:failureBlock];
-}
-
-+ (void)loadMyFriendsWithCompletetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
-    [FBAPI loadFriendsWithUserId:ME completetionBlock:completetionBlock failureBlock:failureBlock];
 }
 
 + (void)loadFriendsWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {

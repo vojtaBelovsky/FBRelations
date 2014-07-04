@@ -87,7 +87,7 @@
 
 - (void)initializeFriends {
   [FBAPI loadFriendsWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
-    
+    [self reloadCollection];
   } failureBlock:^( NSError *error ) {
     
   }];
@@ -96,7 +96,7 @@
 - (void)initializeMusic {
   [FBAPI loadMusicWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
     _dataSource.musics = data;
-    [self.userDetailView.collectionView reloadData];
+    [self reloadCollection];
   } failureBlock:^( NSError *error ) {
    
   }];
@@ -104,7 +104,7 @@
 
 - (void)initializeMovies {
   [FBAPI loadMoviesWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
-    
+    [self reloadCollection];
   } failureBlock:^( NSError *error ) {
     
   }];
@@ -113,10 +113,15 @@
 - (void)initializePhotos {
   [FBAPI loadPhotosWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
     _dataSource.photos = data;
-    [self.userDetailView.collectionView reloadData];
+    [self reloadCollection];
   } failureBlock:^( NSError *error ) {
     
   }];
+}
+
+- (void)reloadCollection {
+  [self.userDetailView.collectionView reloadData];
+  [self.userDetailView setCollectionViewHeight:[_dataSource collectionViewHeight]];
 }
 
 @end

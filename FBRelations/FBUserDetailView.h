@@ -11,6 +11,6 @@
 
 @interface FBUserDetailView : UIView
 - (void)setUser:(FBUser *)user;
-
+- (void)setCollectionViewHeight:(CGFloat)collectionViewHeight;
 @property (readonly) UICollectionView *collectionView;
 @end
