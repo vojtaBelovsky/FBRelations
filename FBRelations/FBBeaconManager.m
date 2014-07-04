@@ -13,9 +13,10 @@
 
 static NSString *BeaconIdentifier = @"beaconIdentifier";
 
+CBPeripheralManager *_peripheralManager = nil;
+
 @interface FBBeaconManager () {
   CLBeaconRegion *_region;
-  CBPeripheralManager *_peripheralManager;
 }
 
 @end
@@ -55,7 +56,6 @@ static NSString *BeaconIdentifier = @"beaconIdentifier";
   _locationManager = [[CLLocationManager alloc] init];
   _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
   _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID major:[@( 0 ) shortValue] minor:[@( 0 ) shortValue] identifier:BeaconIdentifier];
-  
   [_locationManager startRangingBeaconsInRegion:_region];
 }
 
