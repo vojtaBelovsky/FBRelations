@@ -29,7 +29,7 @@ CBPeripheralManager *_peripheralManager = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     sharedInstance = [[FBBeaconManager alloc] init];
-    [sharedInstance initializeBeacon];
+    [sharedInstance initializeLocationManager];
   });
   
   return sharedInstance;
@@ -46,15 +46,15 @@ CBPeripheralManager *_peripheralManager = nil;
   peripheralData[ @"user" ] = user;
   
   if( peripheralData ) {
+    _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
     [_peripheralManager startAdvertising:peripheralData];
   }
 }
 
 #pragma mark - Private
 
-- (void)initializeBeacon {
+- (void)initializeLocationManager {
   _locationManager = [[CLLocationManager alloc] init];
-  _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
   _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID major:[@( 0 ) shortValue] minor:[@( 0 ) shortValue] identifier:BeaconIdentifier];
   [_locationManager startRangingBeaconsInRegion:_region];
 }
