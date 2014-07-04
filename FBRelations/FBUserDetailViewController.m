@@ -61,7 +61,8 @@
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
   if ( [beacons count] ) {
     CLBeacon *beacon = beacons[ 0 ];
-    NSLog( @"%@", beacon.major );
+    NSString *userId = [NSString stringWithFormat:@"%@", beacon.major];
+    NSLog( @"%@", userId );
   }
 }
 
