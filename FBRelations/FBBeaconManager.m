@@ -62,6 +62,7 @@ static NSString *kBeaconIdentifier = @"kBeaconIdentifier";
   _locationManager = [[CLLocationManager alloc] init];
   _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID identifier:kBeaconIdentifier];
   [_locationManager startRangingBeaconsInRegion:_region];
+  [_locationManager startMonitoringForRegion:_region];
 }
 
 +(NSUUID *)encodeFBUserID:(NSString *)userId {

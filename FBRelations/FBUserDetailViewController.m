@@ -59,12 +59,10 @@
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
-  if ( [beacons count] ) {
-    for ( CLBeacon *beacon in beacons ) {
-      NSString *facebookId = [FBBeaconManager decodeBeaconUUID:beacon.proximityUUID];
-      
-      NSLog( @"%@", facebookId );
-    }
+  for ( CLBeacon *beacon in beacons ) {
+    NSString *facebookId = [FBBeaconManager decodeBeaconUUID:beacon.proximityUUID];
+    
+    NSLog( @"%@", facebookId );
   }
 }
 
