@@ -16,9 +16,10 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-  NSUInteger count = ( [_photos count] > 0 )? 1 : 0;
-  count = ( [_musics count] > 0 )? count + 1 : count;
-  
+//  NSUInteger count = ( [_photos count] > 0 )? 1 : 0;
+//  count = ( [_musics count] > 0 )? count + 1 : count;
+//  count = ( [_musics count] > 0 )? count + 1 : count;
+  NSInteger count = [self.items count];
   return count;
 }
 
@@ -46,6 +47,14 @@
 
 #pragma mark - Public
 
+- (BOOL)allDataIsLoaded {
+  if ( _photos && _musics && _movies ) {
+    return YES;
+  }
+  
+  return NO;
+}
+
 - (CGFloat)collectionViewHeight {
   CGFloat height = 0;
   NSUInteger multiplier;
@@ -56,6 +65,11 @@
 
   if ( [_musics count] > 0 ) {
     multiplier = ( [_musics count] > 4 )? 2 : 1;
+    height += ( multiplier * 50 ) + 50;
+  }
+  
+  if ( [_movies count] > 0 ) {
+    multiplier = ( [_movies count] > 4 )? 2 : 1;
     height += ( multiplier * 50 ) + 50;
   }
   
@@ -75,6 +89,10 @@
     [items addObject:NSLocalizedString( @"Music", @"" )];
   }
   
+  if ( [_movies count] > 0 ) {
+    [items addObject:NSLocalizedString( @"Movies", @"" )];
+  }
+  
   return items;
 }
 
@@ -87,6 +105,10 @@
   
   if ( [_musics count] > 0 ) {
     [items addObject:_musics];
+  }
+  
+  if ( [_movies count] > 0 ) {
+    [items addObject:_movies];
   }
   
   return items;

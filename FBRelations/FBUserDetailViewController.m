@@ -87,7 +87,7 @@
   [self initializePhotos];
 //  [self initializeFriends];
   [self initializeMusic];
-//  [self initializeMovies];
+  [self initializeMovies];
 }
 
 - (void)initializeUserInfo {
@@ -119,6 +119,7 @@
 
 - (void)initializeMovies {
   [FBAPI loadMoviesWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
+    _dataSource.movies = data;
     [self reloadCollection];
   } failureBlock:^( NSError *error ) {
     
@@ -136,7 +137,9 @@
 
 - (void)reloadCollection {
   [self.userDetailView.collectionView reloadData];
-  [self.userDetailView setCollectionViewHeight:[_dataSource collectionViewHeight]];
+  if ( [_dataSource allDataIsLoaded] ) {
+    [self.userDetailView setCollectionViewHeight:[_dataSource collectionViewHeight]];
+  }
 }
 
 @end

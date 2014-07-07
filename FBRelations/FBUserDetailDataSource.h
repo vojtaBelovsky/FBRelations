@@ -18,5 +18,6 @@
 @property (readonly) NSArray *items;
 @property (readonly) NSArray *headerTitles;
 
+- (BOOL)allDataIsLoaded;
 - (CGFloat)collectionViewHeight;
 @end
