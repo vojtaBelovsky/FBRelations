@@ -56,7 +56,7 @@
   [FBBeaconManager sharedInstance].locationManager.delegate = self;
 }
 
-#pragma mark - Properties
+#pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
   if ( [beacons count] ) {
