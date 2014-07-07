@@ -53,7 +53,7 @@
 
 + (void)loadMoviesWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
-    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,picture", userId, MOVIES];
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,picture.type(normal)", userId, MOVIES];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
       FBMovie *movie;
       NSError *error;
@@ -73,7 +73,7 @@
 
 + (void)loadMusicWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
-    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,picture", userId, MUSIC];
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,picture.type(normal)", userId, MUSIC];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
       FBMusic *musicAlbum;
       NSError *error;
@@ -143,7 +143,7 @@
 
 + (void)loadUserInfoWithId:(NSString *)userId completetionBlock:(FBUserInfoCompletetionBlock)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
-    NSString *grapthPath = [NSString stringWithFormat:@"/%@?fields=picture,cover,first_name,name,gender,last_name,link,locale,timezone,updated_time,verified,hometown,location,relationship_status,birthday", userId];
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@?fields=picture.type(normal),cover,first_name,name,gender,last_name,link,locale,timezone,updated_time,verified,hometown,location,relationship_status,birthday", userId];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
       NSDictionary *dict = data;
       NSError *error;

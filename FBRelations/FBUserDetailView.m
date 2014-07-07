@@ -22,7 +22,7 @@
 #define AVATAR_BACKGROUND   [UIImage imageNamed:@"avatarBackground"]
 #define HEART               [UIImage imageNamed:@"heart"]
 
-#define ITEM_SIZE            (CGSize){ 50.0f, 50.0f }
+#define ITEM_SIZE           (CGSize){ 50.0f, 50.0f }
 
 #define COLLECTION_OFFSET   282.0f
 
@@ -60,7 +60,8 @@
     _backgroundView = [[UIImageView alloc] init];
     _backgroundView.contentMode = UIViewContentModeScaleAspectFill;
 
-    _avatarBackgroundView = [[UIImageView alloc] initWithImage:AVATAR_BACKGROUND];
+    UIImage *resizableImage = [AVATAR_BACKGROUND stretchableImageWithLeftCapWidth:0 topCapHeight:150];
+    _avatarBackgroundView = [[UIImageView alloc] initWithImage:resizableImage];
     _avatarView = [[UIImageView alloc] init];
     
     _avatarBackgroundView.alpha = 0.0f;
@@ -217,12 +218,13 @@
   
   CGRect frame = { 0.0f, 64.0f, CGRectGetWidth( [UIScreen mainScreen].bounds ), height };
   _scrollView.contentSize = frame.size;
+  frame.size.height -= 64.0f;
   _contentView.frame = frame;
   
   TMALVariableBindingsAMNO( _avatarBackgroundView, _avatarView, _nameLabel, _ageLabel, _addressLabel, _heartView, _relationLabel, _collectionView );
   
   TMAL_ADDS_VISUAL( @"H:|-16-[_avatarBackgroundView]" );
-  TMAL_ADDS_VISUAL( @"V:|-16-[_avatarBackgroundView]" );
+  TMAL_ADDS_VISUAL( @"V:|-16-[_avatarBackgroundView]-35-|" );
   
   TMAL_ADDS_VISUAL( @"H:|-17-[_avatarView(==95)]-15-[_nameLabel]-10-|" );
   TMAL_ADDS_VISUAL( @"V:|-17-[_avatarView(==95)]" );
