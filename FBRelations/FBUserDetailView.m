@@ -101,8 +101,8 @@
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.scrollEnabled = NO;
     
-    [_contentView addSubview:_backgroundView];
-    [_contentView addSubview:_toolbar];
+    [self addSubview:_backgroundView];
+    [self addSubview:_toolbar];
     [_contentView addSubview:_avatarBackgroundView];
     [_contentView addSubview:_avatarView];
     [_contentView addSubview:_nameLabel];
@@ -205,7 +205,7 @@
 
   constraints = [NSString stringWithFormat:@"H:|-0-[_contentView(==%f)]", CGRectGetWidth( [UIScreen mainScreen].bounds )];
   TMAL_ADDS_VISUAL( constraints );
-  constraints = [NSString stringWithFormat:@"V:|-0-[_contentView(==%f)]", CGRectGetHeight( [UIScreen mainScreen].bounds ) - 0 ];
+  constraints = [NSString stringWithFormat:@"V:|-64-[_contentView(==%f)]", CGRectGetHeight( [UIScreen mainScreen].bounds ) - 0 ];
   TMAL_ADDS_VISUAL( constraints );
   
   TMAL_ADDS_VISUAL( @"H:|-0-[_backgroundView]-0-|" );
@@ -239,18 +239,23 @@
 }
 
 - (void)setCollectionViewHeight:(CGFloat)collectionViewHeight {
-  NSString *constraints;
+//  NSString *constraints;
   CGFloat height = COLLECTION_OFFSET + collectionViewHeight;
+//
+//  TMALVariableBindingsAMNO( _collectionView, _contentView );
+//  constraints = [NSString stringWithFormat:@"V:[_avatarView]-70-[_collectionView(==%f)]", collectionViewHeight ];
+//  TMAL_ADDS_VISUAL( constraints );
   
-  TMALVariableBindingsAMNO( _collectionView, _contentView );
-  constraints = [NSString stringWithFormat:@"V:[_avatarView]-70-[_collectionView(==%f)]", collectionViewHeight ];
-  TMAL_ADDS_VISUAL( constraints );
+//  if ( height > CGRectGetHeight( [UIScreen mainScreen].bounds ) - 64.0f ) {
+//    constraints = [NSString stringWithFormat:@"V:|-0-[_contentView(==%f)]", height ];
+//    TMAL_ADDS_VISUAL( constraints );
+//    _scrollView.contentSize = (CGSize){ CGRectGetWidth( [UIScreen mainScreen].bounds ), height + 1000};
+//  }
   
-  if ( height > CGRectGetHeight( [UIScreen mainScreen].bounds ) - 64.0f ) {
-    constraints = [NSString stringWithFormat:@"V:|-0-[_contentView(==%f)]", height ];
-    TMAL_ADDS_VISUAL( constraints );
-    _scrollView.contentSize = (CGSize){ CGRectGetWidth( [UIScreen mainScreen].bounds ), height };
-  }
+  CGRect frame = _contentView.frame;
+  frame.size.height = collectionViewHeight;
+  _contentView.frame = frame;
+  _scrollView.contentSize = (CGSize){ CGRectGetWidth( [UIScreen mainScreen].bounds ), 1000};
 }
 
 @end

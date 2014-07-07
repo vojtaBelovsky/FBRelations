@@ -11,12 +11,11 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "FBUser.h"
 
-static NSString *BeaconIdentifier = @"a";
-
-CBPeripheralManager *_peripheralManager = nil;
+static NSString *kBeaconIdentifier = @"kBeaconIdentifier";
 
 @interface FBBeaconManager () {
   CLBeaconRegion *_region;
+  CBPeripheralManager *_peripheralManager;
 }
 
 @end
@@ -39,15 +38,13 @@ CBPeripheralManager *_peripheralManager = nil;
 
 - (void)setUser:(FBUser *)user {
   NSMutableDictionary *peripheralData = nil;
-  CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID major:[user.userId integerValue] minor:0
-                                                              identifier:BeaconIdentifier];
+  CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID identifier:kBeaconIdentifier];
+  
   NSDictionary *measuredPeripheralData = [region peripheralDataWithMeasuredPower:BEACON_POWER];
   peripheralData = [NSMutableDictionary dictionaryWithDictionary:measuredPeripheralData];
-  peripheralData[ CBAdvertisementDataLocalNameKey ] = user.name;
   
   if( peripheralData ) {
     _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-
     [_peripheralManager startAdvertising:peripheralData];
   }
 }
@@ -56,7 +53,7 @@ CBPeripheralManager *_peripheralManager = nil;
 
 - (void)initializeLocationManager {
   _locationManager = [[CLLocationManager alloc] init];
-  _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID identifier:BeaconIdentifier];
+  _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID identifier:kBeaconIdentifier];
   [_locationManager startRangingBeaconsInRegion:_region];
 }
 

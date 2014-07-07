@@ -60,9 +60,10 @@
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
   if ( [beacons count] ) {
-    CLBeacon *beacon = beacons[ 0 ];
-    NSString *userId = [NSString stringWithFormat:@"%@", beacon.major];
-    NSLog( @"%@", userId );
+    for ( CLBeacon *beacon in beacons ) {
+      NSString *proximityId = [NSString stringWithFormat:@"%@", beacon.proximityUUID];
+      NSLog( @"%@", proximityId );
+    }
   }
 }
 
