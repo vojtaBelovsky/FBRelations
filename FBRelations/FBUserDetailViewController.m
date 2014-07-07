@@ -69,7 +69,8 @@
   
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lightboxViewController];
   self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-  [self presentViewController:navController animated:YES completion:nil];
+  self.navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  [self presentViewController:navController animated:YES completion:NULL];
 //  [self.navigationController pushViewController:lightboxViewController animated:YES];
 }
 

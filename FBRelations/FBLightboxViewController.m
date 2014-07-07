@@ -11,7 +11,7 @@
 #import "FBLightboxDataSource.h"
 
 #define ITEM_SIZE            (CGSize){ 70.0f, 70.0f }
-#define ANIMATION_DURATION   0.2f
+#define ANIMATION_DURATION   0.3f
 
 @interface FBLightboxViewController () {
   FBLightboxDataSource *_dataSource;
@@ -40,7 +40,7 @@
 - (void)loadView {
   [super loadView];
   
-//  self.view.backgroundColor = CLEAR_COLOR;
+  self.view.backgroundColor = CLEAR_COLOR;
   self.collectionView.backgroundColor = CLEAR_COLOR;
   [self.collectionView registerClass:[FBUserDetailInfoCell class] forCellWithReuseIdentifier:kUserDetailInfoCellIdentifier];
   
@@ -62,8 +62,6 @@
   frame.size.height -= 2 * CGRectGetMinY( frame );
   self.collectionView.frame = frame;
   
-  self.navigationController.view.alpha = 0.0f;
-  
   _toolbar = [[UIToolbar alloc] init];
   _toolbar.frame = self.view.frame;
   _toolbar.backgroundColor = CLEAR_COLOR;
@@ -73,24 +71,22 @@
   [self.view sendSubviewToBack:_toolbar];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
   
-  [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-    self.navigationController.view.alpha = 1.0f;
-  }];
+  CATransition *slide = [CATransition animation];
+  slide.type = kCATransitionPush;
+  slide.subtype = kCATransitionFromTop;
+  slide.duration = ANIMATION_DURATION;
+  slide.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+  slide.removedOnCompletion = YES;
+  [self.navigationController.view.layer addAnimation:slide forKey:@"slidein"];
 }
 
 #pragma mark - UserActions
 
 - (void)cancelButtonDidPress {
-  [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-    self.navigationController.view.alpha = 0.0f;
-  } completion:^(BOOL finished) {
-    if ( finished ) {
-      [self dismissViewControllerAnimated:NO completion:nil];
-    }
-  }];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
