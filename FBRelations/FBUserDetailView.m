@@ -198,30 +198,35 @@
 }
 
 - (void)initializeConstraints {
-  NSString *constraints;
-  TMALVariableBindingsAMNO( _backgroundView, _toolbar, _scrollView, _contentView, _avatarView, _nameLabel, _addressLabel, _relationLabel, _ageLabel, _avatarBackgroundView, _heartView, _collectionView );
+  TMALVariableBindingsAMNO( _scrollView, _backgroundView, _toolbar );
+  
   TMAL_ADDS_VISUAL( @"H:|-0-[_scrollView]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_scrollView]-0-|" );
-
-  constraints = [NSString stringWithFormat:@"H:|-0-[_contentView(==%f)]", CGRectGetWidth( [UIScreen mainScreen].bounds )];
-  TMAL_ADDS_VISUAL( constraints );
-  constraints = [NSString stringWithFormat:@"V:|-64-[_contentView(==%f)]", CGRectGetHeight( [UIScreen mainScreen].bounds ) - 0 ];
-  TMAL_ADDS_VISUAL( constraints );
   
   TMAL_ADDS_VISUAL( @"H:|-0-[_backgroundView]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_backgroundView]-0-|" );
   
   TMAL_ADDS_VISUAL( @"H:|-0-[_toolbar]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_toolbar]-0-|" );
+}
+
+- (void)setCollectionViewHeight:(CGFloat)collectionViewHeight {
+  CGFloat height = COLLECTION_OFFSET + collectionViewHeight + 100.0f;
+  
+  CGRect frame = { 0.0f, 64.0f, CGRectGetWidth( [UIScreen mainScreen].bounds ), height };
+  _scrollView.contentSize = frame.size;
+  _contentView.frame = frame;
+  
+  TMALVariableBindingsAMNO( _avatarBackgroundView, _avatarView, _nameLabel, _ageLabel, _addressLabel, _heartView, _relationLabel, _collectionView );
   
   TMAL_ADDS_VISUAL( @"H:|-16-[_avatarBackgroundView]" );
   TMAL_ADDS_VISUAL( @"V:|-16-[_avatarBackgroundView]" );
   
   TMAL_ADDS_VISUAL( @"H:|-17-[_avatarView(==95)]-15-[_nameLabel]-10-|" );
   TMAL_ADDS_VISUAL( @"V:|-17-[_avatarView(==95)]" );
-
+  
   TMAL_ADDS_VISUAL( @"V:|-12-[_nameLabel]" );
-
+  
   TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_addressLabel]" );
   TMAL_ADDS_VISUAL( @"V:[_nameLabel]-0-[_addressLabel]" );
   
@@ -233,29 +238,9 @@
   
   TMAL_ADDS_VISUAL( @"H:[_heartView]-15-[_relationLabel]" );
   TMAL_ADDS_VISUAL( @"V:[_ageLabel]-15-[_relationLabel]" );
-
+  
   TMAL_ADDS_VISUAL( @"H:|-74-[_collectionView]-12-|" );
-  TMAL_ADDS_VISUAL( @"V:[_avatarView]-70-[_collectionView(==280)]" );
-}
-
-- (void)setCollectionViewHeight:(CGFloat)collectionViewHeight {
-//  NSString *constraints;
-  CGFloat height = COLLECTION_OFFSET + collectionViewHeight;
-//
-//  TMALVariableBindingsAMNO( _collectionView, _contentView );
-//  constraints = [NSString stringWithFormat:@"V:[_avatarView]-70-[_collectionView(==%f)]", collectionViewHeight ];
-//  TMAL_ADDS_VISUAL( constraints );
-  
-//  if ( height > CGRectGetHeight( [UIScreen mainScreen].bounds ) - 64.0f ) {
-//    constraints = [NSString stringWithFormat:@"V:|-0-[_contentView(==%f)]", height ];
-//    TMAL_ADDS_VISUAL( constraints );
-//    _scrollView.contentSize = (CGSize){ CGRectGetWidth( [UIScreen mainScreen].bounds ), height + 1000};
-//  }
-  
-  CGRect frame = _contentView.frame;
-  frame.size.height = collectionViewHeight;
-  _contentView.frame = frame;
-  _scrollView.contentSize = (CGSize){ CGRectGetWidth( [UIScreen mainScreen].bounds ), 1000};
+  TMAL_ADDS_VISUAL( @"V:[_avatarView]-70-[_collectionView]-10-|" );
 }
 
 @end

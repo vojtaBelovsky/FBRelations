@@ -53,7 +53,7 @@
 
 + (void)loadMoviesWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
-    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, MOVIES];
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,picture", userId, MOVIES];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
       FBMovie *movie;
       NSError *error;
@@ -73,7 +73,7 @@
 
 + (void)loadMusicWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
-    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,cover", userId, MUSIC];
+    NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,picture", userId, MUSIC];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
       FBMusic *musicAlbum;
       NSError *error;
