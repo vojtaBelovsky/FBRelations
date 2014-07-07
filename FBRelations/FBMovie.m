@@ -15,7 +15,7 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{ @"createdTime" : @"created_time",
             @"musicId" : @"id",
-            @"picture" : @"picture.data.url"            
+            @"picture" : @"picture.data.url"
             };
 }
 

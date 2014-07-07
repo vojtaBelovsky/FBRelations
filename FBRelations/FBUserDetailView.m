@@ -24,7 +24,7 @@
 
 #define ITEM_SIZE            (CGSize){ 50.0f, 50.0f }
 
-#define COLLECTION_OFFSET   182.0f
+#define COLLECTION_OFFSET   282.0f
 
 @interface FBUserDetailView () {
   UIScrollView *_scrollView;
@@ -211,7 +211,7 @@
 }
 
 - (void)setCollectionViewHeight:(CGFloat)collectionViewHeight {
-  CGFloat height = COLLECTION_OFFSET + collectionViewHeight + 100.0f;
+  CGFloat height = COLLECTION_OFFSET + collectionViewHeight;
   
   CGRect frame = { 0.0f, 64.0f, CGRectGetWidth( [UIScreen mainScreen].bounds ), height };
   _scrollView.contentSize = frame.size;
