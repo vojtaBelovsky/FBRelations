@@ -44,7 +44,7 @@ static NSString *kBeaconIdentifier = @"kBeaconIdentifier";
 
 - (void)setUser:(FBUser *)user {
   NSMutableDictionary *peripheralData = nil;
-  NSUUID *uuid =  [self encodeFBUserID:user.userId];
+  NSUUID *uuid =  [FBBeaconManager encodeFBUserID:user.userId];
   CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:kBeaconIdentifier];
   
   NSDictionary *measuredPeripheralData = [region peripheralDataWithMeasuredPower:BEACON_POWER];
@@ -64,7 +64,7 @@ static NSString *kBeaconIdentifier = @"kBeaconIdentifier";
   [_locationManager startRangingBeaconsInRegion:_region];
 }
 
--(NSUUID *)encodeFBUserID:(NSString *)userId {
++(NSUUID *)encodeFBUserID:(NSString *)userId {
   NSUInteger lenghtOfFBID = [userId length];
   NSInteger numberOfDashes = 0;
   NSMutableString *uuidInString = [[NSMutableString alloc] init];
@@ -83,6 +83,15 @@ static NSString *kBeaconIdentifier = @"kBeaconIdentifier";
   
   NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidInString];
   return uuid;
+}
+
++(NSString *)decodeBeaconUUID:(NSUUID *)BeaconUUID {
+  NSMutableString *userId = [NSMutableString stringWithFormat:@"%@", BeaconUUID];
+  [userId replaceOccurrencesOfString:@"-" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [userId length])];
+  [userId replaceOccurrencesOfString:@"A" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [userId length])];
+  
+  return userId;
+  
 }
 
 @end

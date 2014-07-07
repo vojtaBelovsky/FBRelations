@@ -61,8 +61,9 @@
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
   if ( [beacons count] ) {
     for ( CLBeacon *beacon in beacons ) {
-      NSString *proximityId = [NSString stringWithFormat:@"%@", beacon.proximityUUID];
-      NSLog( @"%@", proximityId );
+      NSString *facebookId = [FBBeaconManager decodeBeaconUUID:beacon.proximityUUID];
+      
+      NSLog( @"%@", facebookId );
     }
   }
 }

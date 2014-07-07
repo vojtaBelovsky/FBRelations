@@ -17,4 +17,8 @@
 + (FBBeaconManager *)sharedInstance;
 - (void)setUser:(FBUser *)user;
 @property (readonly) CLLocationManager *locationManager;
+
++(NSUUID *)encodeFBUserID:(NSString *)userId;
++(NSString *)decodeBeaconUUID:(NSUUID *)BeaconUUID;
+
 @end
