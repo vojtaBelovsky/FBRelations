@@ -18,10 +18,10 @@
 #define FOURTH_DASH 23
 
 static NSString *kBeaconIdentifier = @"kBeaconIdentifier";
+CBPeripheralManager *_peripheralManager = nil;
 
 @interface FBBeaconManager () {
   CLBeaconRegion *_region;
-  CBPeripheralManager *_peripheralManager;
 }
 
 @end
@@ -61,11 +61,11 @@ static NSString *kBeaconIdentifier = @"kBeaconIdentifier";
 - (void)initializeLocationManager {
   _locationManager = [[CLLocationManager alloc] init];
   _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID identifier:kBeaconIdentifier];
+  
   [_locationManager startRangingBeaconsInRegion:_region];
-  [_locationManager startMonitoringForRegion:_region];
 }
 
-+(NSUUID *)encodeFBUserID:(NSString *)userId {
++ (NSUUID *)encodeFBUserID:(NSString *)userId {
   NSUInteger lenghtOfFBID = [userId length];
   NSInteger numberOfDashes = 0;
   NSMutableString *uuidInString = [[NSMutableString alloc] init];
