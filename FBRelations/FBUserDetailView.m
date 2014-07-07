@@ -207,7 +207,7 @@
   TMAL_ADDS_VISUAL( @"V:|-0-[_backgroundView]-0-|" );
   
   TMAL_ADDS_VISUAL( @"H:|-0-[_toolbar]-0-|" );
-  TMAL_ADDS_VISUAL( @"V:|-0-[_toolbar]-0-|" );
+  TMAL_ADDS_VISUAL( @"V:|-64-[_toolbar]-0-|" );
 }
 
 - (void)setCollectionViewHeight:(CGFloat)collectionViewHeight {

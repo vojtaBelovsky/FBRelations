@@ -16,18 +16,18 @@
 		294E6E5A195D7DEF001F4F87 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E6E59195D7DEF001F4F87 /* main.m */; };
 		294E6E5E195D7DEF001F4F87 /* FBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E6E5D195D7DEF001F4F87 /* FBAppDelegate.m */; };
 		294E6E60195D7DEF001F4F87 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 294E6E5F195D7DEF001F4F87 /* Images.xcassets */; };
-		294E6E67195D7DEF001F4F87 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E66195D7DEF001F4F87 /* XCTest.framework */; };
 		294E6E68195D7DEF001F4F87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E4D195D7DEF001F4F87 /* Foundation.framework */; };
 		294E6E69195D7DEF001F4F87 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E51195D7DEF001F4F87 /* UIKit.framework */; };
 		294E6E71195D7DEF001F4F87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 294E6E6F195D7DEF001F4F87 /* InfoPlist.strings */; };
 		294E6E73195D7DEF001F4F87 /* FBRelationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E6E72195D7DEF001F4F87 /* FBRelationsTests.m */; };
+		296A850E196ACF1C0000D833 /* FBLightboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A850D196ACF1C0000D833 /* FBLightboxViewController.m */; };
+		296A8512196AD27F0000D833 /* FBLightboxDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A8511196AD27F0000D833 /* FBLightboxDataSource.m */; };
 		29A4BA6219647145005D9515 /* FBUserDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6119647145005D9515 /* FBUserDetailDataSource.m */; };
 		29A4BA66196471DE005D9515 /* FBUserDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA65196471DE005D9515 /* FBUserDetailInfoCell.m */; };
 		29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */; };
 		29A4BA6E19668D6B005D9515 /* FBBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6D19668D6B005D9515 /* FBBook.m */; };
 		29A4BA701966AB10005D9515 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A4BA6F1966AB0F005D9515 /* CoreLocation.framework */; };
 		29A4BA721966AB17005D9515 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A4BA711966AB17005D9515 /* CoreBluetooth.framework */; };
-		29A4BA731966AB27005D9515 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E66195D7DEF001F4F87 /* XCTest.framework */; };
 		29A4BA771966AC96005D9515 /* FBBeaconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA761966AC96005D9515 /* FBBeaconManager.m */; };
 		29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C21962B38500C43817 /* FBAlbum.m */; };
 		29ABB1C71962DB9400C43817 /* FBMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABB1C61962DB9400C43817 /* FBMusic.m */; };
@@ -67,10 +67,13 @@
 		294E6E5D195D7DEF001F4F87 /* FBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBAppDelegate.m; sourceTree = "<group>"; };
 		294E6E5F195D7DEF001F4F87 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		294E6E65195D7DEF001F4F87 /* FBRelationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FBRelationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		294E6E66195D7DEF001F4F87 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		294E6E6E195D7DEF001F4F87 /* FBRelationsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FBRelationsTests-Info.plist"; sourceTree = "<group>"; };
 		294E6E70195D7DEF001F4F87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		294E6E72195D7DEF001F4F87 /* FBRelationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBRelationsTests.m; sourceTree = "<group>"; };
+		296A850C196ACF1C0000D833 /* FBLightboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLightboxViewController.h; sourceTree = "<group>"; };
+		296A850D196ACF1C0000D833 /* FBLightboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLightboxViewController.m; sourceTree = "<group>"; };
+		296A8510196AD27F0000D833 /* FBLightboxDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLightboxDataSource.h; sourceTree = "<group>"; };
+		296A8511196AD27F0000D833 /* FBLightboxDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLightboxDataSource.m; sourceTree = "<group>"; };
 		29A4BA6019647145005D9515 /* FBUserDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserDetailDataSource.h; sourceTree = "<group>"; };
 		29A4BA6119647145005D9515 /* FBUserDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserDetailDataSource.m; sourceTree = "<group>"; };
 		29A4BA64196471DE005D9515 /* FBUserDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserDetailInfoCell.h; sourceTree = "<group>"; };
@@ -112,7 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29A4BA731966AB27005D9515 /* XCTest.framework in Frameworks */,
 				29A4BA721966AB17005D9515 /* CoreBluetooth.framework in Frameworks */,
 				29A4BA701966AB10005D9515 /* CoreLocation.framework in Frameworks */,
 				294E6E50195D7DEF001F4F87 /* CoreGraphics.framework in Frameworks */,
@@ -126,7 +128,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				294E6E67195D7DEF001F4F87 /* XCTest.framework in Frameworks */,
 				294E6E69195D7DEF001F4F87 /* UIKit.framework in Frameworks */,
 				294E6E68195D7DEF001F4F87 /* Foundation.framework in Frameworks */,
 			);
@@ -180,7 +181,6 @@
 				294E6E4D195D7DEF001F4F87 /* Foundation.framework */,
 				294E6E4F195D7DEF001F4F87 /* CoreGraphics.framework */,
 				294E6E51195D7DEF001F4F87 /* UIKit.framework */,
-				294E6E66195D7DEF001F4F87 /* XCTest.framework */,
 				7CD2EEC280894EDDA826E16D /* libPods.a */,
 			);
 			name = Frameworks;
@@ -226,6 +226,25 @@
 				294E6E6F195D7DEF001F4F87 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		296A850B196ACEFB0000D833 /* LightboxViewController */ = {
+			isa = PBXGroup;
+			children = (
+				296A850F196AD1F30000D833 /* DataSource */,
+				296A850C196ACF1C0000D833 /* FBLightboxViewController.h */,
+				296A850D196ACF1C0000D833 /* FBLightboxViewController.m */,
+			);
+			name = LightboxViewController;
+			sourceTree = "<group>";
+		};
+		296A850F196AD1F30000D833 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				296A8510196AD27F0000D833 /* FBLightboxDataSource.h */,
+				296A8511196AD27F0000D833 /* FBLightboxDataSource.m */,
+			);
+			name = DataSource;
 			sourceTree = "<group>";
 		};
 		29A4BA5F19647128005D9515 /* DataSource */ = {
@@ -297,6 +316,7 @@
 		29F452D3195D996000DE4814 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				296A850B196ACEFB0000D833 /* LightboxViewController */,
 				29F452D4195D996800DE4814 /* UserDetail */,
 			);
 			name = Controllers;
@@ -478,8 +498,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				105078101964354F00993ECD /* User.m in Sources */,
+				296A8512196AD27F0000D833 /* FBLightboxDataSource.m in Sources */,
 				29A4BA6219647145005D9515 /* FBUserDetailDataSource.m in Sources */,
 				29A4BA6E19668D6B005D9515 /* FBBook.m in Sources */,
+				296A850E196ACF1C0000D833 /* FBLightboxViewController.m in Sources */,
 				29A4BA771966AC96005D9515 /* FBBeaconManager.m in Sources */,
 				29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */,
 				29F452D7195D999400DE4814 /* FBUserDetailViewController.m in Sources */,

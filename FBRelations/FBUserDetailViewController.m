@@ -12,6 +12,7 @@
 #import "FBUser.h"
 #import "FBUserDetailDataSource.h"
 #import "FBBeaconManager.h"
+#import "FBLightboxViewController.h"
 
 #define ADD  [UIImage imageNamed:@"plusbutton"]
 
@@ -40,6 +41,7 @@
 - (void)loadView {
   self.view = [[FBUserDetailView alloc] init];
   self.userDetailView.collectionView.dataSource = _dataSource;
+  self.userDetailView.collectionView.delegate = self;
 }
 
 - (void)viewDidLoad {
@@ -47,17 +49,31 @@
 
   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:ADD style:UIBarButtonItemStylePlain target:self action:@selector(addButtonDidPress)];
   self.navigationItem.rightBarButtonItem = addButton;
+  
+  [self initializeData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
-  [self initializeData];
   [FBBeaconManager sharedInstance].locationManager.delegate = self;
 }
 
-#pragma mark - CLLocationManagerDelegate
+#pragma mark - UICollectionViewDelegate
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  NSArray *items = _dataSource.items[ indexPath.section ];
+  NSString *title = _dataSource.headerTitles[ indexPath.section ];
+  
+  FBLightboxViewController *lightboxViewController = [[FBLightboxViewController alloc] initWithItems:items title:title];
+  
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lightboxViewController];
+  self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+  [self presentViewController:navController animated:YES completion:nil];
+//  [self.navigationController pushViewController:lightboxViewController animated:YES];
+}
+
+#pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager
          didEnterRegion:(CLRegion *)region {
