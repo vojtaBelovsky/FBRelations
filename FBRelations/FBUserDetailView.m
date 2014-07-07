@@ -53,6 +53,8 @@
   self = [super init];
   if ( self ) {
     _scrollView = [[UIScrollView alloc] init];
+    _scrollView.showsVerticalScrollIndicator = NO;
+    
     _contentView = [[UIView alloc] init];
     
     _backgroundView = [[UIImageView alloc] init];
