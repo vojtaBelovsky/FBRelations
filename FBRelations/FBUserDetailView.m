@@ -119,6 +119,8 @@
     [self addSubview:_scrollView];
     
     [self initializeConstraints];
+    
+    DKCreateMotionEffect( _contentView );
   }
   
   return self;
