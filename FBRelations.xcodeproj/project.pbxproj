@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1050780A1964323900993ECD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 105078081964323900993ECD /* Model.xcdatamodeld */; };
 		105078101964354F00993ECD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1050780F1964354F00993ECD /* User.m */; };
+		10C8CE87196BC53300BEDBED /* ServerHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */; };
 		294E6E4E195D7DEF001F4F87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E4D195D7DEF001F4F87 /* Foundation.framework */; };
 		294E6E50195D7DEF001F4F87 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E4F195D7DEF001F4F87 /* CoreGraphics.framework */; };
 		294E6E52195D7DEF001F4F87 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E51195D7DEF001F4F87 /* UIKit.framework */; };
@@ -55,6 +56,8 @@
 		105078091964323900993ECD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1050780E1964354F00993ECD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1050780F1964354F00993ECD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		10C8CE85196BC53300BEDBED /* ServerHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHTTPSessionManager.h; sourceTree = "<group>"; };
+		10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerHTTPSessionManager.m; sourceTree = "<group>"; };
 		294E6E4A195D7DEF001F4F87 /* FBRelations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBRelations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		294E6E4D195D7DEF001F4F87 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		294E6E4F195D7DEF001F4F87 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -309,6 +312,8 @@
 				29F452DC1961969700DE4814 /* Entity */,
 				29F452CD195D8E1300DE4814 /* FBAPI.h */,
 				29F452CE195D8E1300DE4814 /* FBAPI.m */,
+				10C8CE85196BC53300BEDBED /* ServerHTTPSessionManager.h */,
+				10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -512,6 +517,7 @@
 				29ABB1C71962DB9400C43817 /* FBMusic.m in Sources */,
 				29F452DF196196AA00DE4814 /* FBUser.m in Sources */,
 				29ABB1D11964057300C43817 /* FBLocation.m in Sources */,
+				10C8CE87196BC53300BEDBED /* ServerHTTPSessionManager.m in Sources */,
 				29F452DB195D9A3000DE4814 /* FBUserDetailView.m in Sources */,
 				29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */,
 				29ABB1CA1962DE0100C43817 /* FBMovie.m in Sources */,
