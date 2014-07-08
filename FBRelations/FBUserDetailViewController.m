@@ -79,11 +79,6 @@
 
 #pragma mark - CLLocationManagerDelegate
 
-- (void)locationManager:(CLLocationManager *)manager
-         didEnterRegion:(CLRegion *)region {
-  
-}
-
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
   for ( CLBeacon *beacon in beacons ) {
     NSString *facebookId = [FBBeaconManager decodeBeaconUUID:beacon.proximityUUID];
@@ -109,7 +104,6 @@
 - (void)initializeData {
   [self initializeUserInfo];
   [self initializePhotos];
-//  [self initializeFriends];
   [self initializeMusic];
   [self initializeMovies];
 }

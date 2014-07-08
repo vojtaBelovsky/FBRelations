@@ -15,7 +15,6 @@
 
 @interface FBLightboxViewController () {
   FBLightboxDataSource *_dataSource;
-  UIToolbar *_toolbar;
 }
 
 @end
@@ -62,13 +61,13 @@
   frame.size.height -= 2 * CGRectGetMinY( frame );
   self.collectionView.frame = frame;
   
-  _toolbar = [[UIToolbar alloc] init];
-  _toolbar.frame = self.view.frame;
-  _toolbar.backgroundColor = CLEAR_COLOR;
-  _toolbar.barStyle = UIBarStyleBlackOpaque;
+  UIToolbar *toolbar = [[UIToolbar alloc] init];
+  toolbar.frame = self.view.frame;
+  toolbar.backgroundColor = CLEAR_COLOR;
+  toolbar.barStyle = UIBarStyleBlackOpaque;
 
-  [self.view addSubview:_toolbar];
-  [self.view sendSubviewToBack:_toolbar];
+  [self.view addSubview:toolbar];
+  [self.view sendSubviewToBack:toolbar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
