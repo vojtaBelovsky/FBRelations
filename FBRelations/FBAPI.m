@@ -175,7 +175,6 @@
 }
 
 + (void)authenticateIfNeededWithCompletetionBlock:(FBCompletetionBlock)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
-
   FBSessionState state = FBSession.activeSession.state;
   
   if ( state == FBSessionStateOpen || state == FBSessionStateOpenTokenExtended ) {

@@ -13,6 +13,7 @@
 #import "FBUserDetailDataSource.h"
 #import "FBBeaconManager.h"
 #import "FBLightboxViewController.h"
+#import "FBAppDelegate.h"
 
 #define ADD  [UIImage imageNamed:@"plusbutton"]
 
@@ -33,6 +34,7 @@
     self.title = NSLocalizedString( @"FBRelations", @"" );
     _user = [[FBUser alloc] initWithUserId:userId];
     _dataSource = [[FBUserDetailDataSource alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initializeData) name:kSessionOpenNotification object:nil];
   }
   
   return self;
@@ -49,14 +51,15 @@
 
   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:ADD style:UIBarButtonItemStylePlain target:self action:@selector(addButtonDidPress)];
   self.navigationItem.rightBarButtonItem = addButton;
-  
-  [self initializeData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
   [FBBeaconManager sharedInstance].locationManager.delegate = self;
+  if ( ![_dataSource allDataIsLoaded] ) {
+    [self initializeData];
+  }
 }
 
 #pragma mark - UICollectionViewDelegate
