@@ -5,7 +5,7 @@ UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString( 
 alertView.tag = __tag;  \
 [alertView show];
 
-#define SHOW_SHEET( __title, __cancelButton, __delegate, __view, __tag, __otherButtons,...) { \
+#define DK_SHOW_SHEET( __title, __cancelButton, __delegate, __view, __tag, __otherButtons,...) { \
 UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString( __title, @"" ) \
 delegate:__delegate \
 cancelButtonTitle:NSLocalizedString( __cancelButton, @"" )  \

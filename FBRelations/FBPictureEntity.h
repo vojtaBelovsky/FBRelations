@@ -10,4 +10,5 @@
 
 @protocol FBPictureEntity <NSObject>
 @property (readonly) NSString *picture;
+//@property (readonly) NSString *originalPicture;
 @end
