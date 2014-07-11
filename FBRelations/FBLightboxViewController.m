@@ -9,12 +9,14 @@
 #import "FBLightboxViewController.h"
 #import "FBUserDetailInfoCell.h"
 #import "FBLightboxDataSource.h"
+#import "FBGalleryViewController.h"
 
 #define ITEM_SIZE            (CGSize){ 70.0f, 70.0f }
 #define ANIMATION_DURATION   0.3f
 
 @interface FBLightboxViewController () {
   FBLightboxDataSource *_dataSource;
+  BOOL _isAnimated;
 }
 
 @end
@@ -31,6 +33,7 @@
   if ( self ) {
     self.title = title;
     _dataSource = [[FBLightboxDataSource alloc] initWithItems:items];
+    _isAnimated = NO;
   }
   
   return self;
@@ -58,7 +61,7 @@
   frame.origin.x = 5.0f;
   frame.origin.y = 5.0f;
   frame.size.width -= 2 * CGRectGetMinX( frame );
-  frame.size.height -= 2 * CGRectGetMinY( frame );
+  frame.size.height -= CGRectGetMinY( frame );
   self.collectionView.frame = frame;
   
   UIToolbar *toolbar = [[UIToolbar alloc] init];
@@ -68,18 +71,30 @@
 
   [self.view addSubview:toolbar];
   [self.view sendSubviewToBack:toolbar];
+  
+  DKCreateMotionEffect( self.collectionView );
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
-  CATransition *slide = [CATransition animation];
-  slide.type = kCATransitionPush;
-  slide.subtype = kCATransitionFromTop;
-  slide.duration = ANIMATION_DURATION;
-  slide.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-  slide.removedOnCompletion = YES;
-  [self.navigationController.view.layer addAnimation:slide forKey:@"slidein"];
+  if ( !_isAnimated ) {
+    CATransition *slide = [CATransition animation];
+    slide.type = kCATransitionPush;
+    slide.subtype = kCATransitionFromTop;
+    slide.duration = ANIMATION_DURATION;
+    slide.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    slide.removedOnCompletion = YES;
+    [self.navigationController.view.layer addAnimation:slide forKey:@"slidein"];
+    _isAnimated = YES;
+  }
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  FBGalleryViewController *galleryViewController = [[FBGalleryViewController alloc] initWithItems:_dataSource.items startIndex:indexPath.row];
+  [self.navigationController pushViewController:galleryViewController animated:YES];
 }
 
 #pragma mark - UserActions

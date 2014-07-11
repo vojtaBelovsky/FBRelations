@@ -5,7 +5,7 @@ UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString( 
 alertView.tag = __tag;  \
 [alertView show];
 
-#define SHOW_SHEET( __title, __cancelButton, __delegate, __view, __tag, __otherButtons,...) { \
+#define DK_SHOW_SHEET( __title, __cancelButton, __delegate, __view, __tag, __otherButtons,...) { \
 UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString( __title, @"" ) \
 delegate:__delegate \
 cancelButtonTitle:NSLocalizedString( __cancelButton, @"" )  \
@@ -27,6 +27,22 @@ __ptr( __VA_ARGS__ ); \
 #define WHITE_COLOR [UIColor whiteColor]
 #define CLEAR_COLOR [UIColor clearColor]
 #define TINT_COLOR  [UIColor colorWithRed:70.0f / 255.0f green:150.0f / 255.0f blue:204.0f / 255.0f alpha:1.0f]
+
+static inline void DKCreateMotionEffect ( UIView *view ) {
+  UIInterpolatingMotionEffect *xMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"
+                                                                                               type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+  xMotionEffect.minimumRelativeValue = @( -20.0 );
+  xMotionEffect.maximumRelativeValue = @( 20.0 );
+  
+  UIInterpolatingMotionEffect *yMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y"
+                                                                                               type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+  yMotionEffect.minimumRelativeValue = @( -20.0 );
+  yMotionEffect.maximumRelativeValue = @( 20.0 );
+  
+  UIMotionEffectGroup *group = [[UIMotionEffectGroup alloc] init];
+  group.motionEffects = @[ xMotionEffect, yMotionEffect ];
+  [view addMotionEffect:group];
+}
 
 static inline NSDictionary *__TMDictionaryOfVariableBindings( BOOL autoresizingMaskOff, unsigned int count, ... ) {
   if ( count <= 0 ) {

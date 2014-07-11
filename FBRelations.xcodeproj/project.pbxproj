@@ -26,6 +26,9 @@
 		294E6E73195D7DEF001F4F87 /* FBRelationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 294E6E72195D7DEF001F4F87 /* FBRelationsTests.m */; };
 		296A850E196ACF1C0000D833 /* FBLightboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A850D196ACF1C0000D833 /* FBLightboxViewController.m */; };
 		296A8512196AD27F0000D833 /* FBLightboxDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A8511196AD27F0000D833 /* FBLightboxDataSource.m */; };
+		296A8516196BE3BA0000D833 /* FBGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A8515196BE3BA0000D833 /* FBGalleryViewController.m */; };
+		296A851A196BE5040000D833 /* FBGalleryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A8519196BE5040000D833 /* FBGalleryDataSource.m */; };
+		296A851E196BE93E0000D833 /* FBGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A851D196BE93E0000D833 /* FBGalleryCell.m */; };
 		29A4BA6219647145005D9515 /* FBUserDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6119647145005D9515 /* FBUserDetailDataSource.m */; };
 		29A4BA66196471DE005D9515 /* FBUserDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA65196471DE005D9515 /* FBUserDetailInfoCell.m */; };
 		29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */; };
@@ -86,6 +89,12 @@
 		296A850D196ACF1C0000D833 /* FBLightboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLightboxViewController.m; sourceTree = "<group>"; };
 		296A8510196AD27F0000D833 /* FBLightboxDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLightboxDataSource.h; sourceTree = "<group>"; };
 		296A8511196AD27F0000D833 /* FBLightboxDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLightboxDataSource.m; sourceTree = "<group>"; };
+		296A8514196BE3BA0000D833 /* FBGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBGalleryViewController.h; sourceTree = "<group>"; };
+		296A8515196BE3BA0000D833 /* FBGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBGalleryViewController.m; sourceTree = "<group>"; };
+		296A8518196BE5040000D833 /* FBGalleryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBGalleryDataSource.h; sourceTree = "<group>"; };
+		296A8519196BE5040000D833 /* FBGalleryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBGalleryDataSource.m; sourceTree = "<group>"; };
+		296A851C196BE93E0000D833 /* FBGalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBGalleryCell.h; sourceTree = "<group>"; };
+		296A851D196BE93E0000D833 /* FBGalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBGalleryCell.m; sourceTree = "<group>"; };
 		29A4BA6019647145005D9515 /* FBUserDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserDetailDataSource.h; sourceTree = "<group>"; };
 		29A4BA6119647145005D9515 /* FBUserDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserDetailDataSource.m; sourceTree = "<group>"; };
 		29A4BA64196471DE005D9515 /* FBUserDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserDetailInfoCell.h; sourceTree = "<group>"; };
@@ -288,6 +297,35 @@
 			name = DataSource;
 			sourceTree = "<group>";
 		};
+		296A8513196BE37F0000D833 /* GalleryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				296A851B196BE7B30000D833 /* Cell */,
+				296A8517196BE3FB0000D833 /* DataSource */,
+				296A8514196BE3BA0000D833 /* FBGalleryViewController.h */,
+				296A8515196BE3BA0000D833 /* FBGalleryViewController.m */,
+			);
+			name = GalleryViewController;
+			sourceTree = "<group>";
+		};
+		296A8517196BE3FB0000D833 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				296A8518196BE5040000D833 /* FBGalleryDataSource.h */,
+				296A8519196BE5040000D833 /* FBGalleryDataSource.m */,
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
+		296A851B196BE7B30000D833 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				296A851C196BE93E0000D833 /* FBGalleryCell.h */,
+				296A851D196BE93E0000D833 /* FBGalleryCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		29A4BA5F19647128005D9515 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				109B2143196BEEE1004D38F9 /* Statistics */,
+				296A8513196BE37F0000D833 /* GalleryViewController */,
 				296A850B196ACEFB0000D833 /* LightboxViewController */,
 				29F452D4195D996800DE4814 /* UserDetail */,
 			);
@@ -549,11 +588,14 @@
 				29A4BA771966AC96005D9515 /* FBBeaconManager.m in Sources */,
 				29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */,
 				29F452D7195D999400DE4814 /* FBUserDetailViewController.m in Sources */,
+				296A851E196BE93E0000D833 /* FBGalleryCell.m in Sources */,
 				29F452CF195D8E1300DE4814 /* FBAPI.m in Sources */,
 				109B2146196BEF5A004D38F9 /* FBStatisticsViewController.m in Sources */,
 				294E6E5E195D7DEF001F4F87 /* FBAppDelegate.m in Sources */,
+				296A8516196BE3BA0000D833 /* FBGalleryViewController.m in Sources */,
 				29ABB1CD1962E15A00C43817 /* FBPhoto.m in Sources */,
 				294E6E5A195D7DEF001F4F87 /* main.m in Sources */,
+				296A851A196BE5040000D833 /* FBGalleryDataSource.m in Sources */,
 				29ABB1C71962DB9400C43817 /* FBMusic.m in Sources */,
 				109B214B196BEF9A004D38F9 /* FBStatisticsView.m in Sources */,
 				29F452DF196196AA00DE4814 /* FBUser.m in Sources */,

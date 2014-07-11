@@ -10,6 +10,7 @@
 #import <UIImageView+AFNetworking.h>
 
 #define ANIMATION_DURATION  0.2f
+#define BACKGROUND          [UIColor lightGrayColor]
 
 @interface FBUserDetailInfoCell () {
   UIImageView *_imageView;
@@ -26,7 +27,7 @@
   self = [super initWithFrame:frame];
   if ( self ) {
     self.clipsToBounds = YES;
-    self.backgroundColor = WHITE_COLOR;
+    self.contentView.backgroundColor = WHITE_COLOR;
     
     _imageContentView = [[UIView alloc] init];
     _imageContentView.clipsToBounds = YES;

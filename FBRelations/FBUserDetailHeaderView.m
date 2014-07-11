@@ -9,6 +9,7 @@
 #import "FBUserDetailHeaderView.h"
 
 #define FONT  [UIFont boldSystemFontOfSize:14.0f]
+#define COLOR [UIColor lightGrayColor]
 
 @interface FBUserDetailHeaderView () {
   UILabel *_titleLabel;
