@@ -11,6 +11,7 @@
 #import <FBRequestConnection.h>
 #import "FBPhoto.h"
 #import <Mantle/Mantle.h>
+#import "FBPictureEntity.h"
 
 #define ANIMATION_DURATION  0.2f
 
@@ -47,10 +48,10 @@
 
 #pragma mark - Public
 
-- (void)setImageWithId:(NSString *)photoId {
-  NSString *graphPath = [NSString stringWithFormat:@"/%@", photoId];
+- (void)setImageWithEntity:(id<FBPictureEntity>)pictureEntity {
+  [self setImageWithUrl:pictureEntity.picture];
   NSDictionary *params = @{ @"width" : @"640", @"height" : @"640" };
-  [FBRequestConnection startWithGraphPath:graphPath
+  [FBRequestConnection startWithGraphPath:[pictureEntity originalPictureGraphPathWithId:pictureEntity.pictureId]
                                parameters:params
                                HTTPMethod:@"GET"
                         completionHandler:^(
@@ -58,9 +59,7 @@
                                             id result,
                                             NSError *error
                                             ) {
-                          
-                          
-                          NSString *url = result[ @"source" ];
+                          NSString *url = [pictureEntity originalPictureUrlFromDict:result];
                           [self setImageWithUrl:url];
                         }];
 }

@@ -26,7 +26,19 @@
   return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[FBUser class]];
 }
 
-#pragma mark - Properties
+#pragma mark - Overriden
+
+- (NSString *)originalPictureGraphPathWithId:(NSString *)pictureId {
+  NSString *graphPath = [NSString stringWithFormat:@"/%@", pictureId];
+  
+  return graphPath;
+}
+
+- (NSString *)originalPictureUrlFromDict:(NSDictionary *)dict {
+  NSString *url = dict[ @"source" ];
+  
+  return url;
+}
 
 - (NSString *)pictureId {
   return _photoId;

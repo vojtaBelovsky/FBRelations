@@ -33,8 +33,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   id<FBPictureEntity> pictrureEntity = _items[ indexPath.row ];
   FBGalleryCell *cell = [FBGalleryCell createCellWithCollectionView:collectionView indexPath:indexPath];
-  [cell setImageWithUrl:pictrureEntity.picture];
-  [cell setImageWithId:pictrureEntity.pictureId];
+  [cell setImageWithEntity:pictrureEntity];
+    
   return cell;
 }
 
