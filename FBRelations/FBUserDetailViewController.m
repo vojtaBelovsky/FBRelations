@@ -74,7 +74,6 @@
   self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
   self.navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
   [self presentViewController:navController animated:YES completion:NULL];
-//  [self.navigationController pushViewController:lightboxViewController animated:YES];
 }
 
 #pragma mark - CLLocationManagerDelegate

@@ -18,4 +18,6 @@
 @property (readonly) NSString *updatedTime;
 @property (readonly) NSString *photoId;
 @property (readonly) FBUser *from;
+
+@property (readonly) NSString *pictureId;
 @end

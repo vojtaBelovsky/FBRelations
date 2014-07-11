@@ -26,4 +26,10 @@
   return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[FBUser class]];
 }
 
+#pragma mark - Properties
+
+- (NSString *)pictureId {
+  return _photoId;
+}
+
 @end

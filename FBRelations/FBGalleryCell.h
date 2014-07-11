@@ -13,4 +13,5 @@ static NSString *kGalleryCellIdentifier = @"kGalleryCellIdentifier";
 @interface FBGalleryCell : UICollectionViewCell
 + (FBGalleryCell *)createCellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
 - (void)setImageWithUrl:(NSString *)url;
+- (void)setImageWithId:(NSString *)photoId;
 @end

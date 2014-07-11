@@ -19,12 +19,15 @@
 #define ADDRESS_FONT        [UIFont systemFontOfSize:16.0f]
 
 #define MASK                [UIImage imageNamed:@"mask"]
-#define AVATAR_BACKGROUND   [UIImage imageNamed:@"avatarBackground"]
+#define AVATAR_BACKGROUND   [UIImage imageNamed:@"avatarBackgroundShadowed"]
 #define HEART               [UIImage imageNamed:@"heart"]
 
 #define ITEM_SIZE           (CGSize){ 50.0f, 50.0f }
 
-#define COLLECTION_OFFSET   282.0f
+#define COLLECTION_OFFSET   292.0f
+
+#define OVERALY_BACKGROUND  [UIColor blackColor]
+#define OVERALY_ALPHA       0.6f
 
 @interface FBUserDetailView () {
   UIScrollView *_scrollView;
@@ -59,9 +62,9 @@
     
     _backgroundView = [[UIImageView alloc] init];
     _backgroundView.contentMode = UIViewContentModeScaleAspectFill;
-
-    UIImage *resizableImage = [AVATAR_BACKGROUND stretchableImageWithLeftCapWidth:0 topCapHeight:150];
-    _avatarBackgroundView = [[UIImageView alloc] initWithImage:resizableImage];
+    _backgroundView.clipsToBounds = YES;
+    
+    _avatarBackgroundView = [[UIImageView alloc] initWithImage:AVATAR_BACKGROUND];
     _avatarView = [[UIImageView alloc] init];
     
     _avatarBackgroundView.alpha = 0.0f;
@@ -94,6 +97,7 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     flowLayout.itemSize = ITEM_SIZE;
     flowLayout.headerReferenceSize = (CGSize){ CGRectGetWidth( [UIScreen mainScreen].bounds ), ITEM_SIZE.height };
+    flowLayout.minimumInteritemSpacing = 4;
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = CLEAR_COLOR;
@@ -106,6 +110,7 @@
     
     [self addSubview:_backgroundView];
     [self addSubview:_toolbar];
+    
     [_contentView addSubview:_avatarBackgroundView];
     [_contentView addSubview:_avatarView];
     [_contentView addSubview:_nameLabel];
@@ -162,10 +167,11 @@
 - (void)initializeAvatarWithUrl:(NSString *)url {
   NSURL *bannerURL = [NSURL URLWithString:url];
   NSURLRequest *request = [NSURLRequest requestWithURL:bannerURL];
-  
+
   __weak UIImageView *weakAvatarView = _avatarView;;
   __weak UIImageView *weakAvatarBackgroundView = _avatarBackgroundView;
   __weak UIImageView *weakHeartView = _heartView;
+  
   [_avatarView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
     weakAvatarView.image = image;
 
@@ -178,8 +184,8 @@
       weakAvatarView.alpha = 1.0f;
       weakAvatarBackgroundView.alpha = 1.0f;
       weakHeartView.alpha = 1.0f;
-      
     }];
+    
   } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
     
   }];
@@ -203,7 +209,7 @@
 }
 
 - (void)initializeConstraints {
-  TMALVariableBindingsAMNO( _scrollView, _backgroundView, _toolbar );
+  TMALVariableBindingsAMNO( _avatarBackgroundView, _scrollView, _backgroundView, _toolbar );
   
   TMAL_ADDS_VISUAL( @"H:|-0-[_scrollView]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-0-[_scrollView]-0-|" );
@@ -213,6 +219,9 @@
   
   TMAL_ADDS_VISUAL( @"H:|-0-[_toolbar]-0-|" );
   TMAL_ADDS_VISUAL( @"V:|-64-[_toolbar]-0-|" );
+  
+  TMAL_ADDS_VISUAL( @"H:|-16-[_avatarBackgroundView]" );
+  TMAL_ADDS_VISUAL( @"V:|-30-[_avatarBackgroundView]" );
 }
 
 - (void)setCollectionViewHeight:(CGFloat)collectionViewHeight {
@@ -223,17 +232,14 @@
   frame.size.height -= 64.0f;
   _contentView.frame = frame;
   
-  TMALVariableBindingsAMNO( _avatarBackgroundView, _avatarView, _nameLabel, _ageLabel, _addressLabel, _heartView, _relationLabel, _collectionView );
+  TMALVariableBindingsAMNO( _avatarView, _nameLabel, _ageLabel, _addressLabel, _heartView, _relationLabel, _collectionView );
   
-  TMAL_ADDS_VISUAL( @"H:|-16-[_avatarBackgroundView]" );
-  TMAL_ADDS_VISUAL( @"V:|-16-[_avatarBackgroundView]-35-|" );
+  TMAL_ADDS_VISUAL( @"H:|-19-[_avatarView(==95)]-15-[_nameLabel]-10-|" );
+  TMAL_ADDS_VISUAL( @"V:|-33-[_avatarView(==95)]" );
   
-  TMAL_ADDS_VISUAL( @"H:|-17-[_avatarView(==95)]-15-[_nameLabel]-10-|" );
-  TMAL_ADDS_VISUAL( @"V:|-17-[_avatarView(==95)]" );
+  TMAL_ADDS_VISUAL( @"V:|-26-[_nameLabel]" );
   
-  TMAL_ADDS_VISUAL( @"V:|-12-[_nameLabel]" );
-  
-  TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_addressLabel]" );
+  TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_addressLabel]-10-|" );
   TMAL_ADDS_VISUAL( @"V:[_nameLabel]-0-[_addressLabel]" );
   
   TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_ageLabel]" );
@@ -242,10 +248,10 @@
   TMAL_ADDS_VISUAL( @"H:[_avatarView]-15-[_heartView]" );
   TMAL_ADDS_VISUAL( @"V:[_ageLabel]-16-[_heartView]" );
   
-  TMAL_ADDS_VISUAL( @"H:[_heartView]-15-[_relationLabel]" );
+  TMAL_ADDS_VISUAL( @"H:[_heartView]-15-[_relationLabel]-10-|" );
   TMAL_ADDS_VISUAL( @"V:[_ageLabel]-15-[_relationLabel]" );
   
-  TMAL_ADDS_VISUAL( @"H:|-74-[_collectionView]-12-|" );
+  TMAL_ADDS_VISUAL( @"H:|-16-[_collectionView]-16-|" );
   TMAL_ADDS_VISUAL( @"V:[_avatarView]-70-[_collectionView]-10-|" );
 }
 

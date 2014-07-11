@@ -34,7 +34,7 @@
   id<FBPictureEntity> pictrureEntity = _items[ indexPath.row ];
   FBGalleryCell *cell = [FBGalleryCell createCellWithCollectionView:collectionView indexPath:indexPath];
   [cell setImageWithUrl:pictrureEntity.picture];
-  
+  [cell setImageWithId:pictrureEntity.pictureId];
   return cell;
 }
 

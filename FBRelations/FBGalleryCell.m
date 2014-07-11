@@ -8,6 +8,9 @@
 
 #import "FBGalleryCell.h"
 #import <UIImageView+AFNetworking.h>
+#import <FBRequestConnection.h>
+#import "FBPhoto.h"
+#import <Mantle/Mantle.h>
 
 #define ANIMATION_DURATION  0.2f
 
@@ -43,6 +46,24 @@
 }
 
 #pragma mark - Public
+
+- (void)setImageWithId:(NSString *)photoId {
+  NSString *graphPath = [NSString stringWithFormat:@"/%@", photoId];
+  NSDictionary *params = @{ @"width" : @"640", @"height" : @"640" };
+  [FBRequestConnection startWithGraphPath:graphPath
+                               parameters:params
+                               HTTPMethod:@"GET"
+                        completionHandler:^(
+                                            FBRequestConnection *connection,
+                                            id result,
+                                            NSError *error
+                                            ) {
+                          
+                          
+                          NSString *url = result[ @"source" ];
+                          [self setImageWithUrl:url];
+                        }];
+}
 
 - (void)setImageWithUrl:(NSString *)url {
   NSURL *URL = [NSURL URLWithString:url];

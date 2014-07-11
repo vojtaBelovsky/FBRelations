@@ -19,4 +19,10 @@
             };
 }
 
+#pragma mark - Properties
+
+- (NSString *)pictureId {
+  return _musicId;
+}
+
 @end

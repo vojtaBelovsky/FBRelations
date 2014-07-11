@@ -16,4 +16,5 @@
 @property (readonly) NSString *musicId;
 @property (readonly) NSString *name;
 @property (readonly) NSString *picture;
+@property (readonly) NSString *pictureId;
 @end

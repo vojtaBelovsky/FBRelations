@@ -48,4 +48,11 @@
   self.collectionView.pagingEnabled = YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  CGPoint offset = { _dataSource.startIndex * CGRectGetWidth( [UIScreen mainScreen].bounds ), 0.0f };
+  [self.collectionView setContentOffset:offset];
+}
+
 @end
