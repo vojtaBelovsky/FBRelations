@@ -12,6 +12,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "FBBeaconManager.h"
 
+#import "ServerHTTPSessionManager.h"
+
 @implementation FBAppDelegate
 
 #pragma mark - UIApplicationDelegate
@@ -25,6 +27,12 @@
   self.window.rootViewController = navigationController;
   self.window.backgroundColor = WHITE_COLOR;
   [self.window makeKeyAndVisible];
+  
+  [ServerHTTPSessionManager GETDataForParameter:@"1" success:^(id data) {
+    
+  } failure:^(NSError *error) {
+    
+  }];
   
   return YES;
 }

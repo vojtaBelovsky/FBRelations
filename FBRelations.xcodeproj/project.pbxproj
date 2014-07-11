@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1050780A1964323900993ECD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 105078081964323900993ECD /* Model.xcdatamodeld */; };
 		105078101964354F00993ECD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1050780F1964354F00993ECD /* User.m */; };
+		109B2146196BEF5A004D38F9 /* FBStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B2145196BEF5A004D38F9 /* FBStatisticsViewController.m */; };
+		109B214B196BEF9A004D38F9 /* FBStatisticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B214A196BEF9A004D38F9 /* FBStatisticsView.m */; };
+		109B214E196BEFBA004D38F9 /* FBStatisticDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B214D196BEFBA004D38F9 /* FBStatisticDataSource.m */; };
+		10C8CE87196BC53300BEDBED /* ServerHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */; };
 		294E6E4E195D7DEF001F4F87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E4D195D7DEF001F4F87 /* Foundation.framework */; };
 		294E6E50195D7DEF001F4F87 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E4F195D7DEF001F4F87 /* CoreGraphics.framework */; };
 		294E6E52195D7DEF001F4F87 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E51195D7DEF001F4F87 /* UIKit.framework */; };
@@ -58,6 +62,14 @@
 		105078091964323900993ECD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1050780E1964354F00993ECD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1050780F1964354F00993ECD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		109B2144196BEF5A004D38F9 /* FBStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStatisticsViewController.h; sourceTree = "<group>"; };
+		109B2145196BEF5A004D38F9 /* FBStatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticsViewController.m; sourceTree = "<group>"; };
+		109B2149196BEF9A004D38F9 /* FBStatisticsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStatisticsView.h; sourceTree = "<group>"; };
+		109B214A196BEF9A004D38F9 /* FBStatisticsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticsView.m; sourceTree = "<group>"; };
+		109B214C196BEFBA004D38F9 /* FBStatisticDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStatisticDataSource.h; sourceTree = "<group>"; };
+		109B214D196BEFBA004D38F9 /* FBStatisticDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticDataSource.m; sourceTree = "<group>"; };
+		10C8CE85196BC53300BEDBED /* ServerHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHTTPSessionManager.h; sourceTree = "<group>"; };
+		10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerHTTPSessionManager.m; sourceTree = "<group>"; };
 		294E6E4A195D7DEF001F4F87 /* FBRelations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBRelations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		294E6E4D195D7DEF001F4F87 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		294E6E4F195D7DEF001F4F87 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -160,6 +172,35 @@
 				1050780F1964354F00993ECD /* User.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		109B2143196BEEE1004D38F9 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				109B2148196BEF6F004D38F9 /* DataSource */,
+				109B2147196BEF61004D38F9 /* View */,
+				109B2144196BEF5A004D38F9 /* FBStatisticsViewController.h */,
+				109B2145196BEF5A004D38F9 /* FBStatisticsViewController.m */,
+			);
+			name = Statistics;
+			sourceTree = "<group>";
+		};
+		109B2147196BEF61004D38F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				109B2149196BEF9A004D38F9 /* FBStatisticsView.h */,
+				109B214A196BEF9A004D38F9 /* FBStatisticsView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		109B2148196BEF6F004D38F9 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				109B214C196BEFBA004D38F9 /* FBStatisticDataSource.h */,
+				109B214D196BEFBA004D38F9 /* FBStatisticDataSource.m */,
+			);
+			name = DataSource;
 			sourceTree = "<group>";
 		};
 		294E6E41195D7DEF001F4F87 = {
@@ -347,6 +388,8 @@
 				29F452DC1961969700DE4814 /* Entity */,
 				29F452CD195D8E1300DE4814 /* FBAPI.h */,
 				29F452CE195D8E1300DE4814 /* FBAPI.m */,
+				10C8CE85196BC53300BEDBED /* ServerHTTPSessionManager.h */,
+				10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -354,6 +397,7 @@
 		29F452D3195D996000DE4814 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				109B2143196BEEE1004D38F9 /* Statistics */,
 				296A8513196BE37F0000D833 /* GalleryViewController */,
 				296A850B196ACEFB0000D833 /* LightboxViewController */,
 				29F452D4195D996800DE4814 /* UserDetail */,
@@ -546,17 +590,21 @@
 				29F452D7195D999400DE4814 /* FBUserDetailViewController.m in Sources */,
 				296A851E196BE93E0000D833 /* FBGalleryCell.m in Sources */,
 				29F452CF195D8E1300DE4814 /* FBAPI.m in Sources */,
+				109B2146196BEF5A004D38F9 /* FBStatisticsViewController.m in Sources */,
 				294E6E5E195D7DEF001F4F87 /* FBAppDelegate.m in Sources */,
 				296A8516196BE3BA0000D833 /* FBGalleryViewController.m in Sources */,
 				29ABB1CD1962E15A00C43817 /* FBPhoto.m in Sources */,
 				294E6E5A195D7DEF001F4F87 /* main.m in Sources */,
 				296A851A196BE5040000D833 /* FBGalleryDataSource.m in Sources */,
 				29ABB1C71962DB9400C43817 /* FBMusic.m in Sources */,
+				109B214B196BEF9A004D38F9 /* FBStatisticsView.m in Sources */,
 				29F452DF196196AA00DE4814 /* FBUser.m in Sources */,
 				29ABB1D11964057300C43817 /* FBLocation.m in Sources */,
+				10C8CE87196BC53300BEDBED /* ServerHTTPSessionManager.m in Sources */,
 				29F452DB195D9A3000DE4814 /* FBUserDetailView.m in Sources */,
 				29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */,
 				29ABB1CA1962DE0100C43817 /* FBMovie.m in Sources */,
+				109B214E196BEFBA004D38F9 /* FBStatisticDataSource.m in Sources */,
 				1050780A1964323900993ECD /* Model.xcdatamodeld in Sources */,
 				29A4BA66196471DE005D9515 /* FBUserDetailInfoCell.m in Sources */,
 			);

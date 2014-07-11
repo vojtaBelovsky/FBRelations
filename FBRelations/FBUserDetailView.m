@@ -21,6 +21,7 @@
 #define MASK                [UIImage imageNamed:@"mask"]
 #define AVATAR_BACKGROUND   [UIImage imageNamed:@"avatarBackgroundShadowed"]
 #define HEART               [UIImage imageNamed:@"heart"]
+#define SEPARATOR           [UIImage imageNamed:@"line"]
 
 #define ITEM_SIZE           (CGSize){ 50.0f, 50.0f }
 
@@ -34,6 +35,7 @@
 
   UIImageView *_backgroundView;
   UIImageView *_avatarView;
+  UIImageView *_separatorView;
   UIImageView *_avatarBackgroundView;
   UIImageView *_heartView;
   
@@ -69,6 +71,10 @@
     
     _avatarBackgroundView.alpha = 0.0f;
     _avatarView.alpha = 0.0f;
+    
+    UIImage *strechableImage = [SEPARATOR stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+    _separatorView = [[UIImageView alloc] initWithImage:strechableImage];
+    _separatorView.alpha = 0.5f;
     
     _heartView = [[UIImageView alloc] initWithImage:HEART];
     _heartView.alpha = 0.0f;
@@ -113,6 +119,7 @@
     
     [_contentView addSubview:_avatarBackgroundView];
     [_contentView addSubview:_avatarView];
+    [_contentView addSubview:_separatorView];
     [_contentView addSubview:_nameLabel];
     [_contentView addSubview:_addressLabel];
     [_contentView addSubview:_ageLabel];
@@ -232,10 +239,13 @@
   frame.size.height -= 64.0f;
   _contentView.frame = frame;
   
-  TMALVariableBindingsAMNO( _avatarView, _nameLabel, _ageLabel, _addressLabel, _heartView, _relationLabel, _collectionView );
+  TMALVariableBindingsAMNO( _avatarView, _nameLabel, _ageLabel, _addressLabel, _heartView, _relationLabel, _collectionView, _separatorView );
   
   TMAL_ADDS_VISUAL( @"H:|-19-[_avatarView(==95)]-15-[_nameLabel]-10-|" );
   TMAL_ADDS_VISUAL( @"V:|-33-[_avatarView(==95)]" );
+  
+  TMAL_ADDS_VISUAL( @"V:[_avatarView]-33-[_separatorView(==2)]" );
+  TMAL_ADDS_VISUAL( @"H:|-(-20)-[_separatorView]-(-20)-|" );
   
   TMAL_ADDS_VISUAL( @"V:|-26-[_nameLabel]" );
   
