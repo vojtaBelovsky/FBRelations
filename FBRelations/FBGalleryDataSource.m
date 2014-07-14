@@ -19,6 +19,7 @@
   if ( self ) {
     _items = items;
     _startIndex = startIndex;
+    _fullScreenMode = NO;
   }
   
   return self;
@@ -34,7 +35,8 @@
   id<FBPictureEntity> pictrureEntity = _items[ indexPath.row ];
   FBGalleryCell *cell = [FBGalleryCell createCellWithCollectionView:collectionView indexPath:indexPath];
   [cell setImageWithEntity:pictrureEntity];
-    
+  [cell enableFullScreenMode:_fullScreenMode];
+  
   return cell;
 }
 

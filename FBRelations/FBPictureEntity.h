@@ -11,6 +11,7 @@
 @protocol FBPictureEntity <NSObject>
 @property (readonly) NSString *picture;
 @property (readonly) NSString *pictureId;
+@property (readonly) NSString *name;
 
 - (NSString *)originalPictureUrlFromDict:(NSDictionary *)dict;
 - (NSString *)originalPictureGraphPathWithId:(NSString *)pictureId;

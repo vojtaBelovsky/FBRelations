@@ -15,4 +15,5 @@ static NSString *kGalleryCellIdentifier = @"kGalleryCellIdentifier";
 + (FBGalleryCell *)createCellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
 - (void)setImageWithUrl:(NSString *)url;
 - (void)setImageWithEntity:(id<FBPictureEntity>)pictureEntity;
+- (void)enableFullScreenMode:(BOOL)enable;
 @end

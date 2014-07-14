@@ -22,7 +22,7 @@
 #pragma mark - Overriden
 
 - (NSString *)originalPictureGraphPathWithId:(NSString *)pictureId {
-  NSString *graphPath = [NSString stringWithFormat:@"/%@?fields=picture.type(large)", pictureId];
+  NSString *graphPath = [NSString stringWithFormat:@"/%@?fields=picture.type(large),name", pictureId];
   
   return graphPath;
 }
