@@ -10,6 +10,8 @@
 #import "FBGalleryDataSource.h"
 #import "FBGalleryCell.h"
 
+#define ANIMATION_DURATION  0.2f
+
 @interface FBGalleryViewController () {
   FBGalleryDataSource *_dataSource;
 }
@@ -23,7 +25,7 @@
 - (id)initWithItems:(NSArray *)items startIndex:(NSUInteger)index {
   UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
   flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-  flowLayout.itemSize = [UIScreen mainScreen].bounds.size;
+  flowLayout.itemSize = (CGSize){ CGRectGetWidth( [UIScreen mainScreen].bounds ), CGRectGetHeight( [UIScreen mainScreen].bounds ) - 64.0f};
   flowLayout.minimumLineSpacing = 0;
   self = [super initWithCollectionViewLayout:flowLayout];
   if ( self ) {
@@ -53,6 +55,18 @@
   
   CGPoint offset = { _dataSource.startIndex * CGRectGetWidth( [UIScreen mainScreen].bounds ), 0.0f };
   [self.collectionView setContentOffset:offset];
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  _dataSource.fullScreenMode = !_dataSource.fullScreenMode;
+  CGFloat alpha = ( _dataSource.fullScreenMode )? 0.0f : 1.0f;
+  FBGalleryCell *cell = (FBGalleryCell *)[collectionView cellForItemAtIndexPath:indexPath];
+  [cell enableFullScreenMode:_dataSource.fullScreenMode];
+  [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+    self.navigationController.navigationBar.alpha = alpha;
+  }];
 }
 
 @end

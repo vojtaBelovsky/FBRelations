@@ -25,7 +25,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
   NSArray *array = self.items[ section ];
-  return MIN( [array count], 8 );
+  return MIN( [array count], 10 );
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

@@ -19,6 +19,7 @@
   if ( self ) {
     _items = items;
     _startIndex = startIndex;
+    _fullScreenMode = NO;
   }
   
   return self;
@@ -33,8 +34,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   id<FBPictureEntity> pictrureEntity = _items[ indexPath.row ];
   FBGalleryCell *cell = [FBGalleryCell createCellWithCollectionView:collectionView indexPath:indexPath];
-  [cell setImageWithUrl:pictrureEntity.picture];
-  [cell setImageWithId:pictrureEntity.pictureId];
+  [cell setImageWithEntity:pictrureEntity];
+  [cell enableFullScreenMode:_fullScreenMode];
+  
   return cell;
 }
 

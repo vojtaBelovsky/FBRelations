@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol FBPictureEntity;
 
 static NSString *kGalleryCellIdentifier = @"kGalleryCellIdentifier";
 
 @interface FBGalleryCell : UICollectionViewCell
 + (FBGalleryCell *)createCellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
 - (void)setImageWithUrl:(NSString *)url;
-- (void)setImageWithId:(NSString *)photoId;
+- (void)setImageWithEntity:(id<FBPictureEntity>)pictureEntity;
+- (void)enableFullScreenMode:(BOOL)enable;
 @end

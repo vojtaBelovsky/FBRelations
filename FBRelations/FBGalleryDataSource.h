@@ -12,5 +12,6 @@
 
 @property (readonly) NSArray *items;
 @property (readonly) NSUInteger startIndex;
+@property (assign) BOOL fullScreenMode;
 - (id)initWithItems:(NSArray *)items startIndex:(NSUInteger)startIndex;
 @end

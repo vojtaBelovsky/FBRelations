@@ -26,10 +26,35 @@
   return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[FBUser class]];
 }
 
-#pragma mark - Properties
+#pragma mark - Overriden
+
+- (NSString *)originalPictureGraphPathWithId:(NSString *)pictureId {
+  NSString *graphPath = [NSString stringWithFormat:@"/%@", pictureId];
+  
+  return graphPath;
+}
+
+- (NSString *)originalPictureUrlFromDict:(NSDictionary *)dict {
+  NSString *url = dict[ @"source" ];
+  
+  return url;
+}
 
 - (NSString *)pictureId {
   return _photoId;
+}
+
+- (NSString *)name {
+  NSDateFormatter *df = [[NSDateFormatter alloc] init];
+  [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
+  NSDate *date = [df dateFromString:self.createdTime];
+
+  NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+  
+  NSString *dateStr = [NSString stringWithFormat:@"%d/%d/%d", components.day, components.month, components.year];
+  NSString *formatted = [NSString stringWithFormat:@"Created by %@ - %@", self.from.name, dateStr];
+  
+  return formatted;
 }
 
 @end

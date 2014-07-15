@@ -19,7 +19,19 @@
             };
 }
 
-#pragma mark - Properties
+#pragma mark - Overriden
+
+- (NSString *)originalPictureGraphPathWithId:(NSString *)pictureId {
+  NSString *graphPath = [NSString stringWithFormat:@"/%@?fields=picture.type(large),name", pictureId];
+  
+  return graphPath;
+}
+
+- (NSString *)originalPictureUrlFromDict:(NSDictionary *)dict {
+  NSString *url = dict[ @"picture" ][ @"data" ][ @"url" ];
+  
+  return url;
+}
 
 - (NSString *)pictureId {
   return _musicId;
