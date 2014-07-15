@@ -45,7 +45,7 @@ CBPeripheralManager *_peripheralManager = nil;
 - (void)setUser:(FBUser *)user {
   NSMutableDictionary *peripheralData = nil;
   NSUUID *uuid =  [FBBeaconManager encodeFBUserID:user.userId];
-  CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:kBeaconIdentifier];
+  CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID major:0 minor:65535 identifier:kBeaconIdentifier];
   
   NSDictionary *measuredPeripheralData = [region peripheralDataWithMeasuredPower:BEACON_POWER];
   peripheralData = [NSMutableDictionary dictionaryWithDictionary:measuredPeripheralData];

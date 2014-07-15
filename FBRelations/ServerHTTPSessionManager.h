@@ -18,4 +18,8 @@ typedef void(^ServerFailureBlock)( NSError *error );
 
 +(void)POSTDataUserId:(NSString*)userId andFBID:(NSString *)FBID success:(ServerPOSTCompletetionBlockResultData)success failure:(ServerFailureBlock)failure;
 
++(void)GETFBIDWithMinor:(NSNumber *)minor andMajor:(NSNumber *)major success:(ServerGETCompletetionBlockResultData)success failure:(ServerFailureBlock)failure;
+
++(void)POSTFBID:(NSString*)FB_ID success:(ServerPOSTCompletetionBlockResultData)success failure:(ServerFailureBlock)failure;
+
 @end
