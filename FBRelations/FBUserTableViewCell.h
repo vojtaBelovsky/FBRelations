@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+  CTGreen,
+  CTOrange,
+  CTRed
+} ColorType;
+
 @interface FBUserTableViewCell : UITableViewCell
+
+-(void)setAvatarWithUrl:(NSString *)url;
+-(void)setMeetingNumberCircleImageColor:(ColorType)color;
++(FBUserTableViewCell*)createUserTableViewCellWithTableView:(UITableView *)tableView;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface FBStatisticsTableViewCell : UITableViewCell
 
++(FBStatisticsTableViewCell*)createUserTableViewCellWithTableView:(UITableView *)tableView;
+
 @end

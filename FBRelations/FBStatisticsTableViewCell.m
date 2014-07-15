@@ -8,8 +8,12 @@
 
 #import "FBStatisticsTableViewCell.h"
 
-@interface FBStatisticsTableViewCell (){
+#define FBStatisticDataSourceReuseIdentifier  @"FBStatisticDataSourceReuseIdentifier"
 
+@interface FBStatisticsTableViewCell (){
+  UILabel *_time;
+  UILabel *_city;
+  UILabel *_address;
 }
 
 @end
@@ -25,16 +29,12 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
++(FBStatisticsTableViewCell*)createUserTableViewCellWithTableView:(UITableView *)tableView {
+  FBStatisticsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FBStatisticDataSourceReuseIdentifier];
+  if ( !cell ) {
+    cell = [[FBStatisticsTableViewCell alloc] init];
+  }
+  return cell;
 }
 
 @end

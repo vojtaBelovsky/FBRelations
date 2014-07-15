@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+@class FBUser;
 
 @interface FBStatisticDataSource : NSObject<UITableViewDataSource>
+
+@property FBUser *user;
+@property NSArray *meetings;
 
 @end

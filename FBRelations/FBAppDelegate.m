@@ -29,18 +29,18 @@
   self.window.backgroundColor = WHITE_COLOR;
   [self.window makeKeyAndVisible];
 
-  [ServerHTTPSessionManager POSTFBID:@"2987451418934" success:^(id data) {
-    int minor = [data objectForKey:@"minor"];
-    int major = [data objectForKey:@"major"];
-  } failure:^(NSError *error) {
-    
-  }];
-  
-  [ServerHTTPSessionManager GETFBIDWithMinor:[NSNumber numberWithInt:0] andMajor:[NSNumber numberWithInt:0] success:^(id data) {
-    NSString *FB_ID = data;
-  } failure:^(NSError *error) {
-    
-  }];
+//  [ServerHTTPSessionManager POSTFBID:@"298741418934" success:^(id data) {
+//    NSNumber *minor = data [@"minor"];
+//    NSNumber *major = data [@"major"];
+//  } failure:^(NSError *error) {
+//    
+//  }];
+//  
+//  [ServerHTTPSessionManager GETFBIDWithMinor:[NSNumber numberWithInt:0] andMajor:[NSNumber numberWithInt:0] success:^(id data) {
+//    NSString *FB_ID = data;
+//  } failure:^(NSError *error) {
+//    
+//  }];
   
   return YES;
 }
