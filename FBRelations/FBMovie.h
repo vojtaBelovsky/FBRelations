@@ -17,4 +17,6 @@
 @property (readonly) NSString *name;
 @property (readonly) NSString *picture;
 @property (readonly) NSString *pictureId;
+
++ (NSArray *)populateMovies:(NSArray *)movies;
 @end

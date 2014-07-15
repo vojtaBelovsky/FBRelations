@@ -10,12 +10,17 @@
 #import "FBUserDetailInfoCell.h"
 #import "FBLightboxDataSource.h"
 #import "FBGalleryViewController.h"
+#import "FBAPI.h"
+#import "FBPictureEntity.h"
 
 #define ITEM_SIZE            (CGSize){ 70.0f, 70.0f }
 #define ANIMATION_DURATION   0.3f
 
+static CGFloat activityIndicatorHeight = 50.0f;
+
 @interface FBLightboxViewController () {
   FBLightboxDataSource *_dataSource;
+  UIActivityIndicatorView *_nextPageLoadingView;
   BOOL _isAnimated;
 }
 
@@ -25,7 +30,7 @@
 
 #pragma mark - LifeCycles
 
-- (id)initWithItems:(NSArray *)items title:(NSString *)title {
+- (id)initWithItems:(NSArray *)items title:(NSString *)title nextPageUrl:(NSString *)nextPageUrl {
   UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
   flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
   flowLayout.itemSize = ITEM_SIZE;
@@ -33,6 +38,7 @@
   if ( self ) {
     self.title = title;
     _dataSource = [[FBLightboxDataSource alloc] initWithItems:items];
+    _dataSource.nextPageUrl = nextPageUrl;
     _isAnimated = NO;
   }
   
@@ -72,6 +78,12 @@
   [self.view addSubview:toolbar];
   [self.view sendSubviewToBack:toolbar];
   
+  _nextPageLoadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  [_nextPageLoadingView stopAnimating];
+  _nextPageLoadingView.frame = (CGRect){ 0.0f, CGRectGetHeight( self.view.frame ) - activityIndicatorHeight, CGRectGetWidth( self.collectionView.frame ), activityIndicatorHeight };
+
+
+  [self.view addSubview:_nextPageLoadingView];
   DKCreateMotionEffect( self.collectionView );
 }
 
@@ -92,6 +104,16 @@
 
 #pragma mark - UICollectionViewDelegate
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  CGSize contentSize = scrollView.contentSize;
+  CGSize frameSize = scrollView.frame.size;
+  CGPoint contentOffset = scrollView.contentOffset;
+  if ( ( contentOffset.y >= fabs( contentSize.height - frameSize.height ) ) &&
+      !_nextPageLoadingView.isAnimating && _dataSource.nextPageUrl ) {
+    [self reloadData];
+  }
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   FBGalleryViewController *galleryViewController = [[FBGalleryViewController alloc] initWithItems:_dataSource.items startIndex:indexPath.row];
   [self.navigationController pushViewController:galleryViewController animated:YES];
@@ -101,6 +123,28 @@
 
 - (void)cancelButtonDidPress {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Private
+
+- (void)reloadData {
+  [_nextPageLoadingView startAnimating];
+  id<FBPictureEntity> firstObject = [_dataSource.items firstObject];
+  
+  [FBAPI loadWithPageUrl:_dataSource.nextPageUrl type:firstObject.entityType completetionBlock:^( NSArray *items, NSString *nextPageUrl ) {
+    [self reloadDataSourceWithItems:items nextPageUrl:nextPageUrl];
+  } failureBlock:^( NSError *error ) {
+    [_nextPageLoadingView stopAnimating];
+  }];
+}
+
+#pragma mark - Private
+
+- (void)reloadDataSourceWithItems:(NSArray *)items nextPageUrl:(NSString *)nextPageUrl {
+  _dataSource.nextPageUrl = nextPageUrl;
+  [_dataSource.items addObjectsFromArray:items];
+  [self.collectionView reloadData];
+  [_nextPageLoadingView stopAnimating];
 }
 
 @end

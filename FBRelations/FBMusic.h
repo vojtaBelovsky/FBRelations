@@ -18,4 +18,6 @@
 @property (readonly) NSString *picture;
 
 @property (readonly) NSString *pictureId;
+
++ (NSArray *)populateMusic:(NSArray *)array;
 @end

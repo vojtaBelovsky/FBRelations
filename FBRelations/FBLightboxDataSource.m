@@ -17,7 +17,8 @@
 - (id)initWithItems:(NSArray *)items {
   self = [super init];
   if ( self ) {
-    _items = items;
+    _items = [NSMutableArray arrayWithArray:items];
+    _nextPageUrl = nil;
   }
   
   return self;

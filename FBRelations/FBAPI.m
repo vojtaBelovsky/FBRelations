@@ -32,6 +32,29 @@
 
 #pragma mark - Class
 
++ (void)loadWithPageUrl:(NSString *)pageUrl type:(FBEntityType)type completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
+  [FBAPI callUrl:pageUrl completetionBlock:^( id data ) {
+    NSArray *array = data[ @"data" ];
+    NSString *nextPageUrl = data[ @"paging" ][ @"next" ];
+
+    NSArray *populateArray;
+    switch ( type ) {
+      case FBEntityTypeMovies:
+        populateArray = [FBMovie populateMovies:array];
+        break;
+      case FBEntityTypeMusic:
+        populateArray = [FBMusic populateMusic:array];
+        break;
+      case FBEntityTypePhotos:
+        populateArray = [FBPhoto populatePhotos:array];
+      default:
+        break;
+    }
+    
+    DK_CALL_BLOCK( completetionBlock, populateArray, nextPageUrl );
+  } failureBlock:failureBlock];
+}
+
 + (void)loadBooksWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
     NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, BOOKS];
@@ -47,47 +70,27 @@
         [books addObject:movie];
       }
       
-      DK_CALL_BLOCK( completetionBlock, books );
+      DK_CALL_BLOCK( completetionBlock, books, nil );
     } failureBlock:failureBlock];
   } failureBlock:failureBlock];
 }
 
 + (void)loadMoviesWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
-  [FBAPI authenticateIfNeededWithCompletetionBlock:^{
     NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,picture.type(normal)", userId, MOVIES];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
-      FBMovie *movie;
-      NSError *error;
       NSArray *array = data[ @"data" ];
-      NSMutableArray *movies = [@[] mutableCopy];
-      for ( FBGraphObject *graphObject in array ) {
-        movie = [MTLJSONAdapter modelOfClass:[FBMovie class]
-                               fromJSONDictionary:graphObject
-                                            error:&error];
-        [movies addObject:movie];
-      }
-      
-      DK_CALL_BLOCK( completetionBlock, movies );
+      NSString *nextPageUrl = data[ @"paging" ][ @"next" ];
+      DK_CALL_BLOCK( completetionBlock, [FBMovie populateMovies:array], nextPageUrl );
     } failureBlock:failureBlock];
-  } failureBlock:failureBlock];
 }
 
 + (void)loadMusicWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
     NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@?fields=category,created_time,name,picture.type(normal)", userId, MUSIC];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
-      FBMusic *musicAlbum;
-      NSError *error;
       NSArray *array = data[ @"data" ];
-      NSMutableArray *albums = [@[] mutableCopy];
-      for ( FBGraphObject *graphObject in array ) {
-        musicAlbum = [MTLJSONAdapter modelOfClass:[FBMusic class]
-                          fromJSONDictionary:graphObject
-                                       error:&error];
-        [albums addObject:musicAlbum];
-      }
-      
-      DK_CALL_BLOCK( completetionBlock, albums );
+      NSString *nextPageUrl = data[ @"paging" ][ @"next" ];
+      DK_CALL_BLOCK( completetionBlock, [FBMusic populateMusic:array], nextPageUrl );
     } failureBlock:failureBlock];
   } failureBlock:failureBlock];
 }
@@ -96,18 +99,9 @@
   [FBAPI authenticateIfNeededWithCompletetionBlock:^{
     NSString *grapthPath = [NSString stringWithFormat:@"/%@/%@", userId, PHOTOS];
     [FBAPI callGrapthPath:grapthPath params:nil method:GET_METHOD completetionBlock:^( id data ) {
-      FBPhoto *photo;
-      NSError *error;
       NSArray *array = data[ @"data" ];
-      NSMutableArray *photos = [@[] mutableCopy];
-      for ( FBGraphObject *graphObject in array ) {
-        photo = [MTLJSONAdapter modelOfClass:[FBPhoto class]
-                          fromJSONDictionary:graphObject
-                                       error:&error];
-        [photos addObject:photo];
-      }
-      
-      DK_CALL_BLOCK( completetionBlock, photos );
+      NSString *nextPageUrl = data[ @"paging" ][ @"next" ];
+      DK_CALL_BLOCK( completetionBlock, [FBPhoto populatePhotos:array], nextPageUrl );
     } failureBlock:failureBlock];
   } failureBlock:failureBlock];
 }
@@ -127,7 +121,7 @@
         [albums addObject:album];
       }
       
-      DK_CALL_BLOCK( completetionBlock, albums );
+      DK_CALL_BLOCK( completetionBlock, albums, nil );
     } failureBlock:failureBlock];
   } failureBlock:failureBlock];
 }
@@ -158,33 +152,42 @@
 
 #pragma mark - Private
 
-+ (void)callUrl:(NSString *)url completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
-
-  AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-  [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    
-  }];
-  
++ (void)callUrl:(NSString *)url completetionBlock:(FBCompletetionBlockResultData)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
+  [FBAPI authenticateIfNeededWithCompletetionBlock:^{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        DK_CALL_BLOCK( completetionBlock, responseObject );
+      });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        DK_CALL_BLOCK( failureBlock, error );
+      });
+    }];
+  } failureBlock:failureBlock];
 }
 
 + (void)callGrapthPath:(NSString *)grapthPath params:(NSDictionary *)params method:(NSString *)method completetionBlock:(FBCompletetionBlockResultData)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
-  
-  [FBRequestConnection startWithGraphPath:grapthPath
-                               parameters:params
-                               HTTPMethod:method
-                        completionHandler:^(
-                                            FBRequestConnection *connection,
-                                            id result,
-                                            NSError *error
-                                            ) {
-                          if ( error ) {
-                            DK_CALL_BLOCK( failureBlock, error );
-                          } else {
-                            DK_CALL_BLOCK( completetionBlock, result );
-                          }
-                        }];
+  [FBAPI authenticateIfNeededWithCompletetionBlock:^{
+    [FBRequestConnection startWithGraphPath:grapthPath
+                                 parameters:params
+                                 HTTPMethod:method
+                          completionHandler:^(
+                                              FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error
+                                              ) {
+                            if ( error ) {
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                DK_CALL_BLOCK( failureBlock, error );
+                              });
+                            } else {
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                DK_CALL_BLOCK( completetionBlock, result );
+                              });
+                            }
+                          }];
+  } failureBlock:failureBlock];
 }
 
 + (void)authenticateIfNeededWithCompletetionBlock:(FBCompletetionBlock)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
@@ -199,9 +202,13 @@
      ^( FBSession *session, FBSessionState state, NSError *error ) {
        BOOL result = [FBAPI sessionStateChanged:session state:state error:error];
        if ( result ) {
-         DK_CALL_BLOCK( completetionBlock );
+         dispatch_async(dispatch_get_main_queue(), ^{
+           DK_CALL_BLOCK( completetionBlock );
+         });
        } else {
-         DK_CALL_BLOCK( failureBlock, error );
+         dispatch_async(dispatch_get_main_queue(), ^{
+           DK_CALL_BLOCK( failureBlock, error );
+         });
        }
      }];
   }

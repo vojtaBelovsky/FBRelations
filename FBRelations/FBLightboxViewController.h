@@ -10,5 +10,5 @@
 
 @interface FBLightboxViewController : UICollectionViewController
 
-- (id)initWithItems:(NSArray *)items title:(NSString *)title;
+- (id)initWithItems:(NSArray *)items title:(NSString *)title nextPageUrl:(NSString *)nextPageUrl;
 @end

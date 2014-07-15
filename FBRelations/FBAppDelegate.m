@@ -30,8 +30,8 @@
   [self.window makeKeyAndVisible];
 
   [ServerHTTPSessionManager POSTFBID:@"2987451418934" success:^(id data) {
-    int minor = [data objectForKey:@"minor"];
-    int major = [data objectForKey:@"major"];
+    NSNumber *minor = data[ @"minor" ];
+    NSNumber *major = data[@"major"];
   } failure:^(NSError *error) {
     
   }];

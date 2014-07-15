@@ -17,6 +17,7 @@
 
 @property (readonly) NSArray *items;
 @property (readonly) NSArray *headerTitles;
+@property (readonly) NSMutableDictionary *nextPagesDict;
 
 - (BOOL)allDataIsLoaded;
 - (CGFloat)collectionViewHeight;

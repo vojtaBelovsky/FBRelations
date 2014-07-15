@@ -7,6 +7,7 @@
 //
 
 #import "FBMovie.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation FBMovie
 
@@ -17,6 +18,22 @@
             @"musicId" : @"id",
             @"picture" : @"picture.data.url"
             };
+}
+
+#pragma mark - Class
+
++ (NSArray *)populateMovies:(NSArray *)array {
+  FBMovie *movie;
+  NSError *error;
+  NSMutableArray *movies = [@[] mutableCopy];
+  for ( FBGraphObject *graphObject in array ) {
+    movie = [MTLJSONAdapter modelOfClass:[FBMovie class]
+                      fromJSONDictionary:graphObject
+                                   error:&error];
+    [movies addObject:movie];
+  }
+  
+  return movies;
 }
 
 #pragma mark - Overriden
@@ -35,6 +52,10 @@
 
 - (NSString *)pictureId {
   return _musicId;
+}
+
+- (FBEntityType)entityType {
+  return FBEntityTypeMovies;
 }
 
 @end
