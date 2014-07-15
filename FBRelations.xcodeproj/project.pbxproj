@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		102500BC1973D70E004C5EA8 /* FBStatisticsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102500BB1973D70E004C5EA8 /* FBStatisticsTableViewCell.m */; };
+		102500BF1973D7CF004C5EA8 /* FBUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102500BE1973D7CF004C5EA8 /* FBUserTableViewCell.m */; };
 		1050780A1964323900993ECD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 105078081964323900993ECD /* Model.xcdatamodeld */; };
 		105078101964354F00993ECD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1050780F1964354F00993ECD /* User.m */; };
 		109B2146196BEF5A004D38F9 /* FBStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B2145196BEF5A004D38F9 /* FBStatisticsViewController.m */; };
@@ -59,6 +61,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		102500BA1973D70E004C5EA8 /* FBStatisticsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStatisticsTableViewCell.h; sourceTree = "<group>"; };
+		102500BB1973D70E004C5EA8 /* FBStatisticsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticsTableViewCell.m; sourceTree = "<group>"; };
+		102500BD1973D7CF004C5EA8 /* FBUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserTableViewCell.h; sourceTree = "<group>"; };
+		102500BE1973D7CF004C5EA8 /* FBUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserTableViewCell.m; sourceTree = "<group>"; };
 		105078091964323900993ECD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1050780E1964354F00993ECD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1050780F1964354F00993ECD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -157,6 +163,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		102500B91973D6DA004C5EA8 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				102500BA1973D70E004C5EA8 /* FBStatisticsTableViewCell.h */,
+				102500BB1973D70E004C5EA8 /* FBStatisticsTableViewCell.m */,
+				102500BD1973D7CF004C5EA8 /* FBUserTableViewCell.h */,
+				102500BE1973D7CF004C5EA8 /* FBUserTableViewCell.m */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
 		10507806196431DB00993ECD /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +205,7 @@
 		109B2147196BEF61004D38F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				102500B91973D6DA004C5EA8 /* cell */,
 				109B2149196BEF9A004D38F9 /* FBStatisticsView.h */,
 				109B214A196BEF9A004D38F9 /* FBStatisticsView.m */,
 			);
@@ -600,9 +618,11 @@
 				109B214B196BEF9A004D38F9 /* FBStatisticsView.m in Sources */,
 				29F452DF196196AA00DE4814 /* FBUser.m in Sources */,
 				29ABB1D11964057300C43817 /* FBLocation.m in Sources */,
+				102500BC1973D70E004C5EA8 /* FBStatisticsTableViewCell.m in Sources */,
 				10C8CE87196BC53300BEDBED /* ServerHTTPSessionManager.m in Sources */,
 				29F452DB195D9A3000DE4814 /* FBUserDetailView.m in Sources */,
 				29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */,
+				102500BF1973D7CF004C5EA8 /* FBUserTableViewCell.m in Sources */,
 				29ABB1CA1962DE0100C43817 /* FBMovie.m in Sources */,
 				109B214E196BEFBA004D38F9 /* FBStatisticDataSource.m in Sources */,
 				1050780A1964323900993ECD /* Model.xcdatamodeld in Sources */,

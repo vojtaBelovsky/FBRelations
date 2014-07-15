@@ -74,7 +74,7 @@
     
     UIImage *strechableImage = [SEPARATOR stretchableImageWithLeftCapWidth:1 topCapHeight:0];
     _separatorView = [[UIImageView alloc] initWithImage:strechableImage];
-    _separatorView.alpha = 0.5f;
+    _separatorView.alpha = 0.2f;
     
     _heartView = [[UIImageView alloc] initWithImage:HEART];
     _heartView.alpha = 0.0f;

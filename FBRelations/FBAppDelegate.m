@@ -19,6 +19,7 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  
   [FBBeaconManager sharedInstance];
   FBUserDetailViewController *userDetailViewController = [[FBUserDetailViewController alloc] initWithUserId:@"me"];
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:userDetailViewController];
@@ -27,9 +28,16 @@
   self.window.rootViewController = navigationController;
   self.window.backgroundColor = WHITE_COLOR;
   [self.window makeKeyAndVisible];
-  
-  [ServerHTTPSessionManager GETDataForParameter:@"1" success:^(id data) {
+
+  [ServerHTTPSessionManager POSTFBID:@"2987451418934" success:^(id data) {
+    int minor = [data objectForKey:@"minor"];
+    int major = [data objectForKey:@"major"];
+  } failure:^(NSError *error) {
     
+  }];
+  
+  [ServerHTTPSessionManager GETFBIDWithMinor:[NSNumber numberWithInt:0] andMajor:[NSNumber numberWithInt:0] success:^(id data) {
+    NSString *FB_ID = data;
   } failure:^(NSError *error) {
     
   }];

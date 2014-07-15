@@ -7,43 +7,33 @@
 //
 
 #import "FBStatisticsViewController.h"
+#import "FBUser.h"
+#import "FBStatisticDataSource.h"
+#import "FBAppDelegate.h"
 
-@interface FBStatisticsViewController ()
+@interface FBStatisticsViewController () {
+  FBUser *_user;
+  FBStatisticDataSource *_dataSource;
+}
 
 @end
 
 @implementation FBStatisticsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (id)initWithUserId:(NSString *)userId {
+  self = [super init];
+  if ( self ) {
+    self.title = NSLocalizedString( @"FBRelations", @"" );
+    _user = [[FBUser alloc] initWithUserId:userId];
+    _dataSource = [[FBStatisticDataSource alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initializeData) name:kSessionOpenNotification object:nil];
+  }
+  
+  return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+-(void)initializeData{
+  
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
