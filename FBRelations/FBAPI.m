@@ -14,6 +14,7 @@
 #import "FBMusic.h"
 #import "FBMovie.h"
 #import "FBPhoto.h"
+#import <AFNetworking/AFNetworking.h>
 
 #define GET_METHOD @"GET"
 
@@ -156,6 +157,17 @@
 }
 
 #pragma mark - Private
+
++ (void)callUrl:(NSString *)url completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
+
+  AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+  [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    
+  }];
+  
+}
 
 + (void)callGrapthPath:(NSString *)grapthPath params:(NSDictionary *)params method:(NSString *)method completetionBlock:(FBCompletetionBlockResultData)completetionBlock failureBlock:(FBFailureBlock)failureBlock {
   
