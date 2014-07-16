@@ -19,8 +19,6 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  
-  [FBBeaconManager sharedInstance];
   FBUserDetailViewController *userDetailViewController = [[FBUserDetailViewController alloc] initWithUserId:@"me"];
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:userDetailViewController];
   
@@ -29,6 +27,7 @@
   self.window.backgroundColor = WHITE_COLOR;
   [self.window makeKeyAndVisible];
 
+  [FBBeaconManager sharedInstance].locationManager.delegate = self;
 //  [ServerHTTPSessionManager POSTFBID:@"298741418934" success:^(id data) {
 //    NSNumber *minor = data [@"minor"];
 //    NSNumber *major = data [@"major"];
@@ -58,6 +57,16 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [FBAppCall handleDidBecomeActive];
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
+  for ( CLBeacon *beacon in beacons ) {
+    NSString *facebookId = [FBBeaconManager decodeBeaconUUID:beacon.proximityUUID];
+    
+    NSLog( @"%@", facebookId );
+  }
 }
 
 @end

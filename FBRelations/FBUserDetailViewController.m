@@ -56,7 +56,6 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
-  [FBBeaconManager sharedInstance].locationManager.delegate = self;
   if ( ![_dataSource allDataIsLoaded] ) {
     [self initializeData];
   }
@@ -75,16 +74,6 @@
   self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
   self.navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
   [self presentViewController:navController animated:YES completion:NULL];
-}
-
-#pragma mark - CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
-  for ( CLBeacon *beacon in beacons ) {
-    NSString *facebookId = [FBBeaconManager decodeBeaconUUID:beacon.proximityUUID];
-    
-    NSLog( @"%@", facebookId );
-  }
 }
 
 #pragma mark - Properties
