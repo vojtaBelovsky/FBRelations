@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *kSessionOpenNotification = @"kSessionOpenNotification";
-
 @interface FBAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

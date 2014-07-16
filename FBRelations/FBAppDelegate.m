@@ -11,7 +11,7 @@
 #import "FBAPI.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "FBBeaconManager.h"
-
+#import "FBUser.h"
 #import "ServerHTTPSessionManager.h"
 
 @implementation FBAppDelegate
@@ -42,6 +42,8 @@
 //    
 //  }];
   
+  [FBUser currentUser];
+  
   return YES;
 }
 
@@ -49,7 +51,6 @@
   [FBSession.activeSession setStateChangeHandler:
    ^(FBSession *session, FBSessionState state, NSError *error) {
      if ( state == FBSessionStateOpen ) {
-       [[NSNotificationCenter defaultCenter] postNotificationName:kSessionOpenNotification object:nil];
      }
    }];
   return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];

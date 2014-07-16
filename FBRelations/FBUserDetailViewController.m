@@ -34,7 +34,7 @@
     self.title = NSLocalizedString( @"FBRelations", @"" );
     _user = [[FBUser alloc] initWithUserId:userId];
     _dataSource = [[FBUserDetailDataSource alloc] init];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initializeData) name:kSessionOpenNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initializeData) name:kCurrentUserDidLoadNotification object:nil];
   }
   
   return self;

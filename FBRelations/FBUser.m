@@ -8,6 +8,10 @@
 
 #import "FBUser.h"
 #import "FBLocation.h"
+#import "FBAPI.h"
+#import "FBBeaconManager.h"
+
+#define ME @"me"
 
 @implementation FBUser
 
@@ -45,6 +49,21 @@
 
 + (NSValueTransformer *)currentLocationJSONTransformer {
   return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[FBLocation class]];
+}
+
++ (FBUser *)currentUser {
+  static FBUser *currentUser = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    [FBAPI loadUserInfoWithId:ME completetionBlock:^( FBUser *user ) {
+      [[FBBeaconManager sharedInstance] setUser:user];
+      [[NSNotificationCenter defaultCenter] postNotificationName:kCurrentUserDidLoadNotification object:nil];
+    } failureBlock:^( NSError *error ) {
+      NSLog( @"%@", error );
+    }];
+  });
+  
+  return currentUser;
 }
 
 @end

@@ -11,6 +11,8 @@
 
 @class FBLocation;
 
+static NSString *kCurrentUserDidLoadNotification = @"kCurrentUserDidLoadNotification";
+
 @interface FBUser : MTLModel<MTLJSONSerializing>
 
 @property (readonly) NSString *firstName;
@@ -32,4 +34,6 @@
 @property (readonly) FBLocation *currentLocation;
 
 - (id)initWithUserId:(NSString *)userId;
++ (FBUser *)currentUser;
+
 @end
