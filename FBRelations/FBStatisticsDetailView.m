@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Daniel Krezelok. All rights reserved.
 //
 
-#import "FBStatisticsView.h"
+#import "FBStatisticsDetailView.h"
 
 #define ANIMATION_DURATION  0.2f
 
@@ -14,7 +14,7 @@
 
 #define BOTTOM_BACKGROUND_COLOR 
 
-@interface FBStatisticsView () {
+@interface FBStatisticsDetailView () {
   UIImageView *_bottomAvatarView;
 
   UIView *_bottomView;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation FBStatisticsView
+@implementation FBStatisticsDetailView
 
 - (id)init
 {

@@ -6,26 +6,26 @@
 //  Copyright (c) 2014 Daniel Krezelok. All rights reserved.
 //
 
-#import "FBStatisticsViewController.h"
+#import "FBStatisticsDetailViewController.h"
 #import "FBUser.h"
-#import "FBStatisticDataSource.h"
+#import "FBStatisticsDetailDataSource.h"
 #import "FBAppDelegate.h"
 
-@interface FBStatisticsViewController () {
+@interface FBStatisticsDetailViewController () {
   FBUser *_user;
-  FBStatisticDataSource *_dataSource;
+  FBStatisticsDetailDataSource *_dataSource;
 }
 
 @end
 
-@implementation FBStatisticsViewController
+@implementation FBStatisticsDetailViewController
 
 - (id)initWithUserId:(NSString *)userId {
   self = [super init];
   if ( self ) {
     self.title = NSLocalizedString( @"FBRelations", @"" );
     _user = [[FBUser alloc] initWithUserId:userId];
-    _dataSource = [[FBStatisticDataSource alloc] init];
+    _dataSource = [[FBStatisticsDetailDataSource alloc] init];
   }
   
   return self;
