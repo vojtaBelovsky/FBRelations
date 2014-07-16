@@ -67,8 +67,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   NSArray *items = _dataSource.items[ indexPath.section ];
   NSString *title = _dataSource.headerTitles[ indexPath.section ];
+  NSString *nextPageUrl = _dataSource.nextPagesDict[ title ];
   
-  FBLightboxViewController *lightboxViewController = [[FBLightboxViewController alloc] initWithItems:items title:title];
+  FBLightboxViewController *lightboxViewController = [[FBLightboxViewController alloc] initWithItems:items title:title nextPageUrl:nextPageUrl];
   
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lightboxViewController];
   self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
@@ -118,7 +119,7 @@
 }
 
 - (void)initializeFriends {
-  [FBAPI loadFriendsWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
+  [FBAPI loadFriendsWithUserId:_user.userId completetionBlock:^( NSArray *data, NSString *nextPageUrl ) {
     [self reloadCollection];
   } failureBlock:^( NSError *error ) {
     
@@ -126,8 +127,11 @@
 }
 
 - (void)initializeMusic {
-  [FBAPI loadMusicWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
+  [FBAPI loadMusicWithUserId:_user.userId completetionBlock:^( NSArray *data, NSString *nextPageUrl ) {
     _dataSource.musics = data;
+    if ( nextPageUrl ) {
+      _dataSource.nextPagesDict[ NSLocalizedString( @"Music", @"" ) ] = nextPageUrl;
+    }
     [self reloadCollection];
   } failureBlock:^( NSError *error ) {
    
@@ -135,8 +139,11 @@
 }
 
 - (void)initializeMovies {
-  [FBAPI loadMoviesWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
+  [FBAPI loadMoviesWithUserId:_user.userId completetionBlock:^( NSArray *data, NSString *nextPageUrl ) {
     _dataSource.movies = data;
+    if ( nextPageUrl ) {
+      _dataSource.nextPagesDict[ NSLocalizedString( @"Movies", @"" ) ] = nextPageUrl;
+    }
     [self reloadCollection];
   } failureBlock:^( NSError *error ) {
     
@@ -144,8 +151,11 @@
 }
 
 - (void)initializePhotos {
-  [FBAPI loadPhotosWithUserId:_user.userId completetionBlock:^( NSArray *data ) {
+  [FBAPI loadPhotosWithUserId:_user.userId completetionBlock:^( NSArray *data, NSString *nextPageUrl ) {
     _dataSource.photos = data;
+    if ( nextPageUrl ) {
+      _dataSource.nextPagesDict[ NSLocalizedString( @"Photos", @"" ) ] = nextPageUrl;
+    }
     [self reloadCollection];
   } failureBlock:^( NSError *error ) {
     

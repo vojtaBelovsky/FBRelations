@@ -9,17 +9,27 @@
 #import <Foundation/Foundation.h>
 #import "FBSession.h"
 
+typedef NS_ENUM( NSUInteger, FBEntityType ) {
+  FBEntityTypeFriends,
+  FBEntityTypeMovies,
+  FBEntityTypeMusic,
+  FBEntityTypePhotos,
+  FBEntityTypeBooks
+};
+
 @class FBUser;
 
 @interface FBAPI : NSObject
 
 typedef void(^FBUserInfoCompletetionBlock)( FBUser *user );
-typedef void(^FBCompletetionBlockResultArray)( NSArray *data );
+typedef void(^FBCompletetionBlockResultArray)( NSArray *data, NSString *nextPageUrl );
 typedef void(^FBCompletetionBlockResultData)( id data );
 typedef void(^FBCompletetionBlock)(  );
 typedef void(^FBFailureBlock)( NSError *error );
 
 + (BOOL)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
+
++ (void)loadWithPageUrl:(NSString *)pageUrl type:(FBEntityType)type completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock;
 
 + (void)loadBooksWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock;
 + (void)loadPhotosWithUserId:(NSString *)userId completetionBlock:(FBCompletetionBlockResultArray)completetionBlock failureBlock:(FBFailureBlock)failureBlock;

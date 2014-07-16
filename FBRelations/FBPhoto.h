@@ -20,4 +20,5 @@
 @property (readonly) FBUser *from;
 
 @property (readonly) NSString *pictureId;
++ (NSArray *)populatePhotos:(NSArray *)array;
 @end

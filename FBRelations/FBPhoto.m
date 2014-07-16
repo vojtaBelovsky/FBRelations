@@ -8,6 +8,7 @@
 
 #import "FBPhoto.h"
 #import "FBUser.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation FBPhoto
 
@@ -24,6 +25,22 @@
 
 + (NSValueTransformer *)fromJSONTransformer {
   return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[FBUser class]];
+}
+
+#pragma mark - Class
+
++ (NSArray *)populatePhotos:(NSArray *)array {
+  FBPhoto *photo;
+  NSError *error;
+  NSMutableArray *photos = [@[] mutableCopy];
+  for ( FBGraphObject *graphObject in array ) {
+    photo = [MTLJSONAdapter modelOfClass:[FBPhoto class]
+                      fromJSONDictionary:graphObject
+                                   error:&error];
+    [photos addObject:photo];
+  }
+  
+  return photos;
 }
 
 #pragma mark - Overriden
@@ -55,6 +72,10 @@
   NSString *formatted = [NSString stringWithFormat:@"Created by %@ - %@", self.from.name, dateStr];
   
   return formatted;
+}
+
+- (FBEntityType)entityType {
+  return FBEntityTypePhotos;
 }
 
 @end

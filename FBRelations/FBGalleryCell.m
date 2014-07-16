@@ -74,6 +74,8 @@
   _nameLabel.text = pictureEntity.name;
   [self setImageWithUrl:pictureEntity.picture];
   NSDictionary *params = @{ @"width" : @"320", @"height" : @"320" };
+  
+  __block FBGalleryCell *cell = self;
   [FBRequestConnection startWithGraphPath:[pictureEntity originalPictureGraphPathWithId:pictureEntity.pictureId]
                                parameters:params
                                HTTPMethod:@"GET"
@@ -82,8 +84,9 @@
                                             id result,
                                             NSError *error
                                             ) {
+                          
                           NSString *url = [pictureEntity originalPictureUrlFromDict:result];
-                          [self setImageWithUrl:url];
+                          [cell setImageWithUrl:url];
                         }];
 }
 
@@ -117,7 +120,7 @@
   
   w = _imageView.image.size.width * ratio;
   h = _imageView.image.size.height * ratio;
-  x = (horizontalRatio == ratio ? 0 : ( ( CGRectGetWidth( _imageView.frame )  - w ) / 2 ) );
+  x = ( horizontalRatio == ratio ? 0 : ( ( CGRectGetWidth( _imageView.frame )  - w ) / 2 ) );
   y = ( verticalRatio == ratio ? 0 : ( ( CGRectGetHeight( _imageView.frame ) - h ) / 2 ) );
   
   CGRect frame = { x + 15.0f, y + h - 48.0f, w - 10.0f, 48.0f };
@@ -133,7 +136,7 @@
   CGFloat alpha;
   if ( enable ) {
     overalyAlpha = 0.0f;
-    alpha = 0.0f;    
+    alpha = 0.0f;
   } else {
     overalyAlpha = OVERALY_ALPHA;
     alpha  = 1.0f;

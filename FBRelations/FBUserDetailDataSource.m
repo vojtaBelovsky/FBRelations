@@ -13,12 +13,20 @@
 
 @implementation FBUserDetailDataSource
 
+#pragma mark - LifeCycles
+
+- (id)init {
+  self = [super init];
+  if ( self ) {
+    _nextPagesDict = [@{} mutableCopy];
+  }
+  
+  return self;
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-//  NSUInteger count = ( [_photos count] > 0 )? 1 : 0;
-//  count = ( [_musics count] > 0 )? count + 1 : count;
-//  count = ( [_musics count] > 0 )? count + 1 : count;
   NSInteger count = [self.items count];
   return count;
 }

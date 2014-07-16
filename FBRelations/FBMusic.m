@@ -7,6 +7,7 @@
 //
 
 #import "FBMusic.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation FBMusic
 
@@ -17,6 +18,22 @@
             @"musicId" : @"id",
             @"picture" : @"picture.data.url"
             };
+}
+
+#pragma mark - Class
+
++ (NSArray *)populateMusic:(NSArray *)array {
+  FBMusic *music;
+  NSError *error;
+  NSMutableArray *musics = [@[] mutableCopy];
+  for ( FBGraphObject *graphObject in array ) {
+    music = [MTLJSONAdapter modelOfClass:[FBMusic class]
+                      fromJSONDictionary:graphObject
+                                   error:&error];
+    [musics addObject:music];
+  }
+  
+  return musics;
 }
 
 #pragma mark - Overriden
@@ -35,6 +52,10 @@
 
 - (NSString *)pictureId {
   return _musicId;
+}
+
+- (FBEntityType)entityType {
+  return FBEntityTypeMusic;
 }
 
 @end

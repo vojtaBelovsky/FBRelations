@@ -11,5 +11,6 @@
 @interface FBLightboxDataSource : NSObject<UICollectionViewDataSource>
 - (id)initWithItems:(NSArray *)items;
 
-@property (readonly) NSArray *items;
+@property (strong) NSMutableArray *items;
+@property (strong) NSString *nextPageUrl;
 @end

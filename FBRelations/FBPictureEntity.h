@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FBAPI.h"
 
 @protocol FBPictureEntity <NSObject>
 @property (readonly) NSString *picture;
 @property (readonly) NSString *pictureId;
 @property (readonly) NSString *name;
+@property (readonly) FBEntityType entityType;
 
 - (NSString *)originalPictureUrlFromDict:(NSDictionary *)dict;
 - (NSString *)originalPictureGraphPathWithId:(NSString *)pictureId;
