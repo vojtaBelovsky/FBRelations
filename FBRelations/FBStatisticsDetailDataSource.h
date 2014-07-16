@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class FBUser;
 
-@interface FBStatisticDataSource : NSObject<UITableViewDataSource>
+@interface FBStatisticsDetailDataSource : NSObject<UITableViewDataSource>
 
 @property FBUser *user;
 @property NSArray *meetings;

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FBStatisticsTableViewCell : UITableViewCell
+@interface FBStatisticsDetailTableViewCell : UITableViewCell
 
-+(FBStatisticsTableViewCell*)createUserTableViewCellWithTableView:(UITableView *)tableView;
++(FBStatisticsDetailTableViewCell*)createUserTableViewCellWithTableView:(UITableView *)tableView;
 
 @end

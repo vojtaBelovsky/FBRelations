@@ -1,5 +1,5 @@
 //
-//  FBStatisticsView.h
+//  FBStatisticsViewController.h
 //  FBRelations
 //
 //  Created by Vojtech Belovsky on 08/07/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FBStatisticsView : UIView
-
-@property UITableView *tableView;
+@interface FBStatisticsDetailViewController : UIViewController<UITableViewDelegate>
 
 @end

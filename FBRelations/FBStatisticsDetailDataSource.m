@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Daniel Krezelok. All rights reserved.
 //
 
-#import "FBStatisticDataSource.h"
-#import "FBStatisticsTableViewCell.h"
+#import "FBStatisticsDetailDataSource.h"
+#import "FBStatisticsDetailTableViewCell.h"
 #import "FBUserTableViewCell.h"
 #import "FBUser.h"
 
-@implementation FBStatisticDataSource
+@implementation FBStatisticsDetailDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   if (section == 0) {
@@ -28,7 +28,7 @@
     // Set here lastMetCircleColor
     return cell;
   } else {
-    FBStatisticsTableViewCell *cell = [FBStatisticsTableViewCell createUserTableViewCellWithTableView:tableView];
+    FBStatisticsDetailTableViewCell *cell = [FBStatisticsDetailTableViewCell createUserTableViewCellWithTableView:tableView];
     return cell;
   }
 }
