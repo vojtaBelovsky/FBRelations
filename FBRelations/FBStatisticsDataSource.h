@@ -11,4 +11,5 @@
 @interface FBStatisticsDataSource : NSObject<UITableViewDataSource>
 
 @property (strong) NSMutableArray *items;
+@property (strong) NSMutableArray *fbIds;
 @end

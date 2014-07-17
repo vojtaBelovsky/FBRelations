@@ -18,6 +18,7 @@
   self = [super init];
   if ( self ) {
     _items = [@[] mutableCopy];
+    _fbIds = [@[] mutableCopy];
   }
   
   return self;

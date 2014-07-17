@@ -77,7 +77,7 @@ static NSString *kStatisticsCellIdentifier = @"kStatisticsCellIdentifier";
       weakAvatarView.layer.masksToBounds = YES;
       [UIView animateWithDuration:ANIMATION_DURATION animations:^{
         weakAvatarView.alpha = 1.0f;
-      }];      
+      }];
     }
   } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
     
