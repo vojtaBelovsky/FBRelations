@@ -9,7 +9,6 @@
 #import "FBBeaconManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "FBUser.h"
 
 #define BEACON_UUID_LENGHT 36
 #define FIRST_DASH 8
@@ -42,9 +41,9 @@ CBPeripheralManager *_peripheralManager = nil;
 
 #pragma mark - Public
 
-- (void)setUser:(FBUser *)user {
+- (void)setBeaconWithMinor:(NSNumber *)minor major:(NSNumber *)major {
   NSMutableDictionary *peripheralData = nil;
-  CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID major:0 minor:65535 identifier:kBeaconIdentifier];
+  CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID major:major.unsignedIntValue minor:minor.unsignedIntValue identifier:kBeaconIdentifier];
   
   NSDictionary *measuredPeripheralData = [region peripheralDataWithMeasuredPower:BEACON_POWER];
   peripheralData = [NSMutableDictionary dictionaryWithDictionary:measuredPeripheralData];

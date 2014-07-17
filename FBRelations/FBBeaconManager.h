@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-@class FBUser;
 @class CLLocationManager;
 
 #define BEACON_UUID   [[NSUUID alloc] initWithUUIDString:@"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"]
@@ -15,7 +14,7 @@
 
 @interface FBBeaconManager : NSObject
 + (FBBeaconManager *)sharedInstance;
-- (void)setUser:(FBUser *)user;
+- (void)setBeaconWithMinor:(NSNumber *)minor major:(NSNumber *)major;
 @property (readonly) CLLocationManager *locationManager;
 
 +(NSUUID *)encodeFBUserID:(NSString *)userId;

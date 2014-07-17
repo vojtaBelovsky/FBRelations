@@ -7,20 +7,22 @@
 //
 
 #import "FBAppDelegate.h"
-#import "FBUserDetailViewController.h"
+#import "FBStatisticsViewController.h"
 #import "FBAPI.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "FBBeaconManager.h"
 #import "FBUser.h"
 #import "ServerHTTPSessionManager.h"
 
+#define ME @"me"
+
 @implementation FBAppDelegate
 
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  FBUserDetailViewController *userDetailViewController = [[FBUserDetailViewController alloc] initWithUserId:@"me"];
-  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:userDetailViewController];
+  FBStatisticsViewController *statisticsViewController = [[FBStatisticsViewController alloc] init];
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:statisticsViewController];
   
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.rootViewController = navigationController;
@@ -28,21 +30,10 @@
   [self.window makeKeyAndVisible];
 
   [FBBeaconManager sharedInstance].locationManager.delegate = self;
-//  [ServerHTTPSessionManager POSTFBID:@"298741418934" success:^(id data) {
-//    NSNumber *minor = data [@"minor"];
-//    NSNumber *major = data [@"major"];
-//  } failure:^(NSError *error) {
-//    
-//  }];
-//  
-//  [ServerHTTPSessionManager GETFBIDWithMinor:[NSNumber numberWithInt:0] andMajor:[NSNumber numberWithInt:0] success:^(id data) {
-//    NSString *FB_ID = data;
-//  } failure:^(NSError *error) {
-//    
-//  }];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentUserDidLoadNotification) name:kCurrentUserDidLoadNotification object:nil];
   
-  [FBUser currentUser];
-  
+
+  [self performSelector:@selector(initializeMe) withObject:self afterDelay:3];
   return YES;
 }
 
@@ -50,6 +41,7 @@
   [FBSession.activeSession setStateChangeHandler:
    ^(FBSession *session, FBSessionState state, NSError *error) {
      if ( state == FBSessionStateOpen ) {
+       [self initializeMe];
      }
    }];
   return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
@@ -59,14 +51,47 @@
   [FBAppCall handleDidBecomeActive];
 }
 
+#pragma mark - Memory Management
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Notifications
+
+- (void)currentUserDidLoadNotification {
+  [ServerHTTPSessionManager POSTFBID:_user.userId success:^( id data ) {
+    NSNumber *minor = data [@"minor"];
+    NSNumber *major = data [@"major"];
+    [[FBBeaconManager sharedInstance] setBeaconWithMinor:minor major:major];
+  } failure:^(NSError *error) {
+    
+  }];
+}
+
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
   for ( CLBeacon *beacon in beacons ) {
-    NSString *facebookId = [FBBeaconManager decodeBeaconUUID:beacon.proximityUUID];
-    
-    NSLog( @"%@", facebookId );
+    [ServerHTTPSessionManager GETFBIDWithMinor:beacon.minor andMajor:beacon.major success:^(id data) {
+      NSString *facebookID = data;
+      [(FBStatisticsViewController *)self.window.rootViewController addNewUserWithFacebookId:facebookID];
+    } failure:^(NSError *error) {
+      
+    }];
   }
+}
+
+
+#pragma mark - Private
+
+- (void)initializeMe {
+  [FBAPI loadUserInfoWithId:ME completetionBlock:^( FBUser *user ) {
+    _user = user;
+    [self currentUserDidLoadNotification];
+  } failureBlock:^( NSError *error ) {
+    NSLog( @"%@", error );
+  }];
 }
 
 @end

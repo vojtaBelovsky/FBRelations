@@ -34,6 +34,5 @@ static NSString *kCurrentUserDidLoadNotification = @"kCurrentUserDidLoadNotifica
 @property (readonly) FBLocation *currentLocation;
 
 - (id)initWithUserId:(NSString *)userId;
-+ (FBUser *)currentUser;
 
 @end

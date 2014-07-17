@@ -15,6 +15,7 @@
 		109B214B196BEF9A004D38F9 /* FBStatisticsDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B214A196BEF9A004D38F9 /* FBStatisticsDetailView.m */; };
 		109B214E196BEFBA004D38F9 /* FBStatisticsDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B214D196BEFBA004D38F9 /* FBStatisticsDetailDataSource.m */; };
 		10C8CE87196BC53300BEDBED /* ServerHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */; };
+		29465C56197675F500A0A0D9 /* FBStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29465C55197675F500A0A0D9 /* FBStatisticsViewController.m */; };
 		294E6E4E195D7DEF001F4F87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E4D195D7DEF001F4F87 /* Foundation.framework */; };
 		294E6E50195D7DEF001F4F87 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E4F195D7DEF001F4F87 /* CoreGraphics.framework */; };
 		294E6E52195D7DEF001F4F87 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E51195D7DEF001F4F87 /* UIKit.framework */; };
@@ -31,6 +32,8 @@
 		296A8516196BE3BA0000D833 /* FBGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A8515196BE3BA0000D833 /* FBGalleryViewController.m */; };
 		296A851A196BE5040000D833 /* FBGalleryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A8519196BE5040000D833 /* FBGalleryDataSource.m */; };
 		296A851E196BE93E0000D833 /* FBGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A851D196BE93E0000D833 /* FBGalleryCell.m */; };
+		297F43E7197676FB00E1A383 /* FBStatisticsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 297F43E6197676FB00E1A383 /* FBStatisticsDataSource.m */; };
+		297F43EB197677FE00E1A383 /* FBStatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 297F43EA197677FE00E1A383 /* FBStatisticsCell.m */; };
 		29A4BA6219647145005D9515 /* FBUserDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6119647145005D9515 /* FBUserDetailDataSource.m */; };
 		29A4BA66196471DE005D9515 /* FBUserDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA65196471DE005D9515 /* FBUserDetailInfoCell.m */; };
 		29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A4BA6A19655826005D9515 /* FBUserDetailHeaderView.m */; };
@@ -76,6 +79,8 @@
 		109B214D196BEFBA004D38F9 /* FBStatisticsDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticsDetailDataSource.m; sourceTree = "<group>"; };
 		10C8CE85196BC53300BEDBED /* ServerHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHTTPSessionManager.h; sourceTree = "<group>"; };
 		10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerHTTPSessionManager.m; sourceTree = "<group>"; };
+		29465C54197675F500A0A0D9 /* FBStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStatisticsViewController.h; sourceTree = "<group>"; };
+		29465C55197675F500A0A0D9 /* FBStatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticsViewController.m; sourceTree = "<group>"; };
 		294E6E4A195D7DEF001F4F87 /* FBRelations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBRelations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		294E6E4D195D7DEF001F4F87 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		294E6E4F195D7DEF001F4F87 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,6 +106,10 @@
 		296A8519196BE5040000D833 /* FBGalleryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBGalleryDataSource.m; sourceTree = "<group>"; };
 		296A851C196BE93E0000D833 /* FBGalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBGalleryCell.h; sourceTree = "<group>"; };
 		296A851D196BE93E0000D833 /* FBGalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBGalleryCell.m; sourceTree = "<group>"; };
+		297F43E5197676FB00E1A383 /* FBStatisticsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStatisticsDataSource.h; sourceTree = "<group>"; };
+		297F43E6197676FB00E1A383 /* FBStatisticsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticsDataSource.m; sourceTree = "<group>"; };
+		297F43E9197677FE00E1A383 /* FBStatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStatisticsCell.h; sourceTree = "<group>"; };
+		297F43EA197677FE00E1A383 /* FBStatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticsCell.m; sourceTree = "<group>"; };
 		29A4BA6019647145005D9515 /* FBUserDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserDetailDataSource.h; sourceTree = "<group>"; };
 		29A4BA6119647145005D9515 /* FBUserDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserDetailDataSource.m; sourceTree = "<group>"; };
 		29A4BA64196471DE005D9515 /* FBUserDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserDetailInfoCell.h; sourceTree = "<group>"; };
@@ -191,7 +200,7 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		109B2143196BEEE1004D38F9 /* Statistics */ = {
+		109B2143196BEEE1004D38F9 /* StatisticsDetail */ = {
 			isa = PBXGroup;
 			children = (
 				109B2148196BEF6F004D38F9 /* DataSource */,
@@ -199,7 +208,7 @@
 				109B2144196BEF5A004D38F9 /* FBStatisticsDetailViewController.h */,
 				109B2145196BEF5A004D38F9 /* FBStatisticsDetailViewController.m */,
 			);
-			name = Statistics;
+			name = StatisticsDetail;
 			sourceTree = "<group>";
 		};
 		109B2147196BEF61004D38F9 /* View */ = {
@@ -217,6 +226,26 @@
 			children = (
 				109B214C196BEFBA004D38F9 /* FBStatisticsDetailDataSource.h */,
 				109B214D196BEFBA004D38F9 /* FBStatisticsDetailDataSource.m */,
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
+		29465C53197675D700A0A0D9 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				297F43E8197677E100E1A383 /* Cell */,
+				29465C571976766100A0A0D9 /* DataSource */,
+				29465C54197675F500A0A0D9 /* FBStatisticsViewController.h */,
+				29465C55197675F500A0A0D9 /* FBStatisticsViewController.m */,
+			);
+			name = Statistics;
+			sourceTree = "<group>";
+		};
+		29465C571976766100A0A0D9 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				297F43E5197676FB00E1A383 /* FBStatisticsDataSource.h */,
+				297F43E6197676FB00E1A383 /* FBStatisticsDataSource.m */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -344,6 +373,15 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		297F43E8197677E100E1A383 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				297F43E9197677FE00E1A383 /* FBStatisticsCell.h */,
+				297F43EA197677FE00E1A383 /* FBStatisticsCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		29A4BA5F19647128005D9515 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,7 +453,8 @@
 		29F452D3195D996000DE4814 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				109B2143196BEEE1004D38F9 /* Statistics */,
+				29465C53197675D700A0A0D9 /* Statistics */,
+				109B2143196BEEE1004D38F9 /* StatisticsDetail */,
 				296A8513196BE37F0000D833 /* GalleryViewController */,
 				296A850B196ACEFB0000D833 /* LightboxViewController */,
 				29F452D4195D996800DE4814 /* UserDetail */,
@@ -598,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				297F43EB197677FE00E1A383 /* FBStatisticsCell.m in Sources */,
 				105078101964354F00993ECD /* User.m in Sources */,
 				296A8512196AD27F0000D833 /* FBLightboxDataSource.m in Sources */,
 				29A4BA6219647145005D9515 /* FBUserDetailDataSource.m in Sources */,
@@ -605,6 +645,7 @@
 				296A850E196ACF1C0000D833 /* FBLightboxViewController.m in Sources */,
 				29A4BA771966AC96005D9515 /* FBBeaconManager.m in Sources */,
 				29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */,
+				29465C56197675F500A0A0D9 /* FBStatisticsViewController.m in Sources */,
 				29F452D7195D999400DE4814 /* FBUserDetailViewController.m in Sources */,
 				296A851E196BE93E0000D833 /* FBGalleryCell.m in Sources */,
 				29F452CF195D8E1300DE4814 /* FBAPI.m in Sources */,
@@ -620,6 +661,7 @@
 				29ABB1D11964057300C43817 /* FBLocation.m in Sources */,
 				102500BC1973D70E004C5EA8 /* FBStatisticsDetailTableViewCell.m in Sources */,
 				10C8CE87196BC53300BEDBED /* ServerHTTPSessionManager.m in Sources */,
+				297F43E7197676FB00E1A383 /* FBStatisticsDataSource.m in Sources */,
 				29F452DB195D9A3000DE4814 /* FBUserDetailView.m in Sources */,
 				29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */,
 				102500BF1973D7CF004C5EA8 /* FBUserTableViewCell.m in Sources */,

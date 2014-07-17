@@ -101,7 +101,6 @@
   [FBAPI loadUserInfoWithId:_user.userId completetionBlock:^( FBUser *user ) {
     _user = user;
     [self.userDetailView setUser:_user];
-    [[FBBeaconManager sharedInstance] setUser:user];
   } failureBlock:^( NSError *error ) {
     NSLog( @"%@", error );
   }];
