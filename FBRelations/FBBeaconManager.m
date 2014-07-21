@@ -24,6 +24,7 @@ CBPeripheralManager *_peripheralManager = nil;
 }
 
 @end
+
 @implementation FBBeaconManager
 
 #pragma mark - LifeCycles
@@ -42,15 +43,13 @@ CBPeripheralManager *_peripheralManager = nil;
 #pragma mark - Public
 
 - (void)setBeaconWithMinor:(NSNumber *)minor major:(NSNumber *)major {
-  NSMutableDictionary *peripheralData = nil;
   CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID major:major.unsignedIntValue minor:minor.unsignedIntValue identifier:kBeaconIdentifier];
   
   NSDictionary *measuredPeripheralData = [region peripheralDataWithMeasuredPower:BEACON_POWER];
-  peripheralData = [NSMutableDictionary dictionaryWithDictionary:measuredPeripheralData];
   
-  if( peripheralData ) {
+  if( measuredPeripheralData ) {
     _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-    [_peripheralManager startAdvertising:peripheralData];
+    [_peripheralManager startAdvertising:measuredPeripheralData];
   }
 }
 
@@ -58,7 +57,7 @@ CBPeripheralManager *_peripheralManager = nil;
 
 - (void)initializeLocationManager {
   _locationManager = [[CLLocationManager alloc] init];
-  _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID identifier:kBeaconIdentifier];
+  _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID major:0 minor:0 identifier:kBeaconIdentifier];
   
   [_locationManager startRangingBeaconsInRegion:_region];
 }
