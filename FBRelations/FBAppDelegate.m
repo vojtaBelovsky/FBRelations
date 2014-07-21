@@ -16,24 +16,29 @@
 
 #define ME @"me"
 
+@interface FBAppDelegate () {
+  FBStatisticsViewController *_statisticsViewController;
+}
+
+@end
 @implementation FBAppDelegate
 
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  FBStatisticsViewController *statisticsViewController = [[FBStatisticsViewController alloc] init];
-  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:statisticsViewController];
+  _statisticsViewController = [[FBStatisticsViewController alloc] init];
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_statisticsViewController];
   
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.rootViewController = navigationController;
   self.window.backgroundColor = WHITE_COLOR;
   [self.window makeKeyAndVisible];
 
-  [FBBeaconManager sharedInstance].locationManager.delegate = self;
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentUserDidLoadNotification) name:kCurrentUserDidLoadNotification object:nil];
   
 
   [self performSelector:@selector(initializeMe) withObject:self afterDelay:3];
+  [FBBeaconManager sharedInstance];
   return YES;
 }
 
@@ -63,6 +68,7 @@
   [ServerHTTPSessionManager POSTFBID:_user.userId success:^( id data ) {
     NSNumber *minor = data [@"minor"];
     NSNumber *major = data [@"major"];
+    [FBBeaconManager sharedInstance].locationManager.delegate = self;
     [[FBBeaconManager sharedInstance] setBeaconWithMinor:minor major:major];
   } failure:^(NSError *error) {
     
@@ -73,12 +79,15 @@
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
   for ( CLBeacon *beacon in beacons ) {
-    [ServerHTTPSessionManager GETFBIDWithMinor:beacon.minor andMajor:beacon.major success:^(id data) {
-      NSString *facebookID = data;
-      [(FBStatisticsViewController *)self.window.rootViewController addNewUserWithFacebookId:facebookID];
-    } failure:^(NSError *error) {
-      
-    }];
+    NSLog( @"beacon: %@", beacon );
+    if ( ![_statisticsViewController containsUserWithMinor:beacon.minor major:beacon.major] ) {
+      [ServerHTTPSessionManager GETFBIDWithMinor:beacon.minor andMajor:beacon.major success:^(id data) {
+        NSString *facebookID = data;
+        [_statisticsViewController addNewUserWithFacebookId:facebookID];
+      } failure:^(NSError *error) {
+        
+      }];
+    }
   }
 }
 

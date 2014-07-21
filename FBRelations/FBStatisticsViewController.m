@@ -53,12 +53,19 @@ static CGFloat rowHeight = 60.0f;
 
 #pragma mark - Public
 
-- (void)addNewUserWithFacebookId:(NSString *)facebookId {
-  if ( [_dataSource.fbIds containsObject:facebookId] ) {
-    return;
+- (BOOL)containsUserWithMinor:(NSNumber *)minor major:(NSNumber *)major {
+  NSDictionary *dict = @{ @"minor" : minor, @"major" : major };
+  if ( ![_dataSource.fbIds containsObject:dict] ) {
+    [_dataSource.fbIds addObject:dict];
+    
+    return NO;
   }
   
-  [_dataSource.fbIds addObject:facebookId];
+  return YES;
+}
+
+- (void)addNewUserWithFacebookId:(NSString *)facebookId {
+  
   [FBAPI loadUserInfoWithId:facebookId completetionBlock:^( FBUser *user ) {
     [_dataSource.items addObject:user];
     [self.tableView reloadData];

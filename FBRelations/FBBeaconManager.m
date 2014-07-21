@@ -57,39 +57,9 @@ CBPeripheralManager *_peripheralManager = nil;
 
 - (void)initializeLocationManager {
   _locationManager = [[CLLocationManager alloc] init];
-  _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID major:0 minor:0 identifier:kBeaconIdentifier];
+  _region = [[CLBeaconRegion alloc] initWithProximityUUID:BEACON_UUID identifier:kBeaconIdentifier];
   
   [_locationManager startRangingBeaconsInRegion:_region];
-}
-
-+ (NSUUID *)encodeFBUserID:(NSString *)userId {
-  NSUInteger lenghtOfFBID = [userId length];
-  NSInteger numberOfDashes = 0;
-  NSMutableString *uuidInString = [[NSMutableString alloc] init];
-  for ( NSUInteger i = 0; i < BEACON_UUID_LENGHT; i++) {
-    if ( i == FIRST_DASH || i == SECOND_DASH || i == THIRD_DASH || i == FOURTH_DASH) {
-      [uuidInString appendString:@"-"];
-      numberOfDashes++;
-      continue;
-    }
-    if (i < lenghtOfFBID+numberOfDashes) {
-      [uuidInString appendString:[userId substringWithRange:NSMakeRange((i-numberOfDashes), 1)]];
-    } else {
-      [uuidInString appendString:@"A"];
-    }
-  }
-  
-  NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidInString];
-  return uuid;
-}
-
-+(NSString *)decodeBeaconUUID:(NSUUID *)BeaconUUID {
-  NSMutableString *userId = [NSMutableString stringWithFormat:@"%@", BeaconUUID];
-  [userId replaceOccurrencesOfString:@"-" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [userId length])];
-  [userId replaceOccurrencesOfString:@"A" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [userId length])];
-  
-  return userId;
-  
 }
 
 @end

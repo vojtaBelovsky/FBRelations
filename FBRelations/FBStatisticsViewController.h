@@ -10,4 +10,5 @@
 
 @interface FBStatisticsViewController : UITableViewController
 - (void)addNewUserWithFacebookId:(NSString *)facebookId;
+- (BOOL)containsUserWithMinor:(NSNumber *)minor major:(NSNumber *)major;
 @end
