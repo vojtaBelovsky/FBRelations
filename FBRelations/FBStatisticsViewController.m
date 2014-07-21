@@ -8,9 +8,12 @@
 
 #import "FBStatisticsViewController.h"
 #import "FBStatisticsDataSource.h"
+#import "FBUserDetailViewController.h"
+#import "FBBeaconManager.h"
 #import "FBUser.h"
 #import "FBAPI.h"
-#import "FBUserDetailViewController.h"
+#import <CoreLocation/CLGeocoder.h>
+#import <CoreLocation/CoreLocation.h>
 
 static CGFloat rowHeight = 60.0f;
 
@@ -65,7 +68,6 @@ static CGFloat rowHeight = 60.0f;
 }
 
 - (void)addNewUserWithFacebookId:(NSString *)facebookId {
-  
   [FBAPI loadUserInfoWithId:facebookId completetionBlock:^( FBUser *user ) {
     [_dataSource.items addObject:user];
     [self.tableView reloadData];

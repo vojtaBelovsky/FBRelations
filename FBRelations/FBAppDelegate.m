@@ -79,7 +79,6 @@
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
   for ( CLBeacon *beacon in beacons ) {
-    NSLog( @"beacon: %@", beacon );
     if ( ![_statisticsViewController containsUserWithMinor:beacon.minor major:beacon.major] ) {
       [ServerHTTPSessionManager GETFBIDWithMinor:beacon.minor andMajor:beacon.major success:^(id data) {
         NSString *facebookID = data;
