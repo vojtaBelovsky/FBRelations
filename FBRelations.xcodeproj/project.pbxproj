@@ -14,6 +14,8 @@
 		109B2146196BEF5A004D38F9 /* FBStatisticsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B2145196BEF5A004D38F9 /* FBStatisticsDetailViewController.m */; };
 		109B214B196BEF9A004D38F9 /* FBStatisticsDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B214A196BEF9A004D38F9 /* FBStatisticsDetailView.m */; };
 		109B214E196BEFBA004D38F9 /* FBStatisticsDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B214D196BEFBA004D38F9 /* FBStatisticsDetailDataSource.m */; };
+		10A95298197D096C00D36040 /* Meeting.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A95297197D096C00D36040 /* Meeting.m */; };
+		10A9529B197D0F7E00D36040 /* FBAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A9529A197D0F7E00D36040 /* FBAddress.m */; };
 		10C8CE87196BC53300BEDBED /* ServerHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */; };
 		29465C56197675F500A0A0D9 /* FBStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29465C55197675F500A0A0D9 /* FBStatisticsViewController.m */; };
 		294E6E4E195D7DEF001F4F87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294E6E4D195D7DEF001F4F87 /* Foundation.framework */; };
@@ -77,6 +79,10 @@
 		109B214A196BEF9A004D38F9 /* FBStatisticsDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticsDetailView.m; sourceTree = "<group>"; };
 		109B214C196BEFBA004D38F9 /* FBStatisticsDetailDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStatisticsDetailDataSource.h; sourceTree = "<group>"; };
 		109B214D196BEFBA004D38F9 /* FBStatisticsDetailDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBStatisticsDetailDataSource.m; sourceTree = "<group>"; };
+		10A95296197D096C00D36040 /* Meeting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meeting.h; sourceTree = "<group>"; };
+		10A95297197D096C00D36040 /* Meeting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meeting.m; sourceTree = "<group>"; };
+		10A95299197D0F7E00D36040 /* FBAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAddress.h; sourceTree = "<group>"; };
+		10A9529A197D0F7E00D36040 /* FBAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAddress.m; sourceTree = "<group>"; };
 		10C8CE85196BC53300BEDBED /* ServerHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHTTPSessionManager.h; sourceTree = "<group>"; };
 		10C8CE86196BC53300BEDBED /* ServerHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerHTTPSessionManager.m; sourceTree = "<group>"; };
 		29465C54197675F500A0A0D9 /* FBStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStatisticsViewController.h; sourceTree = "<group>"; };
@@ -194,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				105078081964323900993ECD /* Model.xcdatamodeld */,
+				10A95296197D096C00D36040 /* Meeting.h */,
+				10A95297197D096C00D36040 /* Meeting.m */,
 				1050780E1964354F00993ECD /* User.h */,
 				1050780F1964354F00993ECD /* User.m */,
 			);
@@ -502,6 +510,8 @@
 				29A4BA6719654692005D9515 /* FBPictureEntity.h */,
 				29A4BA6C19668D6B005D9515 /* FBBook.h */,
 				29A4BA6D19668D6B005D9515 /* FBBook.m */,
+				10A95299197D0F7E00D36040 /* FBAddress.h */,
+				10A9529A197D0F7E00D36040 /* FBAddress.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -645,6 +655,7 @@
 				296A850E196ACF1C0000D833 /* FBLightboxViewController.m in Sources */,
 				29A4BA771966AC96005D9515 /* FBBeaconManager.m in Sources */,
 				29ABB1C31962B38500C43817 /* FBAlbum.m in Sources */,
+				10A9529B197D0F7E00D36040 /* FBAddress.m in Sources */,
 				29465C56197675F500A0A0D9 /* FBStatisticsViewController.m in Sources */,
 				29F452D7195D999400DE4814 /* FBUserDetailViewController.m in Sources */,
 				296A851E196BE93E0000D833 /* FBGalleryCell.m in Sources */,
@@ -665,6 +676,7 @@
 				29F452DB195D9A3000DE4814 /* FBUserDetailView.m in Sources */,
 				29A4BA6B19655826005D9515 /* FBUserDetailHeaderView.m in Sources */,
 				102500BF1973D7CF004C5EA8 /* FBUserTableViewCell.m in Sources */,
+				10A95298197D096C00D36040 /* Meeting.m in Sources */,
 				29ABB1CA1962DE0100C43817 /* FBMovie.m in Sources */,
 				109B214E196BEFBA004D38F9 /* FBStatisticsDetailDataSource.m in Sources */,
 				1050780A1964323900993ECD /* Model.xcdatamodeld in Sources */,

@@ -13,6 +13,8 @@
 #import "FBUser.h"
 #import "FBAPI.h"
 #import <CoreLocation/CLGeocoder.h>
+#import "FBUserDetailViewController.h"
+#import "FBAddress.h"
 #import <CoreLocation/CoreLocation.h>
 
 static CGFloat rowHeight = 60.0f;
@@ -67,11 +69,17 @@ static CGFloat rowHeight = 60.0f;
   return YES;
 }
 
-- (void)addNewUserWithFacebookId:(NSString *)facebookId {
+- (void)addNewUserWithFacebookId:(NSString *)facebookId withLocation:(CLLocation *)location {
   [FBAPI loadUserInfoWithId:facebookId completetionBlock:^( FBUser *user ) {
     [_dataSource.items addObject:user];
     [self.tableView reloadData];
   } failureBlock:^(NSError *error) {
+    
+  }];
+  
+  [FBAddress getActualAddressFromLocation:location WithSuccess:^( FBAddress *address ) {
+    
+  } failure:^( NSError *error ) {
     
   }];
 }
