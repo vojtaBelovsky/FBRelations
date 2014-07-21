@@ -13,6 +13,7 @@
 #import "FBBeaconManager.h"
 #import "FBUser.h"
 #import "ServerHTTPSessionManager.h"
+#import <CoreLocation/CoreLocation.h>
 
 #define ME @"me"
 
@@ -83,7 +84,8 @@
     if ( ![_statisticsViewController containsUserWithMinor:beacon.minor major:beacon.major] ) {
       [ServerHTTPSessionManager GETFBIDWithMinor:beacon.minor andMajor:beacon.major success:^(id data) {
         NSString *facebookID = data;
-        [_statisticsViewController addNewUserWithFacebookId:facebookID];
+        CLLocation *actualLocation = [[[FBBeaconManager sharedInstance] locationManager] location];
+        [_statisticsViewController addNewUserWithFacebookId:facebookID withLocation:actualLocation];
       } failure:^(NSError *error) {
         
       }];

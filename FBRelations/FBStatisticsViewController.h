@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CLLocation;
 
 @interface FBStatisticsViewController : UITableViewController
-- (void)addNewUserWithFacebookId:(NSString *)facebookId;
+- (void)addNewUserWithFacebookId:(NSString *)facebookId withLocation:(CLLocation *)location;
 - (BOOL)containsUserWithMinor:(NSNumber *)minor major:(NSNumber *)major;
 @end
