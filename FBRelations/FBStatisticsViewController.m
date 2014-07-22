@@ -14,7 +14,7 @@
 #import "FBAPI.h"
 #import <CoreLocation/CLGeocoder.h>
 #import "FBUserDetailViewController.h"
-#import "FBAddress.h"
+#import "Meeting.h"
 #import <CoreLocation/CoreLocation.h>
 
 static CGFloat rowHeight = 60.0f;
@@ -77,7 +77,7 @@ static CGFloat rowHeight = 60.0f;
     
   }];
   
-  [FBAddress getActualAddressFromLocation:location WithSuccess:^( FBAddress *address ) {
+  [Meeting getActualAddressFromLocation:location WithSuccess:^( Meeting *address ) {
     
   } failure:^( NSError *error ) {
     

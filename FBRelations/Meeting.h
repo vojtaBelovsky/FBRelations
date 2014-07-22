@@ -8,12 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+@class CLLocation;
 
 @interface Meeting : NSManagedObject
 
-@property (nonatomic, retain) NSString * adress;
+typedef void(^MeetingCompletitionBlock)( Meeting *meeting );
+typedef void(^MeetingFailureBlock)( NSError *error );
+
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * userId;
+@property (nonatomic, retain) NSString * state;
+@property (nonatomic, retain) NSString * country;
+@property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) NSString * street;
+@property (nonatomic, retain) NSString * zipCode;
+
++ (void)getActualAddressFromLocation:(CLLocation *)location WithSuccess:(MeetingCompletitionBlock)completetionBlock failure:(MeetingFailureBlock)failureBlock;
 
 @end
