@@ -42,7 +42,7 @@
   NSDateFormatter *df = [[NSDateFormatter alloc] init];
   [df setDateFormat:@"MM/dd/yyyy"];
   
-  if ( userFounded) {
+  if ( userFounded ) {
     
     NSDate *lastUpdated = [df dateFromString:userFounded.lastUpdated];
     NSDate *now = [NSDate date];
@@ -53,7 +53,7 @@
                                        options:0];
     NSInteger days = [ageComponents day];
     
-    if ( days >= 1) {
+    if ( days >= 1 ) {
       [self fillUser:userFounded WithFBUser:user inContext:localContext withDateFormatter:df];
       
       [localContext MR_saveToPersistentStoreAndWait];

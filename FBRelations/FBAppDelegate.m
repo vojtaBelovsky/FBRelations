@@ -57,6 +57,12 @@
   [FBAppCall handleDidBecomeActive];
 }
 
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+//  [application beginBackgroundTaskWithExpirationHandler:^{
+//    NSLog( @"expiration" );
+//  }];
+}
+
 #pragma mark - Memory Management
 
 - (void)dealloc {
@@ -79,6 +85,7 @@
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
+  NSLog( @"locationManager:didRangeBeacons:" );
   for ( CLBeacon *beacon in beacons ) {
     if ( ![_statisticsViewController containsUserWithMinor:beacon.minor major:beacon.major] ) {
       [ServerHTTPSessionManager GETFBIDWithMinor:beacon.minor andMajor:beacon.major success:^(id data) {
